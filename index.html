@@ -352,8 +352,8 @@ box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .product-image {
-height: 200px;
-background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+height: 250px;
+background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 display: flex;
 align-items: center;
 justify-content: center;
@@ -361,6 +361,25 @@ font-size: 4rem;
 color: white;
 position: relative;
 overflow: hidden;
+padding: 1rem;
+}
+
+.product-image img {
+width: 100%;
+height: 100%;
+object-fit: contain;
+border-radius: 12px;
+transition: all 0.3s ease;
+filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+}
+
+.product-card:hover .product-image img {
+transform: scale(1.05);
+filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.2));
+}
+
+.product-image.fallback {
+background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
 }
 
 .product-image::after {
@@ -708,7 +727,9 @@ FusionStock
 <h2>Featured Consoles</h2>
 <div class="products-grid">
 <div class="product-card">
-<div class="product-image">🎮</div>
+<div class="product-image">
+<img src="images/ps5.jpg" alt="PlayStation 5" onerror="this.style.display='none'; this.parentElement.innerHTML='🎮'; this.parentElement.classList.add('fallback');">
+</div>
 <div class="product-info">
 <h3>PlayStation 5</h3>
 <div class="product-price">$449.99</div>
@@ -716,7 +737,9 @@ FusionStock
 </div>
 </div>
 <div class="product-card">
-<div class="product-image">🎯</div>
+<div class="product-image">
+<img src="images/xbox-series-x.jpg" alt="Xbox Series X" onerror="this.style.display='none'; this.parentElement.innerHTML='🎯'; this.parentElement.classList.add('fallback');">
+</div>
 <div class="product-info">
 <h3>Xbox Series X</h3>
 <div class="product-price">$399.99</div>
@@ -724,7 +747,9 @@ FusionStock
 </div>
 </div>
 <div class="product-card">
-<div class="product-image">🕹️</div>
+<div class="product-image">
+<img src="images/nintendo-switch.jpg" alt="Nintendo Switch" onerror="this.style.display='none'; this.parentElement.innerHTML='🕹️'; this.parentElement.classList.add('fallback');">
+</div>
 <div class="product-info">
 <h3>Nintendo Switch</h3>
 <div class="product-price">$279.99</div>
@@ -732,7 +757,9 @@ FusionStock
 </div>
 </div>
 <div class="product-card">
-<div class="product-image">⚡</div>
+<div class="product-image">
+<img src="images/steam-deck.jpg" alt="Steam Deck" onerror="this.style.display='none'; this.parentElement.innerHTML='⚡'; this.parentElement.classList.add('fallback');">
+</div>
 <div class="product-info">
 <h3>Steam Deck</h3>
 <div class="product-price">$349.99</div>
@@ -740,7 +767,9 @@ FusionStock
 </div>
 </div>
 <div class="product-card">
-<div class="product-image">🎲</div>
+<div class="product-image">
+<img src="images/ps4-pro.jpg" alt="PlayStation 4 Pro" onerror="this.style.display='none'; this.parentElement.innerHTML='🎲'; this.parentElement.classList.add('fallback');">
+</div>
 <div class="product-info">
 <h3>PlayStation 4 Pro</h3>
 <div class="product-price">$299.99</div>
@@ -748,7 +777,9 @@ FusionStock
 </div>
 </div>
 <div class="product-card">
-<div class="product-image">🔥</div>
+<div class="product-image">
+<img src="images/xbox-one-x.jpg" alt="Xbox One X" onerror="this.style.display='none'; this.parentElement.innerHTML='🔥'; this.parentElement.classList.add('fallback');">
+</div>
 <div class="product-info">
 <h3>Xbox One X</h3>
 <div class="product-price">$249.99</div>
