@@ -739,30 +739,23 @@ FusionStock
 // Initialize cart from localStorage or empty array
 let cart = JSON.parse(localStorage.getItem('fusionstock-cart')) || [];
 
-// Product Data with image mappings
+// Product Data with image mappings - only products with actual images
 const products = [
 // PlayStation
 { id: 1, name: 'PlayStation 5', brand: 'Sony', category: 'playstation', price: 449.99, originalPrice: 499.99, condition: 'like-new', icon: '🎮', image: 'ps5.jpg', badge: 'SALE', features: ['4K HDR Gaming', '120fps Support', 'Ray Tracing', 'Ultra-Fast SSD'] },
-{ id: 2, name: 'PlayStation 5 Digital', brand: 'Sony', category: 'playstation', price: 389.99, originalPrice: 399.99, condition: 'pristine', icon: '🎮', image: 'ps5-digital.jpg', badge: 'NEW', features: ['All-Digital Experience', '4K Gaming', 'Instant Loading', 'Sleek Design'] },
-{ id: 19, name: 'PS5 Spider-Man Edition', brand: 'Sony', category: 'playstation', price: 529.99, originalPrice: 559.99, condition: 'collector', icon: '🎮', image: 'ps5-spiderman.jpg', badge: 'LIMITED', features: ['Exclusive Design', 'Spider-Man Bundle', 'Collector\'s Item', 'Premium Finish'] },
 
 // Xbox
 { id: 5, name: 'Xbox Series X', brand: 'Microsoft', category: 'xbox', price: 399.99, originalPrice: 499.99, condition: 'like-new', icon: '🎯', image: 'xbox-series-x.jpg', badge: 'SALE', features: ['True 4K Gaming', 'Quick Resume', 'Smart Delivery', 'Backwards Compatible'] },
-{ id: 6, name: 'Xbox Series S', brand: 'Microsoft', category: 'xbox', price: 249.99, originalPrice: 299.99, condition: 'pristine', icon: '🎯', image: 'xbox-series-s.jpg', badge: 'NEW', features: ['Compact Design', '1440p Gaming', 'All-Digital', 'Game Pass Ready'] },
-{ id: 20, name: 'Xbox Series X Halo Edition', brand: 'Microsoft', category: 'xbox', price: 549.99, originalPrice: 549.99, condition: 'collector', icon: '🎯', image: 'xbox-halo.jpg', badge: 'LIMITED', features: ['Master Chief Design', 'Custom Sounds', 'Halo Infinite', 'Collector\'s Edition'] },
 
 // Nintendo
-{ id: 9, name: 'Nintendo Switch OLED', brand: 'Nintendo', category: 'nintendo', price: 329.99, originalPrice: 349.99, condition: 'like-new', icon: '🕹️', image: 'switch-oled.jpg', badge: 'PREMIUM', features: ['Vibrant OLED Display', 'Enhanced Audio', 'Premium Stand', 'Hybrid Gaming'] },
 { id: 10, name: 'Nintendo Switch', brand: 'Nintendo', category: 'nintendo', price: 279.99, originalPrice: 299.99, condition: 'excellent', icon: '🕹️', image: 'nintendo-switch.jpg', badge: 'POPULAR', features: ['Versatile Gaming', 'Joy-Con Controllers', 'Portable Mode', 'Dock Included'] },
-{ id: 21, name: 'Switch Pokémon Edition', brand: 'Nintendo', category: 'nintendo', price: 349.99, originalPrice: 359.99, condition: 'collector', icon: '🕹️', image: 'switch-pokemon.jpg', badge: 'LIMITED', features: ['Pokémon Design', 'Special Dock', 'Exclusive Bundle', 'Collector\'s Item'] },
 
-// Handheld
-{ id: 12, name: 'Steam Deck', brand: 'Valve', category: 'handheld', price: 349.99, originalPrice: 399.99, condition: 'like-new', icon: '⚡', image: 'steam-deck.jpg', badge: 'GAMING PC', features: ['PC Gaming Portable', 'AMD RDNA 2', 'Linux SteamOS', 'Massive Game Library'] },
-{ id: 14, name: 'ASUS ROG Ally', brand: 'ASUS', category: 'handheld', price: 599.99, originalPrice: 699.99, condition: 'pristine', icon: '⚡', image: 'asus-rog-ally.jpg', badge: 'PREMIUM', features: ['Windows 11', 'Ryzen Z1 Extreme', '7" 120Hz Display', 'Premium Build'] },
+// PlayStation Bundles
+{ id: 15, name: 'PS4 Uncharted Edition Bundle', brand: 'Sony', category: 'playstation', price: 199.99, originalPrice: 249.99, condition: 'excellent', icon: '🎲', image: 'ps4-uncharted-bundle.jpg', badge: 'BUNDLE', features: ['Uncharted Game Included', '500GB Storage', 'Complete Bundle', 'Great Value'] },
 
-// Retro/Classic
-{ id: 15, name: 'PlayStation 3 Slim', brand: 'Sony', category: 'retro', price: 149.99, originalPrice: 199.99, condition: 'excellent', icon: '🎲', image: 'ps3-slim.jpg', badge: 'CLASSIC', features: ['Backwards Compatible', 'Blu-ray Player', 'Exclusive Games', 'Vintage Gaming'] },
-{ id: 17, name: 'Nintendo Wii U', brand: 'Nintendo', category: 'retro', price: 199.99, originalPrice: 299.99, condition: 'collector', icon: '🎲', image: 'wii-u.jpg', badge: 'RARE', features: ['GamePad Innovation', 'HD Nintendo Games', 'Unique Experience', 'Collector\'s Find'] }
+{ id: 16, name: 'PlayStation 4 Pro', brand: 'Sony', category: 'playstation', price: 299.99, originalPrice: 349.99, condition: 'excellent', icon: '🎮', image: 'ps4-pro.jpg', badge: 'PRO', features: ['4K Gaming', 'Enhanced Performance', 'HDR Support', 'Great Game Library'] },
+
+{ id: 17, name: 'PS4 500GB Bundle', brand: 'Sony', category: 'playstation', price: 179.99, originalPrice: 199.99, condition: 'excellent', icon: '🎲', image: 'ps4-500gb-bundle.jpg', badge: 'VALUE', features: ['500GB Storage', 'Complete Bundle', 'Games Included', 'Best Value'] }
 ];
 
 let currentFilter = 'all';
