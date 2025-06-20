@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop All - FusionStock Gaming Consoles</title>
+<title>Products - FusionStock</title>
 <style>
 * {
 margin: 0;
@@ -53,16 +53,21 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .logo-img {
-height: 36px;
-width: 36px;
-background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+height: 40px;
+width: 40px;
 border-radius: 8px;
 display: flex;
 align-items: center;
 justify-content: center;
-font-size: 1.2rem;
-color: #1e40af;
-font-weight: bold;
+background: white;
+padding: 2px;
+}
+
+.logo-img img {
+width: 100%;
+height: 100%;
+object-fit: contain;
+border-radius: 6px;
 }
 
 .nav-links {
@@ -79,7 +84,8 @@ padding: 0.5rem 1rem;
 border-radius: 25px;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
 background: rgba(255, 255, 255, 0.2);
 transform: translateY(-2px);
 }
@@ -91,7 +97,6 @@ padding: 0.7rem 1.5rem !important;
 border-radius: 25px;
 font-weight: bold;
 transition: all 0.3s ease;
-position: relative;
 }
 
 .cart-btn:hover {
@@ -100,11 +105,12 @@ transform: scale(1.05);
 }
 
 .cart-count {
-background: #dc2626;
+background: #1e40af;
 color: white;
 border-radius: 50%;
-padding: 0.2rem 0.5rem;
+padding: 0.2rem 0.6rem;
 font-size: 0.8rem;
+font-weight: 700;
 margin-left: 0.5rem;
 }
 
@@ -118,17 +124,17 @@ font-size: 1.5rem;
 cursor: pointer;
 }
 
-/* Page Header */
-.page-header {
+/* Hero Section */
+.hero {
 background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
 color: white;
-padding: 6rem 2rem 3rem;
+padding: 8rem 2rem 4rem;
 text-align: center;
 position: relative;
 overflow: hidden;
 }
 
-.page-header::before {
+.hero::before {
 content: '';
 position: absolute;
 top: 0;
@@ -144,124 +150,148 @@ animation: float 20s infinite linear;
 100% { transform: translateY(-100px) rotate(360deg); }
 }
 
-.page-header-content {
+.hero-content {
 max-width: 800px;
 margin: 0 auto;
 position: relative;
 z-index: 2;
 }
 
-.page-header h1 {
-font-size: 3rem;
+.hero-badge {
+display: inline-block;
+background: rgba(255, 255, 255, 0.2);
+color: white;
+padding: 0.5rem 1.5rem;
+border-radius: 25px;
+font-size: 0.9rem;
+margin-bottom: 1.5rem;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero h1 {
+font-size: 3.5rem;
 margin-bottom: 1rem;
 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+animation: slideInUp 1s ease;
 }
 
-.page-header p {
-font-size: 1.2rem;
+.hero p {
+font-size: 1.3rem;
+margin-bottom: 2rem;
 opacity: 0.9;
+animation: slideInUp 1s ease 0.2s both;
 }
 
-/* Filter Section */
-.filter-section {
+.cta-btn {
+background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+color: #1e40af;
+padding: 1rem 2.5rem;
+font-size: 1.2rem;
+font-weight: bold;
+border: none;
+border-radius: 50px;
+cursor: pointer;
+transition: all 0.3s ease;
+text-decoration: none;
+display: inline-block;
+box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+animation: slideInUp 1s ease 0.4s both;
+}
+
+.cta-btn:hover {
+transform: translateY(-3px) scale(1.05);
+box-shadow: 0 12px 35px rgba(251, 191, 36, 0.4);
+}
+
+@keyframes slideInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* Categories */
+.categories {
+padding: 4rem 2rem;
 background: white;
-padding: 2rem;
-margin: 2rem 0;
-border-radius: 20px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.filter-container {
+.categories-container {
 max-width: 1200px;
 margin: 0 auto;
 }
 
-.filter-grid {
+.section-title {
+text-align: center;
+font-size: 2.5rem;
+margin-bottom: 1rem;
+color: #1e40af;
+}
+
+.section-subtitle {
+text-align: center;
+font-size: 1.2rem;
+color: #6b7280;
+margin-bottom: 3rem;
+max-width: 600px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.category-grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 gap: 1.5rem;
-align-items: end;
+margin-bottom: 2rem;
 }
 
-.filter-group {
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
+.category-card {
+background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+border: 2px solid transparent;
+border-radius: 15px;
+padding: 1.5rem;
+text-align: center;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.filter-group label {
-font-weight: 600;
+.category-card:hover,
+.category-card.active {
+border-color: #3b82f6;
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+.category-icon {
+font-size: 2.5rem;
+margin-bottom: 1rem;
+display: block;
+color: #3b82f6;
+}
+
+.category-card h3 {
+font-size: 1.2rem;
+font-weight: 700;
+margin-bottom: 0.5rem;
 color: #1e40af;
+}
+
+.category-card p {
+color: #6b7280;
 font-size: 0.9rem;
 }
 
-.filter-select, .filter-input {
-padding: 0.8rem;
-border: 2px solid #e5e7eb;
-border-radius: 10px;
-font-size: 1rem;
-transition: all 0.3s ease;
-outline: none;
-}
-
-.filter-select:focus, .filter-input:focus {
-border-color: #3b82f6;
-box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.filter-buttons {
-display: flex;
-gap: 1rem;
-}
-
-.filter-btn, .clear-btn {
-padding: 0.8rem 1.5rem;
-border: none;
-border-radius: 10px;
-font-weight: bold;
-cursor: pointer;
-transition: all 0.3s ease;
-}
-
-.filter-btn {
-background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-color: white;
-}
-
-.filter-btn:hover {
-background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-transform: translateY(-2px);
-}
-
-.clear-btn {
-background: #f3f4f6;
-color: #374151;
-}
-
-.clear-btn:hover {
-background: #e5e7eb;
-}
-
-/* Results Info */
-.results-info {
-max-width: 1200px;
-margin: 0 auto 2rem;
-padding: 0 2rem;
-display: flex;
-justify-content: space-between;
-align-items: center;
-color: #6b7280;
-}
-
-.sort-group {
-display: flex;
-align-items: center;
-gap: 1rem;
-}
-
-/* Products Grid */
-.products-section {
-padding: 0 2rem 4rem;
+/* Products Section */
+.products {
+padding: 4rem 2rem;
+background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
 .products-container {
@@ -271,7 +301,7 @@ margin: 0 auto;
 
 .products-grid {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 gap: 2rem;
 }
 
@@ -282,36 +312,17 @@ overflow: hidden;
 transition: all 0.3s ease;
 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 position: relative;
+border: 2px solid transparent;
 }
 
 .product-card:hover {
 transform: translateY(-10px) scale(1.02);
 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.product-badge {
-position: absolute;
-top: 1rem;
-right: 1rem;
-background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-color: white;
-padding: 0.3rem 0.8rem;
-border-radius: 15px;
-font-size: 0.8rem;
-font-weight: bold;
-z-index: 10;
-}
-
-.product-badge.new {
-background: linear-gradient(135deg, #059669 0%, #047857 100%);
-}
-
-.product-badge.sale {
-background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+border-color: #3b82f6;
 }
 
 .product-image {
-height: 220px;
+height: 200px;
 background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
 display: flex;
 align-items: center;
@@ -340,29 +351,60 @@ opacity: 1;
 transform: rotate(45deg) translateX(100%);
 }
 
+.product-badge {
+position: absolute;
+top: 1rem;
+right: 1rem;
+background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+color: #1e40af;
+padding: 0.3rem 0.8rem;
+border-radius: 15px;
+font-size: 0.8rem;
+font-weight: 700;
+z-index: 10;
+}
+
+.product-badge.new {
+background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+color: white;
+}
+
+.product-badge.limited {
+background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+color: white;
+}
+
+.product-badge.premium {
+background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+color: white;
+}
+
 .product-info {
 padding: 1.5rem;
 }
 
 .product-brand {
-font-size: 0.9rem;
 color: #6b7280;
+font-size: 0.9rem;
 margin-bottom: 0.5rem;
+font-weight: 500;
 }
 
-.product-info h3 {
+.product-title {
 font-size: 1.3rem;
+font-weight: 700;
 margin-bottom: 0.5rem;
 color: #1e40af;
 }
 
 .product-condition {
 display: inline-block;
-background: #f0f9ff;
-color: #3b82f6;
+background: rgba(16, 185, 129, 0.1);
+color: #059669;
 padding: 0.2rem 0.8rem;
 border-radius: 15px;
 font-size: 0.8rem;
+font-weight: 600;
 margin-bottom: 1rem;
 }
 
@@ -375,12 +417,12 @@ margin-bottom: 1rem;
 
 .product-price {
 font-size: 1.5rem;
-font-weight: bold;
+font-weight: 800;
 color: #059669;
 }
 
 .original-price {
-font-size: 1.1rem;
+font-size: 1rem;
 color: #9ca3af;
 text-decoration: line-through;
 }
@@ -391,24 +433,24 @@ margin-bottom: 1.5rem;
 }
 
 .product-features li {
-font-size: 0.9rem;
 color: #6b7280;
+font-size: 0.9rem;
 margin-bottom: 0.3rem;
 position: relative;
-padding-left: 1rem;
+padding-left: 1.2rem;
 }
 
 .product-features li::before {
 content: '✓';
 position: absolute;
 left: 0;
-color: #059669;
+color: #10b981;
 font-weight: bold;
 }
 
 .product-actions {
 display: flex;
-gap: 0.5rem;
+gap: 0.8rem;
 }
 
 .product-btn {
@@ -417,8 +459,8 @@ background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
 color: white;
 border: none;
 padding: 0.8rem;
-border-radius: 10px;
-font-weight: bold;
+border-radius: 12px;
+font-weight: 600;
 cursor: pointer;
 transition: all 0.3s ease;
 }
@@ -429,48 +471,23 @@ transform: scale(1.05);
 }
 
 .wishlist-btn {
-background: #f3f4f6;
-color: #6b7280;
-border: none;
+background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+border: 2px solid #3b82f6;
+color: #3b82f6;
 padding: 0.8rem;
-border-radius: 10px;
+border-radius: 12px;
 cursor: pointer;
 transition: all 0.3s ease;
+width: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .wishlist-btn:hover {
-background: #e5e7eb;
-color: #374151;
-}
-
-.wishlist-btn.active {
-background: #fef3c7;
-color: #d97706;
-}
-
-/* Loading States */
-.loading {
-display: inline-block;
-width: 20px;
-height: 20px;
-border: 3px solid rgba(255,255,255,.3);
-border-radius: 50%;
-border-top-color: #fff;
-animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-to { transform: rotate(360deg); }
-}
-
-.cart-animation {
-animation: addToCart 0.3s ease;
-}
-
-@keyframes addToCart {
-0% { transform: scale(1); }
-50% { transform: scale(0.95); }
-100% { transform: scale(1); }
+background: #3b82f6;
+color: white;
+transform: scale(1.1);
 }
 
 /* Footer */
@@ -478,6 +495,7 @@ footer {
 background: #1e3a8a;
 color: white;
 padding: 3rem 2rem 1rem;
+position: relative;
 }
 
 .footer-container {
@@ -535,46 +553,51 @@ display: flex;
 display: block;
 }
 
-.page-header h1 {
+.hero h1 {
 font-size: 2.5rem;
 }
 
-.filter-grid {
-grid-template-columns: 1fr;
+.hero p {
+font-size: 1.1rem;
 }
 
-.filter-buttons {
-flex-direction: column;
-}
-
-.results-info {
-flex-direction: column;
-gap: 1rem;
+.category-grid {
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .products-grid {
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 1.5rem;
+grid-template-columns: 1fr;
 }
 }
 
 @media (max-width: 480px) {
-.page-header {
-padding: 5rem 1rem 2rem;
+.hero {
+padding: 6rem 1rem 3rem;
 }
 
-.page-header h1 {
+.hero h1 {
 font-size: 2rem;
 }
 
-.filter-section,
-.products-section {
-padding: 1rem;
+.categories,
+.products {
+padding: 3rem 1rem;
+}
 }
 
-.products-grid {
-grid-template-columns: 1fr;
+/* Loading Animation */
+.loading {
+display: inline-block;
+width: 16px;
+height: 16px;
+border: 2px solid rgba(255,255,255,.3);
+border-radius: 50%;
+border-top-color: #fff;
+animation: spin 1s ease-in-out infinite;
 }
+
+@keyframes spin {
+to { transform: rotate(360deg); }
 }
 </style>
 </head>
@@ -582,15 +605,16 @@ grid-template-columns: 1fr;
 <header>
 <nav>
 <a href="index.html" class="logo">
-<img src="fusionstock-logo.png" alt="FusionStock Logo" class="logo-img">
+<div class="logo-img">
+<img src="fusionstock-logo.png" alt="FusionStock Logo">
+</div>
 FusionStock
 </a>
 <ul class="nav-links">
 <li><a href="index.html">Home</a></li>
-<li><a href="#" class="active">Shop All</a></li>
-<li><a href="#games">Games</a></li>
-<li><a href="#accessories">Accessories</a></li>
+<li><a href="products.html" class="active">Products</a></li>
 <li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
 <li><a href="#cart" class="cart-btn">Cart <span class="cart-count" id="cart-count">0</span></a></li>
 </ul>
 <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
@@ -598,73 +622,62 @@ FusionStock
 </header>
 
 <main>
-<section class="page-header">
-<div class="page-header-content">
-<h1>Shop All Consoles</h1>
-<p>Discover our complete collection of quality gaming consoles at unbeatable prices</p>
+<!-- Hero Section -->
+<section class="hero">
+<div class="hero-content">
+<div class="hero-badge">🎮 Premium Gaming Collection</div>
+<h1>Quality Gaming Consoles</h1>
+<p>Discover top-tier gaming gear at competitive prices. Every console tested and authenticated for the best gaming experience.</p>
 </div>
 </section>
 
-<div class="filter-section">
-<div class="filter-container">
-<div class="filter-grid">
-<div class="filter-group">
-<label for="category">Category</label>
-<select id="category" class="filter-select">
-<option value="">All Categories</option>
-<option value="playstation">PlayStation</option>
-<option value="xbox">Xbox</option>
-<option value="nintendo">Nintendo</option>
-<option value="handheld">Handheld</option>
-<option value="retro">Retro</option>
-</select>
+<!-- Categories -->
+<section class="categories">
+<div class="categories-container">
+<h2 class="section-title">Choose Your Platform</h2>
+<p class="section-subtitle">Each console represents quality gaming and great value</p>
+<div class="category-grid">
+<div class="category-card active" onclick="filterProducts('all')">
+<span class="category-icon">🌟</span>
+<h3>All Consoles</h3>
+<p>Complete collection</p>
 </div>
-<div class="filter-group">
-<label for="condition">Condition</label>
-<select id="condition" class="filter-select">
-<option value="">All Conditions</option>
-<option value="new">New</option>
-<option value="like-new">Like New</option>
-<option value="excellent">Excellent</option>
-<option value="good">Good</option>
-</select>
+<div class="category-card" onclick="filterProducts('playstation')">
+<span class="category-icon">🎮</span>
+<h3>PlayStation</h3>
+<p>Sony gaming</p>
 </div>
-<div class="filter-group">
-<label for="price-min">Min Price</label>
-<input type="number" id="price-min" class="filter-input" placeholder="$0" min="0">
+<div class="category-card" onclick="filterProducts('xbox')">
+<span class="category-icon">🎯</span>
+<h3>Xbox</h3>
+<p>Microsoft consoles</p>
 </div>
-<div class="filter-group">
-<label for="price-max">Max Price</label>
-<input type="number" id="price-max" class="filter-input" placeholder="$1000" min="0">
+<div class="category-card" onclick="filterProducts('nintendo')">
+<span class="category-icon">🕹️</span>
+<h3>Nintendo</h3>
+<p>Nintendo systems</p>
 </div>
-<div class="filter-buttons">
-<button class="filter-btn" onclick="applyFilters()">Apply Filters</button>
-<button class="clear-btn" onclick="clearFilters()">Clear All</button>
+<div class="category-card" onclick="filterProducts('handheld')">
+<span class="category-icon">⚡</span>
+<h3>Handheld</h3>
+<p>Portable gaming</p>
 </div>
-</div>
+<div class="category-card" onclick="filterProducts('retro')">
+<span class="category-icon">🎲</span>
+<h3>Classic</h3>
+<p>Retro consoles</p>
 </div>
 </div>
+</div>
+</section>
 
-<div class="results-info">
-<div class="results-count">
-Showing <span id="results-count">24</span> products
-</div>
-<div class="sort-group">
-<label for="sort">Sort by:</label>
-<select id="sort" class="filter-select" onchange="sortProducts()">
-<option value="featured">Featured</option>
-<option value="price-low">Price: Low to High</option>
-<option value="price-high">Price: High to Low</option>
-<option value="newest">Newest First</option>
-<option value="name">Name A-Z</option>
-</select>
-</div>
-</div>
-
-<section class="products-section">
+<!-- Products -->
+<section class="products">
 <div class="products-container">
-<div class="products-grid" id="products-grid">
-<!-- Products will be dynamically loaded here -->
+<h2 class="section-title">Gaming Console Collection</h2>
+<p class="section-subtitle">Hand-selected consoles that deliver exceptional gaming experiences</p>
+<div class="products-grid" id="products-container">
+<!-- Products will be rendered here -->
 </div>
 </div>
 </section>
@@ -675,7 +688,7 @@ Showing <span id="results-count">24</span> products
 <div class="footer-section">
 <h3>Quick Links</h3>
 <a href="index.html">Home</a>
-<a href="#products">Products</a>
+<a href="products.html">Products</a>
 <a href="#about">About Us</a>
 <a href="#contact">Contact</a>
 </div>
@@ -706,73 +719,153 @@ Showing <span id="results-count">24</span> products
 <script>
 // Product Data
 const products = [
-// PlayStation Consoles
-{ id: 1, name: 'PlayStation 5', brand: 'Sony', category: 'playstation', price: 449.99, originalPrice: 499.99, condition: 'like-new', icon: '🎮', badge: 'SALE', features: ['4K Gaming', '120fps Support', 'Ray Tracing', 'SSD Storage'] },
-{ id: 2, name: 'PlayStation 5 Digital', brand: 'Sony', category: 'playstation', price: 389.99, originalPrice: 399.99, condition: 'excellent', icon: '🎮', badge: 'NEW', features: ['Digital Only', '4K Gaming', '120fps Support', 'SSD Storage'] },
-{ id: 3, name: 'PlayStation 4 Pro', brand: 'Sony', category: 'playstation', price: 299.99, originalPrice: 349.99, condition: 'excellent', icon: '🎲', badge: 'SALE', features: ['4K Gaming', '1TB Storage', 'HDR Support', 'Boost Mode'] },
-{ id: 4, name: 'PlayStation 4 Slim', brand: 'Sony', category: 'playstation', price: 229.99, originalPrice: 299.99, condition: 'good', icon: '🎲', badge: 'SALE', features: ['1TB Storage', 'HDR Support', 'Slim Design', 'Energy Efficient'] },
+// PlayStation
+{ id: 1, name: 'PlayStation 5', brand: 'Sony', category: 'playstation', price: 449.99, originalPrice: 499.99, condition: 'like-new', icon: '🎮', badge: 'SALE', features: ['4K HDR Gaming', '120fps Support', 'Ray Tracing', 'Ultra-Fast SSD'] },
+{ id: 2, name: 'PlayStation 5 Digital', brand: 'Sony', category: 'playstation', price: 389.99, originalPrice: 399.99, condition: 'pristine', icon: '🎮', badge: 'NEW', features: ['All-Digital Experience', '4K Gaming', 'Instant Loading', 'Sleek Design'] },
+{ id: 19, name: 'PS5 Spider-Man Edition', brand: 'Sony', category: 'playstation', price: 529.99, originalPrice: 559.99, condition: 'collector', icon: '🎮', badge: 'LIMITED', features: ['Exclusive Design', 'Spider-Man Bundle', 'Collector\'s Item', 'Premium Finish'] },
 
-// Xbox Consoles
-{ id: 5, name: 'Xbox Series X', brand: 'Microsoft', category: 'xbox', price: 399.99, originalPrice: 499.99, condition: 'like-new', icon: '🎯', badge: 'SALE', features: ['4K Gaming', '120fps Support', 'Quick Resume', '1TB SSD'] },
-{ id: 6, name: 'Xbox Series S', brand: 'Microsoft', category: 'xbox', price: 249.99, originalPrice: 299.99, condition: 'new', icon: '🎯', badge: 'NEW', features: ['1440p Gaming', '120fps Support', 'Digital Only', '512GB SSD'] },
-{ id: 7, name: 'Xbox One X', brand: 'Microsoft', category: 'xbox', price: 249.99, originalPrice: 399.99, condition: 'excellent', icon: '🔥', badge: 'SALE', features: ['4K Gaming', '1TB Storage', 'HDR Support', 'Enhanced Games'] },
-{ id: 8, name: 'Xbox One S', brand: 'Microsoft', category: 'xbox', price: 179.99, originalPrice: 299.99, condition: 'good', icon: '🔥', badge: 'SALE', features: ['1TB Storage', 'HDR Support', '4K Streaming', 'Compact Design'] },
+// Xbox
+{ id: 5, name: 'Xbox Series X', brand: 'Microsoft', category: 'xbox', price: 399.99, originalPrice: 499.99, condition: 'like-new', icon: '🎯', badge: 'SALE', features: ['True 4K Gaming', 'Quick Resume', 'Smart Delivery', 'Backwards Compatible'] },
+{ id: 6, name: 'Xbox Series S', brand: 'Microsoft', category: 'xbox', price: 249.99, originalPrice: 299.99, condition: 'pristine', icon: '🎯', badge: 'NEW', features: ['Compact Design', '1440p Gaming', 'All-Digital', 'Game Pass Ready'] },
+{ id: 20, name: 'Xbox Series X Halo Edition', brand: 'Microsoft', category: 'xbox', price: 549.99, originalPrice: 549.99, condition: 'collector', icon: '🎯', badge: 'LIMITED', features: ['Master Chief Design', 'Custom Sounds', 'Halo Infinite', 'Collector\'s Edition'] },
 
-// Nintendo Consoles
-{ id: 9, name: 'Nintendo Switch OLED', brand: 'Nintendo', category: 'nintendo', price: 329.99, originalPrice: 349.99, condition: 'like-new', icon: '🕹️', badge: 'NEW', features: ['OLED Screen', 'Enhanced Audio', 'Adjustable Stand', '64GB Storage'] },
-{ id: 10, name: 'Nintendo Switch', brand: 'Nintendo', category: 'nintendo', price: 279.99, originalPrice: 299.99, condition: 'excellent', icon: '🕹️', badge: 'SALE', features: ['Hybrid Gaming', 'Joy-Con Controllers', 'Touch Screen', '32GB Storage'] },
-{ id: 11, name: 'Nintendo Switch Lite', brand: 'Nintendo', category: 'nintendo', price: 179.99, originalPrice: 199.99, condition: 'new', icon: '🎮', badge: 'NEW', features: ['Handheld Only', 'Longer Battery', 'Lightweight', 'Built-in Controls'] },
+// Nintendo
+{ id: 9, name: 'Nintendo Switch OLED', brand: 'Nintendo', category: 'nintendo', price: 329.99, originalPrice: 349.99, condition: 'like-new', icon: '🕹️', badge: 'PREMIUM', features: ['Vibrant OLED Display', 'Enhanced Audio', 'Premium Stand', 'Hybrid Gaming'] },
+{ id: 10, name: 'Nintendo Switch', brand: 'Nintendo', category: 'nintendo', price: 279.99, originalPrice: 299.99, condition: 'excellent', icon: '🕹️', badge: 'POPULAR', features: ['Versatile Gaming', 'Joy-Con Controllers', 'Portable Mode', 'Dock Included'] },
+{ id: 21, name: 'Switch Pokémon Edition', brand: 'Nintendo', category: 'nintendo', price: 349.99, originalPrice: 359.99, condition: 'collector', icon: '🕹️', badge: 'LIMITED', features: ['Pokémon Design', 'Special Dock', 'Exclusive Bundle', 'Collector\'s Item'] },
 
-// Handheld Consoles
-{ id: 12, name: 'Steam Deck', brand: 'Valve', category: 'handheld', price: 349.99, originalPrice: 399.99, condition: 'like-new', icon: '⚡', badge: 'SALE', features: ['PC Gaming', 'AMD APU', 'Linux OS', '512GB SSD'] },
-{ id: 13, name: 'Steam Deck 256GB', brand: 'Valve', category: 'handheld', price: 529.99, originalPrice: 549.99, condition: 'new', icon: '⚡', badge: 'NEW', features: ['PC Gaming', 'AMD APU', 'Premium Glass', '256GB SSD'] },
-{ id: 14, name: 'Asus ROG Ally', brand: 'Asus', category: 'handheld', price: 599.99, originalPrice: 699.99, condition: 'excellent', icon: '🎮', badge: 'SALE', features: ['Windows 11', 'Ryzen Z1', '7" Display', '512GB SSD'] },
+// Handheld
+{ id: 12, name: 'Steam Deck', brand: 'Valve', category: 'handheld', price: 349.99, originalPrice: 399.99, condition: 'like-new', icon: '⚡', badge: 'GAMING PC', features: ['PC Gaming Portable', 'AMD RDNA 2', 'Linux SteamOS', 'Massive Game Library'] },
+{ id: 14, name: 'ASUS ROG Ally', brand: 'ASUS', category: 'handheld', price: 599.99, originalPrice: 699.99, condition: 'pristine', icon: '⚡', badge: 'PREMIUM', features: ['Windows 11', 'Ryzen Z1 Extreme', '7" 120Hz Display', 'Premium Build'] },
 
-// Retro Consoles
-{ id: 15, name: 'PlayStation 3 Slim', brand: 'Sony', category: 'retro', price: 149.99, originalPrice: 199.99, condition: 'good', icon: '🎲', badge: 'SALE', features: ['Backwards Compatible', '320GB Storage', 'Blu-ray Player', 'Online Gaming'] },
-{ id: 16, name: 'Xbox 360 Slim', brand: 'Microsoft', category: 'retro', price: 129.99, originalPrice: 179.99, condition: 'good', icon: '🔥', badge: 'SALE', features: ['250GB Storage', 'Xbox Live', 'Kinect Ready', 'WiFi Built-in'] },
-{ id: 17, name: 'Nintendo Wii U', brand: 'Nintendo', category: 'retro', price: 199.99, originalPrice: 299.99, condition: 'excellent', icon: '🕹️', badge: 'SALE', features: ['GamePad Controller', 'HD Gaming', 'Virtual Console', '32GB Storage'] },
-{ id: 18, name: 'Nintendo 3DS XL', brand: 'Nintendo', category: 'retro', price: 159.99, originalPrice: 199.99, condition: 'excellent', icon: '🎮', badge: 'SALE', features: ['Dual Screens', '3D Gaming', 'StreetPass', 'Large Screens'] },
-
-// Special Editions
-{ id: 19, name: 'PS5 Spider-Man Edition', brand: 'Sony', category: 'playstation', price: 529.99, originalPrice: 559.99, condition: 'new', icon: '🎮', badge: 'NEW', features: ['Special Design', 'Spider-Man Game', 'Exclusive Theme', '825GB SSD'] },
-{ id: 20, name: 'Xbox Series X Halo Edition', brand: 'Microsoft', category: 'xbox', price: 549.99, originalPrice: 549.99, condition: 'new', icon: '🎯', badge: 'NEW', features: ['Halo Design', 'Custom Sounds', 'Halo Game', '1TB SSD'] },
-{ id: 21, name: 'Switch Pokemon Edition', brand: 'Nintendo', category: 'nintendo', price: 349.99, originalPrice: 359.99, condition: 'like-new', icon: '🕹️', badge: 'SALE', features: ['Pokemon Design', 'Special Dock', 'Pokemon Game', 'Custom Joy-Cons'] },
-
-// More Handhelds
-{ id: 22, name: 'Nintendo 2DS', brand: 'Nintendo', category: 'retro', price: 79.99, originalPrice: 129.99, condition: 'good', icon: '🎮', badge: 'SALE', features: ['Dual Screens', 'No 3D', 'Budget Friendly', 'Great for Kids'] },
-{ id: 23, name: 'PS Vita', brand: 'Sony', category: 'retro', price: 189.99, originalPrice: 249.99, condition: 'excellent', icon: '🎮', badge: 'SALE', features: ['OLED Screen', 'Remote Play', 'Touch Controls', 'Memory Card'] },
-{ id: 24, name: 'Nintendo DSi XL', brand: 'Nintendo', category: 'retro', price: 99.99, originalPrice: 169.99, condition: 'good', icon: '🎮', badge: 'SALE', features: ['Large Screens', 'Camera', 'SD Card Slot', 'DSiWare'] }
+// Retro/Classic
+{ id: 15, name: 'PlayStation 3 Slim', brand: 'Sony', category: 'retro', price: 149.99, originalPrice: 199.99, condition: 'excellent', icon: '🎲', badge: 'CLASSIC', features: ['Backwards Compatible', 'Blu-ray Player', 'Exclusive Games', 'Vintage Gaming'] },
+{ id: 17, name: 'Nintendo Wii U', brand: 'Nintendo', category: 'retro', price: 199.99, originalPrice: 299.99, condition: 'collector', icon: '🎲', badge: 'RARE', features: ['GamePad Innovation', 'HD Nintendo Games', 'Unique Experience', 'Collector\'s Find'] }
 ];
 
-let filteredProducts = [...products];
-let cart = JSON.parse(localStorage.getItem('fusionstock-cart') || '[]');
-let wishlist = JSON.parse(localStorage.getItem('fusionstock-wishlist') || '[]');
+let currentFilter = 'all';
+let cart = [];
 
-// Update cart count on page load
-document.getElementById('cart-count').textContent = cart.length;
-
-function renderProducts(productsToRender = filteredProducts) {
-const grid = document.getElementById('products-grid');
-const resultsCount = document.getElementById('results-count');
-
-resultsCount.textContent = productsToRender.length;
-
-grid.innerHTML = productsToRender.map(product => `
-<div class="product-card" data-category="${product.category}" data-condition="${product.condition}" data-price="${product.price}">
-${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
-<div class="product-image">${product.icon}</div>
+function renderProducts(productsToShow = products) {
+const container = document.getElementById('products-container');
+container.innerHTML = productsToShow.map(product => `
+<div class="product-card" data-category="${product.category}">
+<div class="product-image">
+<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>
+${product.icon}
+</div>
 <div class="product-info">
 <div class="product-brand">${product.brand}</div>
-<h3>${product.name}</h3>
-<div class="product-condition">${product.condition.replace('-', ' ').toUpperCase()}</div>
+<h3 class="product-title">${product.name}</h3>
+<div class="product-condition">${product.condition.toUpperCase()}</div>
 <div class="product-pricing">
-<div class="product-price">$${product.price}</div>
-${product.originalPrice && product.originalPrice !== product.price ? 
-`<div class="original-price">$${product.originalPrice}</div>` : ''}
+<span class="product-price">$${product.price}</span>
+${product.originalPrice > product.price ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
 </div>
 <ul class="product-features">
 ${product.features.map(feature => `<li>${feature}</li>`).join('')}
 </ul>
 <div class="product-actions">
-<button class="product-btn" onclick="addToCart(${product.id}, this)">Add to Cart
+<button class="product-btn" onclick="addToCart(${product.id}, this)">Add to Cart</button>
+<button class="wishlist-btn" onclick="addToWishlist(${product.id}, this)">♡</button>
+</div>
+</div>
+</div>
+`).join('');
+}
+
+function filterProducts(category) {
+currentFilter = category;
+
+// Update active category
+document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
+event.target.closest('.category-card').classList.add('active');
+
+const filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
+renderProducts(filteredProducts);
+}
+
+function addToCart(productId, buttonElement) {
+const product = products.find(p => p.id === productId);
+if (product) {
+cart.push(product);
+updateCartCount();
+
+// Add animation
+buttonElement.innerHTML = '<span class="loading"></span>';
+buttonElement.disabled = true;
+
+setTimeout(() => {
+buttonElement.innerHTML = 'Added!';
+buttonElement.style.background = 'linear-gradient(135deg, #059669 0%, #047857 100%)';
+}, 300);
+
+setTimeout(() => {
+buttonElement.innerHTML = 'Add to Cart';
+buttonElement.style.background = 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)';
+buttonElement.disabled = false;
+}, 2000);
+
+showNotification(`${product.name} added to cart!`);
+}
+}
+
+function addToWishlist(productId, buttonElement) {
+const product = products.find(p => p.id === productId);
+if (product) {
+buttonElement.innerHTML = '❤️';
+buttonElement.style.color = '#ef4444';
+showNotification(`${product.name} added to wishlist!`);
+
+setTimeout(() => {
+buttonElement.innerHTML = '♡';
+buttonElement.style.color = '#3b82f6';
+}, 2000);
+}
+}
+
+function updateCartCount() {
+document.getElementById('cart-count').textContent = cart.length;
+}
+
+function showNotification(message) {
+const notification = document.createElement('div');
+notification.style.cssText = `
+position: fixed;
+top: 100px;
+right: 20px;
+background: linear-gradient(135deg, #059669 0%, #047857 100%);
+color: white;
+padding: 1rem 2rem;
+border-radius: 25px;
+z-index: 10000;
+transform: translateX(100%);
+transition: transform 0.3s ease;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+font-weight: 600;
+`;
+notification.textContent = message;
+document.body.appendChild(notification);
+
+setTimeout(() => {
+notification.style.transform = 'translateX(0)';
+}, 100);
+
+setTimeout(() => {
+notification.style.transform = 'translateX(100%)';
+setTimeout(() => {
+document.body.removeChild(notification);
+}, 300);
+}, 3000);
+}
+
+function toggleMobileMenu() {
+const navLinks = document.querySelector('.nav-links');
+navLinks.classList.toggle('active');
+}
+
+// Initialize
+renderProducts();
+</script>
+</body>
+</html>
