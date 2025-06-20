@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart - FusionStock</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+line-height: 1.6;
+color: #1e3a8a;
+background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+min-height: 100vh;
+}
+
+/* Header (same as homepage) */
+header {
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+color: white;
+padding: 1rem 0;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10px);
+}
+
+nav {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 2rem;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+font-size: 2rem;
+font-weight: bold;
+text-decoration: none;
+color: white;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo-img {
+height: 36px;
+width: 36px;
+background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+color: #1e40af;
+font-weight: bold;
+}
+
+.nav-links {
+display: flex;
+list-style: none;
+gap: 2rem;
+}
+
+.nav-links a {
+color: white;
+text-decoration: none;
+transition: all 0.3s ease;
+padding: 0.5rem 1rem;
+border-radius: 25px;
+}
+
+.nav-links a:hover {
+background: rgba(255, 255, 255, 0.2);
+transform: translateY(-2px);
+}
+
+.cart-btn {
+background: #fbbf24;
+color: #1e40af !important;
+padding: 0.7rem 1.5rem !important;
+border-radius: 25px;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+.cart-btn:hover {
+background: #f59e0b;
+transform: scale(1.05);
+}
+
+.cart-btn.active {
+background: #f59e0b;
+box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+}
+
+/* Main Content */
+main {
+margin-top: 80px;
+padding: 2rem;
+min-height: calc(100vh - 160px);
+}
+
+.cart-container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.cart-header {
+text-align: center;
+margin-bottom: 3rem;
+}
+
+.cart-header h1 {
+font-size: 3rem;
+color: #1e40af;
+margin-bottom: 1rem;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cart-header p {
+font-size: 1.2rem;
+color: #6b7280;
+}
+
+.cart-content {
+display: grid;
+grid-template-columns: 2fr 1fr;
+gap: 3rem;
+align-items: start;
+}
+
+/* Cart Items */
+.cart-items {
+background: white;
+border-radius: 20px;
+padding: 2rem;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.cart-items h2 {
+font-size: 1.8rem;
+margin-bottom: 1.5rem;
+color: #1e40af;
+border-bottom: 2px solid #e5e7eb;
+padding-bottom: 0.5rem;
+}
+
+.cart-item {
+display: grid;
+grid-template-columns: 80px 1fr auto auto auto;
+gap: 1rem;
+align-items: center;
+padding: 1.5rem 0;
+border-bottom: 1px solid #f3f4f6;
+transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+background: #f8fafc;
+border-radius: 10px;
+padding: 1.5rem 1rem;
+margin: 0 -1rem;
+}
+
+.cart-item:last-child {
+border-bottom: none;
+}
+
+.item-image {
+width: 80px;
+height: 80px;
+background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+border-radius: 12px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: white;
+box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.item-details h3 {
+font-size: 1.3rem;
+color: #1e40af;
+margin-bottom: 0.5rem;
+}
+
+.item-details p {
+color: #6b7280;
+font-size: 0.9rem;
+}
+
+.quantity-controls {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+background: #f8fafc;
+border-radius: 25px;
+padding: 0.5rem;
+}
+
+.quantity-btn {
+width: 32px;
+height: 32px;
+border: none;
+background: #3b82f6;
+color: white;
+border-radius: 50%;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+background: #1e40af;
+transform: scale(1.1);
+}
+
+.quantity-btn:disabled {
+background: #d1d5db;
+cursor: not-allowed;
+transform: none;
+}
+
+.quantity-input {
+width: 60px;
+text-align: center;
+border: none;
+background: transparent;
+font-weight: bold;
+color: #1e40af;
+font-size: 1.1rem;
+}
+
+.item-price {
+font-size: 1.3rem;
+font-weight: bold;
+color: #059669;
+min-width: 80px;
+text-align: right;
+}
+
+.remove-btn {
+background: #ef4444;
+color: white;
+border: none;
+padding: 0.5rem 1rem;
+border-radius: 25px;
+cursor: pointer;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+background: #dc2626;
+transform: scale(1.05);
+}
+
+/* Cart Summary */
+.cart-summary {
+background: white;
+border-radius: 20px;
+padding: 2rem;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+position: sticky;
+top: 100px;
+height: fit-content;
+}
+
+.cart-summary h2 {
+font-size: 1.8rem;
+margin-bottom: 1.5rem;
+color: #1e40af;
+border-bottom: 2px solid #e5e7eb;
+padding-bottom: 0.5rem;
+}
+
+.summary-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 1rem;
+padding: 0.5rem 0;
+}
+
+.summary-row.total {
+border-top: 2px solid #e5e7eb;
+margin-top: 1.5rem;
+padding-top: 1.5rem;
+font-size: 1.3rem;
+font-weight: bold;
+color: #1e40af;
+}
+
+.summary-label {
+color: #6b7280;
+}
+
+.summary-value {
+font-weight: bold;
+color: #1e40af;
+}
+
+.promo-code {
+margin: 1.5rem 0;
+}
+
+.promo-input {
+width: 100%;
+padding: 0.8rem 1rem;
+border: 2px solid #e5e7eb;
+border-radius: 10px;
+font-size: 1rem;
+margin-bottom: 0.5rem;
+transition: border-color 0.3s ease;
+}
+
+.promo-input:focus {
+outline: none;
+border-color: #3b82f6;
+}
+
+.promo-btn {
+width: 100%;
+background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+color: white;
+border: none;
+padding: 0.8rem;
+border-radius: 10px;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.promo-btn:hover {
+background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+transform: translateY(-2px);
+}
+
+.checkout-btn {
+width: 100%;
+background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+color: #1e40af;
+border: none;
+padding: 1.2rem;
+font-size: 1.2rem;
+font-weight: bold;
+border-radius: 15px;
+cursor: pointer;
+transition: all 0.3s ease;
+margin-top: 1.5rem;
+box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+}
+
+.checkout-btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 12px 35px rgba(251, 191, 36, 0.4);
+}
+
+.checkout-btn:disabled {
+background: #d1d5db;
+color: #9ca3af;
+cursor: not-allowed;
+transform: none;
+box-shadow: none;
+}
+
+/* Empty Cart */
+.empty-cart {
+text-align: center;
+padding: 4rem 2rem;
+background: white;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.empty-cart-icon {
+font-size: 6rem;
+margin-bottom: 2rem;
+opacity: 0.3;
+}
+
+.empty-cart h2 {
+font-size: 2rem;
+color: #1e40af;
+margin-bottom: 1rem;
+}
+
+.empty-cart p {
+font-size: 1.2rem;
+color: #6b7280;
+margin-bottom: 2rem;
+}
+
+.continue-shopping {
+background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+color: white;
+padding: 1rem 2rem;
+border: none;
+border-radius: 25px;
+font-size: 1.1rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s ease;
+text-decoration: none;
+display: inline-block;
+}
+
+.continue-shopping:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.cart-content {
+grid-template-columns: 1fr;
+gap: 2rem;
+}
+
+.cart-item {
+grid-template-columns: 60px 1fr;
+gap: 1rem;
+}
+
+.item-image {
+width: 60px;
+height: 60px;
+font-size: 1.5rem;
+}
+
+.item-controls {
+grid-column: 1 / -1;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 1rem;
+padding-top: 1rem;
+border-top: 1px solid #f3f4f6;
+}
+
+.cart-header h1 {
+font-size: 2rem;
+}
+
+.cart-summary {
+position: static;
+}
+
+nav {
+padding: 0 1rem;
+}
+
+.nav-links {
+display: none;
+}
+}
+
+/* Animations */
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+from { opacity: 0; transform: translateX(-20px); }
+to { opacity: 1; transform: translateX(0); }
+}
+
+.cart-item {
+animation: slideIn 0.5s ease;
+}
+
+.cart-summary {
+animation: fadeIn 0.5s ease 0.2s both;
+}
+
+/* Loading states */
+.loading {
+display: inline-block;
+width: 20px;
+height: 20px;
+border: 3px solid rgba(255,255,255,.3);
+border-radius: 50%;
+border-top-color: #fff;
+animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+to { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a href="index.html" class="logo">
+<div class="logo-img">F</div>
+FusionStock
+</a>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop-all.html">Shop All</a></li>
+<li><a href="contact-us.html">Contact Us</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="cart.html" class="cart-btn active">Cart (<span id="cart-count">0</span>)</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+<div class="cart-container">
+<div class="cart-header">
+<h1>Shopping Cart</h1>
+<p>Review your items and proceed to checkout</p>
+</div>
+
+<div id="cart-content">
+<!-- Cart content will be populated by JavaScript -->
+</div>
+</div>
+</main>
+
+<script>
+// Cart management
+let cart = JSON.parse(localStorage.getItem('fusionstock-cart')) || [];
+
+// Product images mapping
+const productImages = {
+'PlayStation 5': '🎮',
+'Xbox Series X': '🎯',
+'Nintendo Switch': '🕹️',
+'Steam Deck': '⚡',
+'PlayStation 4 Pro': '🎲',
+'Xbox One X': '🔥'
+};
+
+function updateCartCount() {
+const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+document.getElementById('cart-count').textContent = totalItems;
+}
+
+function updateCartDisplay() {
+const cartContent = document.getElementById('cart-content');
+
+if (cart.length === 0) {
+cartContent.innerHTML = `
+<div class="empty-cart">
+<div class="empty-cart-icon">🛒</div>
+<h2>Your cart is empty</h2>
+<p>Add some amazing gaming consoles to get started!</p>
+<a href="index.html" class="continue-shopping">Continue Shopping</a>
+</div>
+`;
+return;
+}
+
+const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+const shipping = subtotal > 300 ? 0 : 15.99;
+const tax = subtotal * 0.08;
+const total = subtotal + shipping + tax;
+
+cartContent.innerHTML = `
+<div class="cart-content">
+<div class="cart-items">
+<h2>Your Items (${cart.reduce((sum, item) => sum + item.quantity, 0)})</h2>
+${cart.map((item, index) => `
+<div class="cart-item">
+<div class="item-image">${productImages[item.name] || '🎮'}</div>
+<div class="item-details">
+<h3>${item.name}</h3>
+<p>Gaming Console • Authenticated Quality</p>
+</div>
+<div class="quantity-controls">
+<button class="quantity-btn" onclick="updateQuantity(${index}, -1)" ${item.quantity <= 1 ? 'disabled' : ''}>−</button>
+<input type="number" class="quantity-input" value="${item.quantity}" min="1" max="10" onchange="setQuantity(${index}, this.value)">
+<button class="quantity-btn" onclick="updateQuantity(${index}, 1)" ${item.quantity >= 10 ? 'disabled' : ''}>+</button>
+</div>
+<div class="item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+<button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+</div>
+`).join('')}
+</div>
+
+<div class="cart-summary">
+<h2>Order Summary</h2>
+<div class="summary-row">
+<span class="summary-label">Subtotal:</span>
+<span class="summary-value">$${subtotal.toFixed(2)}</span>
+</div>
+<div class="summary-row">
+<span class="summary-label">Shipping:</span>
+<span class="summary-value">${shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2)}</span>
+</div>
+<div class="summary-row">
+<span class="summary-label">Tax:</span>
+<span class="summary-value">$${tax.toFixed(2)}</span>
+</div>
+<div class="summary-row total">
+<span class="summary-label">Total:</span>
+<span class="summary-value">$${total.toFixed(2)}</span>
+</div>
+
+<div class="promo-code">
+<input type="text" class="promo-input" placeholder="Enter promo code" id="promo-input">
+<button class="promo-btn" onclick="applyPromoCode()">Apply Code</button>
+</div>
+
+<button class="checkout-btn" onclick="proceedToCheckout()">
+Proceed to Checkout
+</button>
+
+<a href="index.html" class="continue-shopping" style="display: block; text-align: center; margin-top: 1rem; color: #6b7280; text-decoration: none;">
+← Continue Shopping
+</a>
+</div>
+</div>
+`;
+}
+
+function updateQuantity(index, change) {
+const newQuantity = cart[index].quantity + change;
+if (newQuantity >= 1 && newQuantity <= 10) {
+cart[index].quantity = newQuantity;
+saveCart();
+updateCartDisplay();
+updateCartCount();
+}
+}
+
+function setQuantity(index, value) {
+const quantity = parseInt(value);
+if (quantity >= 1 && quantity <= 10) {
+cart[index].quantity = quantity;
+saveCart();
+updateCartDisplay();
+updateCartCount();
+}
+}
+
+function removeItem(index) {
+const item = cart[index];
+if (confirm(`Remove ${item.name} from cart?`)) {
+cart.splice(index, 1);
+saveCart();
+updateCartDisplay();
+updateCartCount();
+showNotification(`${item.name} removed from cart`);
+}
+}
+
+function applyPromoCode() {
+const promoInput = document.getElementById('promo-input');
+const promoCode = promoInput.value.trim().toUpperCase();
+const promoBtn = document.querySelector('.promo-btn');
+
+// Simulate promo code validation
+promoBtn.innerHTML = '<span class="loading"></span>';
+promoBtn.disabled = true;
+
+setTimeout(() => {
+if (promoCode === 'GAMER10') {
+showNotification('Promo code applied! 10% discount added.');
+promoInput.style.borderColor = '#059669';
+promoBtn.innerHTML = 'Applied!';
+promoBtn.style.background = 'linear-gradient(135deg, #059669 0%, #047857 100%)';
+} else if (promoCode === 'FREESHIP') {
+showNotification('Free shipping applied!');
+promoInput.style.borderColor = '#059669';
+promoBtn.innerHTML = 'Applied!';
+promoBtn.style.background = 'linear-gradient(135deg, #059669 0%, #047857 100%)';
+} else if (promoCode) {
+showNotification('Invalid promo code', 'error');
+promoInput.style.borderColor = '#ef4444';
+promoBtn.innerHTML = 'Invalid Code';
+promoBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+setTimeout(() => {
+promoBtn.innerHTML = 'Apply Code';
+promoBtn.style.background = 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)';
+promoInput.style.borderColor = '#e5e7eb';
+promoBtn.disabled = false;
+}, 2000);
+return;
+}
+}, 1000);
+
+setTimeout(() => {
+if (promoCode === 'GAMER10' || promoCode === 'FREESHIP') {
+setTimeout(() => {
+promoBtn.innerHTML = 'Apply Code';
+promoBtn.style.background = 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)';
+promoInput.style.borderColor = '#e5e7eb';
+promoBtn.disabled = false;
+}, 3000);
+}
+}, 1000);
+}
+
+function proceedToCheckout() {
+if (cart.length === 0) {
+showNotification('Your cart is empty!', 'error');
+return;
+}
+
+const checkoutBtn = document.querySelector('.checkout-btn');
+checkoutBtn.innerHTML = '<span class="loading"></span> Processing...';
+checkoutBtn.disabled = true;
+
+// Simulate checkout process
+setTimeout(() => {
+showNotification('Redirecting to secure checkout...', 'success');
+setTimeout(() => {
+alert('Demo checkout completed! In a real store, this would redirect to payment processing.');
+checkoutBtn.innerHTML = 'Proceed to Checkout';
+checkoutBtn.disabled = false;
+}, 2000);
+}, 1500);
+}
+
+function saveCart() {
+localStorage.setItem('fusionstock-cart', JSON.stringify(cart));
+}
+
+function showNotification(message, type = 'success') {
+const notification = document.createElement('div');
+const bgColor = type === 'error' ? '#ef4444' : '#059669';
+notification.style.cssText = `
+position: fixed;
+top: 100px;
+right: 20px;
+background: ${bgColor};
+color: white;
+padding: 1rem 2rem;
+border-radius: 25px;
+z-index: 10000;
+transform: translateX(100%);
+transition: transform 0.3s ease;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+max-width: 300px;
+`;
+notification.textContent = message;
+document.body.appendChild(notification);
+
+setTimeout(() => {
+notification.style.transform = 'translateX(0)';
+}, 100);
+
+setTimeout(() => {
+notification.style.transform = 'translateX(100%)';
+setTimeout(() => {
+if (document.body.contains(notification)) {
+document.body.removeChild(notification);
+}
+}, 300);
+}, 3000);
+}
+
+// Add item to cart function (for compatibility with homepage)
+function addToCart(productName, price) {
+const existingItem = cart.find(item => item.name === productName);
+if (existingItem) {
+existingItem.quantity += 1;
+} else {
+cart.push({ 
+name: productName, 
+price: price, 
+quantity: 1,
+id: Date.now()
+});
+}
+saveCart();
+updateCartCount();
+showNotification(`${productName} added to cart!`);
+}
+
+// Initialize cart on page load
+document.addEventListener('DOMContentLoaded', function() {
+updateCartDisplay();
+updateCartCount();
+});
+
+// Handle browser back/forward
+window.addEventListener('popstate', function() {
+updateCartDisplay();
+updateCartCount();
+});
+</script>
+</body>
+</html>
