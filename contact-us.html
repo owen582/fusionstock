@@ -77,18 +77,24 @@
             margin-bottom: 1rem;
             position: relative;
             z-index: 2;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
         }
 
-        .logo-placeholder {
-            width: 32px;
-            height: 32px;
-            background: #fbbf24;
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-img {
+            height: 40px;
+            width: 40px;
             border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #1e40af;
+            object-fit: contain;
+            background: white;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         #map {
@@ -238,10 +244,10 @@
 <body>
     <div class="map-container">
         <div class="map-header">
-            <div class="logo">
-                <div class="logo-placeholder">FS</div>
+            <a href="index.html" class="logo">
+                <img src="fusionstock-logo.png" alt="FusionStock Logo" class="logo-img">
                 FusionStock
-            </div>
+            </a>
             <h1>📍 Find Us in Chilliwack</h1>
             <p>Your local gaming headquarters in beautiful British Columbia</p>
         </div>
