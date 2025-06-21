@@ -179,14 +179,23 @@ border-bottom: none;
 .item-image {
 width: 80px;
 height: 80px;
-background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 border-radius: 12px;
 display: flex;
 align-items: center;
 justify-content: center;
 font-size: 2rem;
-color: white;
+color: #3b82f6;
 box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+overflow: hidden;
+}
+
+.item-image img {
+width: 100%;
+height: 100%;
+object-fit: contain;
+border-radius: 8px;
+transition: all 0.3s ease;
 }
 
 .item-details h3 {
@@ -439,7 +448,22 @@ gap: 1rem;
 .item-image {
 width: 60px;
 height: 60px;
+background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
 font-size: 1.5rem;
+color: #3b82f6;
+box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+overflow: hidden;
+}
+
+.item-image img {
+width: 100%;
+height: 100%;
+object-fit: contain;
+border-radius: 6px;
 }
 
 .item-controls {
@@ -538,13 +562,27 @@ FusionStock
 // Cart management
 let cart = JSON.parse(localStorage.getItem('fusionstock-cart')) || [];
 
-// Product images mapping
+// Product images mapping - Updated to use actual images
 const productImages = {
+'PlayStation 5': 'ps5.jpg',
+'Xbox Series X': 'xbox-series-x.jpg', 
+'Nintendo Switch': 'nintendo-switch.jpg',
+'PS4 Uncharted Edition Bundle': 'ps4-uncharted-bundle.jpg',
+'PlayStation 4 Pro': 'ps4-pro.jpg',
+'FC25 PS4 Game': 'fc25-ps4-game.jpg',
+'Steam Deck': 'steam-deck.jpg',
+'Xbox One X': 'xbox-one-x.jpg'
+};
+
+// Fallback icons for when images fail to load
+const productIcons = {
 'PlayStation 5': '🎮',
-'Xbox Series X': '🎯',
+'Xbox Series X': '🎯', 
 'Nintendo Switch': '🕹️',
+'PS4 Uncharted Edition Bundle': '🎲',
+'PlayStation 4 Pro': '🎮',
+'FC25 PS4 Game': '⚽',
 'Steam Deck': '⚡',
-'PlayStation 4 Pro': '🎲',
 'Xbox One X': '🔥'
 };
 
@@ -579,7 +617,11 @@ cartContent.innerHTML = `
 <h2>Your Items (${cart.reduce((sum, item) => sum + item.quantity, 0)})</h2>
 ${cart.map((item, index) => `
 <div class="cart-item">
-<div class="item-image">${productImages[item.name] || '🎮'}</div>
+<div class="item-image">
+<img src="${productImages[item.name] || 'placeholder.jpg'}" 
+     alt="${item.name}" 
+     onerror="this.style.display='none'; this.parentElement.innerHTML='${productIcons[item.name] || '🎮'}'; this.parentElement.style.background='linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)'; this.parentElement.style.color='white';">
+</div>
 <div class="item-details">
 <h3>${item.name}</h3>
 <p>Gaming Console • Authenticated Quality</p>
@@ -589,7 +631,7 @@ ${cart.map((item, index) => `
 <input type="number" class="quantity-input" value="${item.quantity}" min="1" max="10" onchange="setQuantity(${index}, this.value)">
 <button class="quantity-btn" onclick="updateQuantity(${index}, 1)" ${item.quantity >= 10 ? 'disabled' : ''}>+</button>
 </div>
-<div class="item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+<div class="item-price">${(item.price * item.quantity).toFixed(2)}</div>
 <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
 </div>
 `).join('')}
