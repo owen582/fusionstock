@@ -348,10 +348,14 @@ transform: scale(1.05);
 filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.2));
 }
 
-/* Out of Stock Styling */
-.out-of-stock {
+/* Out of Stock Styling - Enhanced */
+.product-card .out-of-stock {
 position: relative;
-filter: grayscale(50%) opacity(0.7);
+filter: grayscale(80%) brightness(0.6) opacity(0.8) !important;
+}
+
+.product-card .out-of-stock img {
+filter: grayscale(80%) brightness(0.6) opacity(0.8) !important;
 }
 
 .stock-overlay {
@@ -359,15 +363,17 @@ position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-background: rgba(239, 68, 68, 0.9);
-color: white;
-padding: 0.5rem 1rem;
+background: rgba(239, 68, 68, 0.95) !important;
+color: white !important;
+padding: 0.8rem 1.5rem !important;
 border-radius: 25px;
 font-weight: bold;
-font-size: 0.9rem;
-z-index: 10;
+font-size: 1rem !important;
+z-index: 100 !important;
 backdrop-filter: blur(4px);
-border: 2px solid #ef4444;
+border: 3px solid #dc2626 !important;
+box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4) !important;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
 }
 
 .product-image.fallback {
@@ -835,7 +841,7 @@ renderProducts(filteredProducts);
 
 function addToCart(productId, buttonElement) {
 const product = products.find(p => p.id === productId);
-if (product) {
+if (product && product.inStock) {
     // Check if item already exists in cart
     const existingItem = cart.find(item => item.name === product.name);
     
@@ -874,6 +880,10 @@ if (product) {
     }, 2000);
 
     showNotification(`${product.name} added to cart!`);
+} else if (product && !product.inStock) {
+    showNotification('This item is currently out of stock!', 'error');
+} else {
+    showNotification('Product not found!', 'error');
 }
 }
 
@@ -891,13 +901,14 @@ buttonElement.style.color = '#3b82f6';
 }
 }
 
-function showNotification(message) {
+function showNotification(message, type = 'success') {
 const notification = document.createElement('div');
+const bgColor = type === 'error' ? '#ef4444' : '#059669';
 notification.style.cssText = `
 position: fixed;
 top: 100px;
 right: 20px;
-background: linear-gradient(135deg, #059669 0%, #047857 100%);
+background: ${bgColor};
 color: white;
 padding: 1rem 2rem;
 border-radius: 25px;
