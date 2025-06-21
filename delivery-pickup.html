@@ -92,6 +92,8 @@ padding: 0.7rem 1.5rem !important;
 border-radius: 25px;
 font-weight: bold;
 transition: all 0.3s ease;
+border: none;
+cursor: pointer;
 }
 
 .cart-btn:hover {
@@ -498,10 +500,22 @@ background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
 flex-direction: column;
 padding: 1rem 0;
 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+z-index: 999;
 }
 
 .nav-links.active {
-display: flex;
+display: flex !important;
+}
+
+.nav-links li {
+width: 100%;
+text-align: center;
+}
+
+.nav-links a,
+.nav-links button {
+width: 100%;
+margin: 0.5rem 0;
 }
 
 .mobile-menu {
@@ -576,7 +590,7 @@ to { opacity: 1; transform: translateY(0); }
 <header>
 <nav>
 <a href="index.html" class="logo">
-<img src="fusionstock-logo.png" alt="FusionStock Logo" class="logo-img">
+<div class="logo-img">F</div>
 FusionStock
 </a>
 <ul class="nav-links">
@@ -584,7 +598,7 @@ FusionStock
 <li><a href="shop-all.html">Shop All</a></li>
 <li><a href="contact-us.html">Contact Us</a></li>
 <li><a href="returns-refunds.html">Returns</a></li>
-<li><a href="cart.html" class="cart-btn">Cart (<span id="cart-count">0</span>)</a></li>
+<li><button class="snipcart-checkout cart-btn">Cart</button></li>
 </ul>
 <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
 </nav>
@@ -761,22 +775,10 @@ Contact Form
 </footer>
 
 <script>
-// Initialize cart count from localStorage
-function updateCartCount() {
-const cart = JSON.parse(localStorage.getItem('fusionstock-cart')) || [];
-const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-document.getElementById('cart-count').textContent = totalItems;
-}
-
 function toggleMobileMenu() {
 const navLinks = document.querySelector('.nav-links');
 navLinks.classList.toggle('active');
 }
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-updateCartCount();
-});
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -792,5 +794,19 @@ block: 'start'
 });
 });
 </script>
+
+<!-- Snipcart Integration -->
+<script>
+    window.SnipcartSettings = {
+        publicApiKey: 'NWVkMDM1YjItMGY3Yy00ZDlmLWFmZWYtMWM1NDliZWFhMzA5NjM4ODYxMjU1MjUzMTI4NDI1',
+        loadStrategy: 'on-user-interaction',
+        currency: "usd",
+        addProductBehavior: "none",
+        modalStyle: "side"
+    };
+
+    (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
+</script>
+
 </body>
 </html>
