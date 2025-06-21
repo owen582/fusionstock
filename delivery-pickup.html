@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delivery & Pickup Information - FusionStock</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+line-height: 1.6;
+color: #1e3a8a;
+background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+overflow-x: hidden;
+}
+
+/* Header */
+header {
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+color: white;
+padding: 1rem 0;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10px);
+}
+
+nav {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 2rem;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+font-size: 2rem;
+font-weight: bold;
+text-decoration: none;
+color: white;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo-img {
+height: 36px;
+width: 36px;
+background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+color: #1e40af;
+font-weight: bold;
+}
+
+.nav-links {
+display: flex;
+list-style: none;
+gap: 2rem;
+}
+
+.nav-links a {
+color: white;
+text-decoration: none;
+transition: all 0.3s ease;
+padding: 0.5rem 1rem;
+border-radius: 25px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+background: rgba(255, 255, 255, 0.2);
+transform: translateY(-2px);
+}
+
+.cart-btn {
+background: #fbbf24;
+color: #1e40af !important;
+padding: 0.7rem 1.5rem !important;
+border-radius: 25px;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+.cart-btn:hover {
+background: #f59e0b;
+transform: scale(1.05);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+display: none;
+background: none;
+border: none;
+color: white;
+font-size: 1.5rem;
+cursor: pointer;
+}
+
+/* Main Content */
+main {
+margin-top: 80px;
+padding: 4rem 2rem;
+min-height: calc(100vh - 160px);
+}
+
+.delivery-container {
+max-width: 1000px;
+margin: 0 auto;
+}
+
+/* Hero Section */
+.delivery-hero {
+text-align: center;
+margin-bottom: 4rem;
+}
+
+.delivery-hero h1 {
+font-size: 3rem;
+color: #1e40af;
+margin-bottom: 1rem;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+animation: slideInUp 1s ease;
+}
+
+.delivery-hero p {
+font-size: 1.3rem;
+color: #6b7280;
+max-width: 600px;
+margin: 0 auto;
+animation: slideInUp 1s ease 0.2s both;
+}
+
+.hero-icon {
+font-size: 4rem;
+margin-bottom: 2rem;
+color: #3b82f6;
+animation: slideInUp 1s ease 0.1s both;
+}
+
+@keyframes slideInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* Delivery Options */
+.delivery-options {
+display: grid;
+gap: 3rem;
+margin-bottom: 4rem;
+}
+
+.delivery-section {
+background: white;
+border-radius: 20px;
+padding: 3rem;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+border: 2px solid transparent;
+transition: all 0.3s ease;
+animation: fadeIn 0.8s ease;
+position: relative;
+overflow: hidden;
+}
+
+.delivery-section:hover {
+border-color: #3b82f6;
+transform: translateY(-5px);
+box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
+.delivery-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 4px;
+background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.section-header {
+display: flex;
+align-items: center;
+gap: 1.5rem;
+margin-bottom: 2rem;
+}
+
+.section-icon {
+font-size: 3rem;
+color: #3b82f6;
+background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+padding: 1rem;
+border-radius: 15px;
+}
+
+.section-title {
+flex: 1;
+}
+
+.section-title h2 {
+font-size: 2rem;
+color: #1e40af;
+margin-bottom: 0.5rem;
+}
+
+.section-title .subtitle {
+font-size: 1.1rem;
+color: #6b7280;
+font-weight: 500;
+}
+
+.section-content p {
+font-size: 1.1rem;
+color: #374151;
+margin-bottom: 1.5rem;
+line-height: 1.8;
+}
+
+.section-content ul {
+margin: 1rem 0 1.5rem 0;
+}
+
+.section-content li {
+font-size: 1.1rem;
+color: #374151;
+margin-bottom: 0.8rem;
+line-height: 1.6;
+position: relative;
+padding-left: 2rem;
+}
+
+.section-content li::before {
+content: '✓';
+position: absolute;
+left: 0;
+color: #10b981;
+font-weight: bold;
+font-size: 1.2rem;
+}
+
+.highlight {
+background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+color: #1e40af;
+padding: 0.2rem 0.6rem;
+border-radius: 8px;
+font-weight: bold;
+}
+
+.badge {
+display: inline-block;
+background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+color: white;
+padding: 0.3rem 0.8rem;
+border-radius: 15px;
+font-size: 0.9rem;
+font-weight: bold;
+margin-bottom: 1rem;
+}
+
+/* Coverage Map */
+.coverage-map {
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+color: white;
+border-radius: 20px;
+padding: 3rem;
+text-align: center;
+margin: 3rem 0;
+position: relative;
+overflow: hidden;
+}
+
+.coverage-map::before {
+content: '';
+position: absolute;
+top: -50%;
+right: -50%;
+width: 200%;
+height: 200%;
+background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+animation: float 20s infinite linear;
+}
+
+@keyframes float {
+0% { transform: translateY(0) rotate(0deg); }
+100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+.coverage-content {
+position: relative;
+z-index: 2;
+}
+
+.coverage-map h2 {
+font-size: 2.5rem;
+margin-bottom: 1rem;
+}
+
+.coverage-map p {
+font-size: 1.2rem;
+margin-bottom: 2rem;
+opacity: 0.9;
+}
+
+.coverage-areas {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1.5rem;
+margin-top: 2rem;
+}
+
+.coverage-area {
+background: rgba(255, 255, 255, 0.2);
+padding: 1.5rem;
+border-radius: 15px;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.coverage-area h3 {
+font-size: 1.3rem;
+margin-bottom: 0.5rem;
+}
+
+.coverage-area p {
+font-size: 1rem;
+opacity: 0.9;
+margin: 0;
+}
+
+/* Contact Section */
+.contact-section {
+background: white;
+border-radius: 20px;
+padding: 3rem;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+text-align: center;
+margin-top: 3rem;
+}
+
+.contact-section h2 {
+font-size: 2rem;
+color: #1e40af;
+margin-bottom: 1rem;
+}
+
+.contact-section p {
+font-size: 1.2rem;
+color: #6b7280;
+margin-bottom: 2rem;
+}
+
+.contact-buttons {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+}
+
+.contact-btn {
+background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+color: white;
+padding: 1.5rem 2rem;
+border: none;
+border-radius: 15px;
+text-decoration: none;
+font-weight: bold;
+font-size: 1.1rem;
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.8rem;
+box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.contact-btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+}
+
+.btn-icon {
+font-size: 1.5rem;
+}
+
+/* FAQ Section */
+.faq-section {
+background: white;
+border-radius: 20px;
+padding: 3rem;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+margin-top: 3rem;
+}
+
+.faq-section h2 {
+font-size: 2rem;
+color: #1e40af;
+margin-bottom: 2rem;
+text-align: center;
+}
+
+.faq-grid {
+display: grid;
+gap: 1.5rem;
+}
+
+.faq-item {
+background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+padding: 1.5rem;
+border-radius: 15px;
+border: 2px solid transparent;
+transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+border-color: #3b82f6;
+transform: translateY(-2px);
+}
+
+.faq-item h3 {
+font-size: 1.3rem;
+color: #1e40af;
+margin-bottom: 0.8rem;
+}
+
+.faq-item p {
+color: #6b7280;
+line-height: 1.6;
+}
+
+/* Footer */
+footer {
+background: #1e3a8a;
+color: white;
+padding: 3rem 2rem 1rem;
+position: relative;
+margin-top: 4rem;
+}
+
+.footer-container {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 2rem;
+}
+
+.footer-section h3 {
+margin-bottom: 1rem;
+color: #60a5fa;
+}
+
+.footer-section a {
+color: #e2e8f0;
+text-decoration: none;
+display: block;
+margin-bottom: 0.5rem;
+transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+color: #60a5fa;
+}
+
+.footer-bottom {
+text-align: center;
+margin-top: 2rem;
+padding-top: 2rem;
+border-top: 1px solid #374151;
+color: #9ca3af;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.nav-links {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+flex-direction: column;
+padding: 1rem 0;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links.active {
+display: flex;
+}
+
+.mobile-menu {
+display: block;
+}
+
+.delivery-hero h1 {
+font-size: 2.5rem;
+}
+
+.delivery-hero p {
+font-size: 1.1rem;
+}
+
+.delivery-section {
+padding: 2rem;
+}
+
+.section-header {
+flex-direction: column;
+text-align: center;
+gap: 1rem;
+}
+
+.coverage-areas {
+grid-template-columns: 1fr;
+}
+
+.contact-buttons {
+grid-template-columns: 1fr;
+}
+
+nav {
+padding: 0 1rem;
+}
+
+main {
+padding: 3rem 1rem;
+}
+}
+
+@media (max-width: 480px) {
+.delivery-hero h1 {
+font-size: 2rem;
+}
+
+.section-header h2 {
+font-size: 1.5rem;
+}
+
+.coverage-map {
+padding: 2rem;
+}
+
+.coverage-map h2 {
+font-size: 2rem;
+}
+}
+
+/* Animations */
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.delivery-section:nth-child(1) { animation-delay: 0.1s; }
+.delivery-section:nth-child(2) { animation-delay: 0.2s; }
+.delivery-section:nth-child(3) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a href="index.html" class="logo">
+<img src="fusionstock-logo.png" alt="FusionStock Logo" class="logo-img">
+FusionStock
+</a>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop-all.html">Shop All</a></li>
+<li><a href="contact-us.html">Contact Us</a></li>
+<li><a href="returns-refunds.html">Returns</a></li>
+<li><a href="cart.html" class="cart-btn">Cart (<span id="cart-count">0</span>)</a></li>
+</ul>
+<button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+</nav>
+</header>
+
+<main>
+<div class="delivery-container">
+<!-- Hero Section -->
+<div class="delivery-hero">
+<div class="hero-icon">🚚</div>
+<h1>Delivery & Pickup Information</h1>
+<p>Fast, reliable delivery across the Lower Mainland and Canada-wide shipping. Choose the option that works best for you.</p>
+</div>
+
+<!-- Delivery Options -->
+<div class="delivery-options">
+<!-- Local Delivery -->
+<div class="delivery-section">
+<div class="section-header">
+<div class="section-icon">🚛</div>
+<div class="section-title">
+<h2>Delivery (Chilliwack to Vancouver)</h2>
+<div class="subtitle">Personal delivery across the Lower Mainland</div>
+</div>
+</div>
+<div class="section-content">
+<div class="badge">MOST POPULAR</div>
+<p>We personally deliver across the Lower Mainland — from <span class="highlight">Chilliwack to Vancouver</span>.</p>
+<ul>
+<li><span class="highlight">Fast delivery</span> available within 1–2 days</li>
+<li>Affordable delivery fee</li>
+<li>We'll arrange a convenient drop-off time with you</li>
+</ul>
+<p>Perfect for customers who want their gaming gear quickly with the personal touch of local delivery.</p>
+</div>
+</div>
+
+<!-- Canada-Wide Shipping -->
+<div class="delivery-section">
+<div class="section-header">
+<div class="section-icon">📦</div>
+<div class="section-title">
+<h2>Shipping Canada-Wide</h2>
+<div class="subtitle">Secure shipping anywhere in Canada</div>
+</div>
+</div>
+<div class="section-content">
+<p>Not in the Lower Mainland? No problem!</p>
+<ul>
+<li>We ship anywhere in Canada</li>
+<li>Secure packaging & tracking included</li>
+<li>Shipped within <span class="highlight">1 business day</span> of purchase</li>
+</ul>
+<p>Every shipment includes full tracking information and secure packaging to ensure your gaming console arrives in perfect condition.</p>
+</div>
+</div>
+
+<!-- Local Pickup -->
+<div class="delivery-section">
+<div class="section-header">
+<div class="section-icon">📍</div>
+<div class="section-title">
+<h2>Local Pickup (Chilliwack)</h2>
+<div class="subtitle">Convenient pickup options</div>
+</div>
+</div>
+<div class="section-content">
+<p>Prefer to pick up in person? You can schedule a time to <span class="highlight">pick up your order in Chilliwack</span>.</p>
+<ul>
+<li>Quick meet-up near central Chilliwack</li>
+<li>Contactless options available</li>
+<li>Flexible scheduling to fit your needs</li>
+</ul>
+<p>Great for local customers who want to save on delivery fees and see their console before taking it home.</p>
+</div>
+</div>
+</div>
+
+<!-- Coverage Map -->
+<div class="coverage-map">
+<div class="coverage-content">
+<h2>🗺️ Delivery Coverage</h2>
+<p>We cover the entire Lower Mainland with personal delivery service</p>
+<div class="coverage-areas">
+<div class="coverage-area">
+<h3>East</h3>
+<p>Chilliwack, Abbotsford, Mission</p>
+</div>
+<div class="coverage-area">
+<h3>Central</h3>
+<p>Surrey, Langley, Richmond</p>
+</div>
+<div class="coverage-area">
+<h3>West</h3>
+<p>Vancouver, Burnaby, Coquitlam</p>
+</div>
+<div class="coverage-area">
+<h3>North</h3>
+<p>North Vancouver, West Vancouver</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-grid">
+<div class="faq-item">
+<h3>How much does delivery cost?</h3>
+<p>Delivery fees vary by distance but are kept affordable. We'll provide the exact cost at checkout based on your location.</p>
+</div>
+<div class="faq-item">
+<h3>Can I track my shipment?</h3>
+<p>Yes! All Canada-wide shipments include full tracking information so you can monitor your order every step of the way.</p>
+</div>
+<div class="faq-item">
+<h3>What if I'm not home for delivery?</h3>
+<p>For local delivery, we'll arrange a convenient time that works for you. For shipped orders, the courier will leave a pickup notice.</p>
+</div>
+<div class="faq-item">
+<h3>How is my console packaged?</h3>
+<p>All consoles are securely packaged with protective materials to ensure they arrive in perfect condition, whether delivered or shipped.</p>
+</div>
+</div>
+</div>
+
+<!-- Contact Section -->
+<div class="contact-section">
+<h2>Questions?</h2>
+<p>Feel free to contact us anytime about delivery options or to arrange pickup.</p>
+<div class="contact-buttons">
+<a href="mailto:Fusionstockstore@gmail.com?subject=Delivery Inquiry" class="contact-btn">
+<span class="btn-icon">📧</span>
+Email Us
+</a>
+<a href="contact-us.html" class="contact-btn">
+<span class="btn-icon">💬</span>
+Contact Form
+</a>
+</div>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="footer-container">
+<div class="footer-section">
+<h3>Quick Links</h3>
+<a href="index.html">Home</a>
+<a href="shop-all.html">Shop All</a>
+<a href="index.html#about">About Us</a>
+<a href="contact-us.html">Contact</a>
+</div>
+<div class="footer-section">
+<h3>Customer Service</h3>
+<a href="delivery-pickup.html">Delivery & Pickup</a>
+<a href="returns-refunds.html">Returns & Refunds</a>
+<a href="#warranty">Warranty</a>
+<a href="#support">Support</a>
+</div>
+<div class="footer-section">
+<h3>Connect</h3>
+<a href="#facebook">Facebook</a>
+<a href="#twitter">Twitter</a>
+<a href="#instagram">Instagram</a>
+<a href="#discord">Discord</a>
+</div>
+<div class="footer-section">
+<h3>FusionStock</h3>
+<p>Your go-to source for consoles that keep the game going. Fast shipping, trusted products, responsive support.</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 FusionStock. All rights reserved. | Privacy Policy | Terms of Service</p>
+</div>
+</footer>
+
+<script>
+// Initialize cart count from localStorage
+function updateCartCount() {
+const cart = JSON.parse(localStorage.getItem('fusionstock-cart')) || [];
+const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+document.getElementById('cart-count').textContent = totalItems;
+}
+
+function toggleMobileMenu() {
+const navLinks = document.querySelector('.nav-links');
+navLinks.classList.toggle('active');
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+updateCartCount();
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+</script>
+</body>
+</html>

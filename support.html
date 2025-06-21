@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support - FusionStock</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+line-height: 1.6;
+color: #1e3a8a;
+background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+overflow-x: hidden;
+}
+
+/* Header */
+header {
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+color: white;
+padding: 1rem 0;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10px);
+}
+
+nav {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 2rem;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+font-size: 2rem;
+font-weight: bold;
+text-decoration: none;
+color: white;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo-img {
+height: 36px;
+width: 36px;
+background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+color: #1e40af;
+font-weight: bold;
+}
+
+.nav-links {
+display: flex;
+list-style: none;
+gap: 2rem;
+}
+
+.nav-links a {
+color: white;
+text-decoration: none;
+transition: all 0.3s ease;
+padding: 0.5rem 1rem;
+border-radius: 25px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+background: rgba(255, 255, 255, 0.2);
+transform: translateY(-2px);
+}
+
+.cart-btn {
+background: #fbbf24;
+color: #1e40af !important;
+padding: 0.7rem 1.5rem !important;
+border-radius: 25px;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+.cart-btn:hover {
+background: #f59e0b;
+transform: scale(1.05);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+display: none;
+background: none;
+border: none;
+color: white;
+font-size: 1.5rem;
+cursor: pointer;
+}
+
+/* Main Content */
+main {
+margin-top: 80px;
+padding: 4rem 2rem;
+min-height: calc(100vh - 160px);
+}
+
+.support-container {
+max-width: 1000px;
+margin: 0 auto;
+}
+
+/* Hero Section */
+.support-hero {
+text-align: center;
+margin-bottom: 4rem;
+}
+
+.support-hero h1 {
+font-size: 3rem;
+color: #1e40af;
+margin-bottom: 1rem;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+animation: slideInUp 1s ease;
+}
+
+.support-hero p {
+font-size: 1.3rem;
+color: #6b7280;
+max-width: 600px;
+margin: 0 auto;
+animation: slideInUp 1s ease 0.2s both;
+}
+
+.hero-icon {
+font-size: 4rem;
+margin-bottom: 2rem;
+color: #3b82f6;
+animation: slideInUp 1s ease 0.1s both;
+}
+
+@keyframes slideInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* Support Options */
+.support-options {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+margin-bottom: 4rem;
+}
+
+.support-card {
+background: white;
+border-radius: 20px;
+padding: 3rem;
+text-align: center;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+border: 2px solid transparent;
+transition: all 0.3s ease;
+animation: fadeIn 0.8s ease;
+}
+
+.support-card:hover {
+border-color: #3b82f6;
+transform: translateY(-10px);
+box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
+.support-card-icon {
+font-size: 3rem;
+color: #3b82f6;
+margin-bottom: 1.5rem;
+}
+
+.support-card h3 {
+font-size: 1.5rem;
+color: #1e40af;
+margin-bottom: 1rem;
+}
+
+.support-card p {
+color: #6b7280;
+margin-bottom: 2rem;
+line-height: 1.6;
+}
+
+.support-btn {
+background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+color: white;
+padding: 0.8rem 2rem;
+border: none;
+border-radius: 12px;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s ease;
+text-decoration: none;
+display: inline-block;
+box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.support-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* FAQ Section */
+.faq-section {
+background: white;
+border-radius: 20px;
+padding: 3rem;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+margin-bottom: 3rem;
+}
+
+.faq-section h2 {
+font-size: 2rem;
+color: #1e40af;
+margin-bottom: 2rem;
+text-align: center;
+}
+
+.faq-category {
+margin-bottom: 3rem;
+}
+
+.faq-category h3 {
+font-size: 1.5rem;
+color: #1e40af;
+margin-bottom: 1.5rem;
+padding-left: 2rem;
+position: relative;
+}
+
+.faq-category h3::before {
+content: '';
+position: absolute;
+left: 0;
+top: 50%;
+transform: translateY(-50%);
+width: 4px;
+height: 20px;
+background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+border-radius: 2px;
+}
+
+.faq-grid {
+display: grid;
+gap: 1rem;
+}
+
+.faq-item {
+background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+border-radius: 15px;
+overflow: hidden;
+border: 2px solid transparent;
+transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+border-color: #3b82f6;
+}
+
+.faq-question {
+padding: 1.5rem;
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-weight: bold;
+color: #1e40af;
+background: transparent;
+border: none;
+width: 100%;
+text-align: left;
+font-size: 1.1rem;
+}
+
+.faq-question:hover {
+background: rgba(59, 130, 246, 0.05);
+}
+
+.faq-icon {
+font-size: 1.2rem;
+transition: transform 0.3s ease;
+}
+
+.faq-answer {
+padding: 0 1.5rem 1.5rem;
+color: #6b7280;
+line-height: 1.6;
+display: none;
+}
+
+.faq-item.active .faq-answer {
+display: block;
+}
+
+.faq-item.active .faq-icon {
+transform: rotate(180deg);
+}
+
+/* Contact CTA */
+.contact-cta {
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+color: white;
+border-radius: 20px;
+padding: 3rem;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+.contact-cta::before {
+content: '';
+position: absolute;
+top: -50%;
+right: -50%;
+width: 200%;
+height: 200%;
+background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+animation: float 20s infinite linear;
+}
+
+@keyframes float {
+0% { transform: translateY(0) rotate(0deg); }
+100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+.contact-cta-content {
+position: relative;
+z-index: 2;
+}
+
+.contact-cta h2 {
+font-size: 2.5rem;
+margin-bottom: 1rem;
+}
+
+.contact-cta p {
+font-size: 1.2rem;
+margin-bottom: 2rem;
+opacity: 0.9;
+}
+
+.cta-buttons {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1rem;
+max-width: 500px;
+margin: 0 auto;
+}
+
+.cta-btn {
+background: rgba(255, 255, 255, 0.2);
+color: white;
+padding: 1rem 2rem;
+border: 2px solid rgba(255, 255, 255, 0.3);
+border-radius: 12px;
+text-decoration: none;
+font-weight: bold;
+transition: all 0.3s ease;
+backdrop-filter: blur(10px);
+}
+
+.cta-btn:hover {
+background: rgba(255, 255, 255, 0.3);
+border-color: rgba(255, 255, 255, 0.5);
+transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+background: #1e3a8a;
+color: white;
+padding: 3rem 2rem 1rem;
+position: relative;
+margin-top: 4rem;
+}
+
+.footer-container {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 2rem;
+}
+
+.footer-section h3 {
+margin-bottom: 1rem;
+color: #60a5fa;
+}
+
+.footer-section a {
+color: #e2e8f0;
+text-decoration: none;
+display: block;
+margin-bottom: 0.5rem;
+transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+color: #60a5fa;
+}
+
+.footer-bottom {
+text-align: center;
+margin-top: 2rem;
+padding-top: 2rem;
+border-top: 1px solid #374151;
+color: #9ca3af;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.nav-links {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+flex-direction: column;
+padding: 1rem 0;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links.active {
+display: flex;
+}
+
+.mobile-menu {
+display: block;
+}
+
+.support-hero h1 {
+font-size: 2.5rem;
+}
+
+.support-hero p {
+font-size: 1.1rem;
+}
+
+.support-options {
+grid-template-columns: 1fr;
+}
+
+.support-card {
+padding: 2rem;
+}
+
+.cta-buttons {
+grid-template-columns: 1fr;
+}
+
+nav {
+padding: 0 1rem;
+}
+
+main {
+padding: 3rem 1rem;
+}
+}
+
+@media (max-width: 480px) {
+.support-hero h1 {
+font-size: 2rem;
+}
+
+.contact-cta {
+padding: 2rem;
+}
+
+.contact-cta h2 {
+font-size: 2rem;
+}
+}
+
+/* Animations */
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.support-card:nth-child(1) { animation-delay: 0.1s; }
+.support-card:nth-child(2) { animation-delay: 0.2s; }
+.support-card:nth-child(3) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a href="index.html" class="logo">
+<img src="fusionstock-logo.png" alt="FusionStock Logo" class="logo-img">
+FusionStock
+</a>
+<ul class="nav-links">
+<li><a href="cart.html" class="cart-btn">Cart (<span id="cart-count">0</span>)</a></li>
+</ul>
+<button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+</nav>
+</header>
+
+<main>
+<div class="support-container">
+<!-- Hero Section -->
+<div class="support-hero">
+<div class="hero-icon">🎯</div>
+<h1>Support Center</h1>
+<p>Get the help you need to maximize your gaming experience. From setup assistance to troubleshooting, we're here for you.</p>
+</div>
+
+<!-- Support Options -->
+<div class="support-options">
+<div class="support-card">
+<div class="support-card-icon">📧</div>
+<h3>Email Support</h3>
+<p>Get personalized help via email. Perfect for detailed questions, order inquiries, and technical issues.</p>
+<a href="mailto:Fusionstockstore@gmail.com" class="support-btn">Email Us</a>
+</div>
+<div class="support-card">
+<div class="support-card-icon">❓</div>
+<h3>FAQ Database</h3>
+<p>Find instant answers to common questions about orders, shipping, returns, and console setup.</p>
+<a href="#faq" class="support-btn">Browse FAQ</a>
+</div>
+<div class="support-card">
+<div class="support-card-icon">🛠️</div>
+<h3>Technical Help</h3>
+<p>Get assistance with console setup, troubleshooting, and basic technical issues.</p>
+<a href="contact-us.html" class="support-btn">Get Tech Help</a>
+</div>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section" id="faq">
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-category">
+<h3>Orders & Payment</h3>
+<div class="faq-grid">
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+How can I track my order?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+For local delivery orders, we'll contact you directly with delivery updates. For shipped orders, you'll receive tracking information via email within 24 hours of shipment.
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+What payment methods do you accept?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+We accept major credit cards, debit cards, PayPal, and e-transfer for local customers. All payments are processed securely.
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+Can I modify or cancel my order?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+Contact us immediately if you need to modify your order. If it hasn't been shipped or prepared for delivery, we can usually accommodate changes or cancellations.
+</div>
+</div>
+</div>
+</div>
+
+<div class="faq-category">
+<h3>Console Setup & Technical</h3>
+<div class="faq-grid">
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+Do consoles come with all necessary cables?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+Most consoles include power cables and basic connectivity. HDMI cables and controllers are included where specified in the product description. If anything is missing, contact us immediately.
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+How do I set up my console for the first time?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+Each console includes basic setup instructions. For detailed help, check the manufacturer's website or contact us for assistance with initial setup and account creation.
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+My console won't turn on. What should I do?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+First, check all power connections and try a different outlet. If the issue persists, contact us immediately as this may be covered under warranty.
+</div>
+</div>
+</div>
+</div>
+
+<div class="faq-category">
+<h3>Delivery & Returns</h3>
+<div class="faq-grid">
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+How long does delivery take?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+Local delivery (Chilliwack to Vancouver) takes 1-2 days. Canada-wide shipping typically takes 3-7 business days depending on your location.
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+What if my console arrives damaged?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+Contact us within 48 hours with photos of the damage. We'll arrange for immediate replacement or repair at no cost to you.
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+How do I return a console?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+Email us first to initiate the return process. We'll provide instructions and a prepaid return label. Returns must be in original condition within 14 days.
+</div>
+</div>
+</div>
+</div>
+
+<div class="faq-category">
+<h3>Account & General</h3>
+<div class="faq-grid">
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+Do I need to create an account to purchase?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+No account is required for purchases. We process orders via email and phone for a more personal service experience.
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+Are your consoles authentic?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+Yes, all consoles are 100% authentic and go through rigorous testing and authentication before being listed for sale.
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFAQ(this)">
+Do you offer gaming advice or recommendations?
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+Absolutely! We're fellow gamers and love helping customers find the perfect console and games for their needs. Just ask!
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Contact CTA -->
+<div class="contact-cta">
+<div class="contact-cta-content">
+<h2>Still Need Help?</h2>
+<p>Can't find the answer you're looking for? Our support team is ready to help!</p>
+<div class="cta-buttons">
+<a href="mailto:Fusionstockstore@gmail.com" class="cta-btn">📧 Email Support</a>
+<a href="contact-us.html" class="cta-btn">💬 Contact Form</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="footer-container">
+<div class="footer-section">
+<h3>Quick Links</h3>
+<a href="index.html">Home</a>
+<a href="shop-all.html">Products</a>
+<a href="#about">About Us</a>
+<a href="contact-us.html">Contact</a>
+</div>
+<div class="footer-section">
+<h3>Customer Service</h3>
+<a href="delivery-pickup.html">Shipping Info</a>
+<a href="returns-refunds.html">Returns & Refunds</a>
+<a href="warranty.html">Warranty</a>
+<a href="support.html">Support</a>
+</div>
+<div class="footer-section">
+<h3>Connect</h3>
+<a href="#facebook">Facebook</a>
+<a href="#twitter">Twitter</a>
+<a href="#instagram">Instagram</a>
+<a href="#discord">Discord</a>
+</div>
+<div class="footer-section">
+<h3>FusionStock</h3>
+<p>Your go-to source for consoles that keep the game going. Fast shipping, trusted products, responsive support.</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 FusionStock. All rights reserved. | Privacy Policy | Terms of Service</p>
+</div>
+</footer>
+
+<script>
+// Initialize cart count from localStorage
+function updateCartCount() {
+const cart = JSON.parse(localStorage.getItem('fusionstock-cart')) || [];
+const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+document.getElementById('cart-count').textContent = totalItems;
+}
+
+function toggleFAQ(button) {
+const faqItem = button.closest('.faq-item');
+const isActive = faqItem.classList.contains('active');
+
+// Close all FAQ items
+document.querySelectorAll('.faq-item').forEach(item => {
+item.classList.remove('active');
+});
+
+// Toggle current item
+if (!isActive) {
+faqItem.classList.add('active');
+}
+}
+
+function toggleMobileMenu() {
+const navLinks = document.querySelector('.nav-links');
+navLinks.classList.toggle('active');
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+updateCartCount();
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+</script>
+</body>
+</html><a href="index.html">Home</a></li>
+<li><a href="shop-all.html">Shop All</a></li>
+<li><a href="contact-us.html">Contact Us</a></li>
+<li><a href="returns-refunds.html">Returns</a></li>
+<li>

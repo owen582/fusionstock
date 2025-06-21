@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Returns & Refunds - FusionStock</title>
+<title>Warranty Information - FusionStock</title>
 <style>
 * {
 margin: 0;
@@ -116,18 +116,18 @@ padding: 4rem 2rem;
 min-height: calc(100vh - 160px);
 }
 
-.returns-container {
+.warranty-container {
 max-width: 1000px;
 margin: 0 auto;
 }
 
 /* Hero Section */
-.returns-hero {
+.warranty-hero {
 text-align: center;
 margin-bottom: 4rem;
 }
 
-.returns-hero h1 {
+.warranty-hero h1 {
 font-size: 3rem;
 color: #1e40af;
 margin-bottom: 1rem;
@@ -135,7 +135,7 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 animation: slideInUp 1s ease;
 }
 
-.returns-hero p {
+.warranty-hero p {
 font-size: 1.3rem;
 color: #6b7280;
 max-width: 600px;
@@ -161,13 +161,13 @@ transform: translateY(0);
 }
 }
 
-/* Policy Content */
-.policy-content {
+/* Warranty Content */
+.warranty-content {
 display: grid;
 gap: 3rem;
 }
 
-.policy-section {
+.warranty-section {
 background: white;
 border-radius: 20px;
 padding: 3rem;
@@ -177,13 +177,13 @@ transition: all 0.3s ease;
 animation: fadeIn 0.8s ease;
 }
 
-.policy-section:hover {
+.warranty-section:hover {
 border-color: #3b82f6;
 transform: translateY(-5px);
 box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
 }
 
-.policy-section h2 {
+.warranty-section h2 {
 font-size: 2rem;
 color: #1e40af;
 margin-bottom: 1.5rem;
@@ -197,24 +197,24 @@ font-size: 2.5rem;
 color: #3b82f6;
 }
 
-.policy-section h3 {
+.warranty-section h3 {
 font-size: 1.4rem;
 color: #1e40af;
 margin: 2rem 0 1rem 0;
 }
 
-.policy-section p {
+.warranty-section p {
 font-size: 1.1rem;
 color: #374151;
 margin-bottom: 1.5rem;
 line-height: 1.8;
 }
 
-.policy-section ul {
+.warranty-section ul {
 margin: 1rem 0 1.5rem 2rem;
 }
 
-.policy-section li {
+.warranty-section li {
 font-size: 1.1rem;
 color: #374151;
 margin-bottom: 0.8rem;
@@ -241,64 +241,48 @@ color: #1e40af;
 text-decoration: underline;
 }
 
-/* Quick Actions */
-.quick-actions {
-background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-color: white;
-border-radius: 20px;
-padding: 3rem;
-text-align: center;
-margin-top: 3rem;
-}
-
-.quick-actions h2 {
-font-size: 2rem;
-margin-bottom: 1rem;
-}
-
-.quick-actions p {
-font-size: 1.2rem;
-margin-bottom: 2rem;
-opacity: 0.9;
-}
-
-.action-buttons {
+/* Warranty Coverage */
+.coverage-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 1.5rem;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
 margin-top: 2rem;
 }
 
-.action-btn {
-background: rgba(255, 255, 255, 0.2);
-color: white;
-padding: 1.5rem 2rem;
-border: 2px solid rgba(255, 255, 255, 0.3);
+.coverage-item {
+background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+padding: 2rem;
 border-radius: 15px;
-text-decoration: none;
-font-weight: bold;
-font-size: 1.1rem;
+text-align: center;
 transition: all 0.3s ease;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 0.8rem;
-backdrop-filter: blur(10px);
+border: 2px solid transparent;
 }
 
-.action-btn:hover {
-background: rgba(255, 255, 255, 0.3);
-border-color: rgba(255, 255, 255, 0.5);
-transform: translateY(-3px);
-box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+.coverage-item:hover {
+border-color: #3b82f6;
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
 }
 
-.btn-icon {
-font-size: 1.5rem;
+.coverage-icon {
+font-size: 3rem;
+color: #3b82f6;
+margin-bottom: 1rem;
 }
 
-/* Timeline */
-.timeline {
+.coverage-item h3 {
+font-size: 1.3rem;
+color: #1e40af;
+margin-bottom: 1rem;
+}
+
+.coverage-item p {
+color: #6b7280;
+margin: 0;
+}
+
+/* Process Steps */
+.process-steps {
 background: white;
 border-radius: 20px;
 padding: 3rem;
@@ -306,20 +290,20 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 margin-top: 3rem;
 }
 
-.timeline h2 {
+.process-steps h2 {
 font-size: 2rem;
 color: #1e40af;
 margin-bottom: 2rem;
 text-align: center;
 }
 
-.timeline-steps {
+.steps-grid {
 display: grid;
 gap: 2rem;
 position: relative;
 }
 
-.timeline-step {
+.step-item {
 display: grid;
 grid-template-columns: 60px 1fr;
 gap: 1.5rem;
@@ -353,9 +337,10 @@ margin-bottom: 0.5rem;
 color: #6b7280;
 font-size: 1rem;
 line-height: 1.6;
+margin: 0;
 }
 
-.timeline-step:not(:last-child)::after {
+.step-item:not(:last-child)::after {
 content: '';
 position: absolute;
 left: 30px;
@@ -364,6 +349,61 @@ width: 2px;
 height: calc(100% + 2rem);
 background: linear-gradient(to bottom, #3b82f6, #e5e7eb);
 z-index: 1;
+}
+
+/* Contact Section */
+.warranty-contact {
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+color: white;
+border-radius: 20px;
+padding: 3rem;
+text-align: center;
+margin-top: 3rem;
+}
+
+.warranty-contact h2 {
+font-size: 2rem;
+margin-bottom: 1rem;
+}
+
+.warranty-contact p {
+font-size: 1.2rem;
+margin-bottom: 2rem;
+opacity: 0.9;
+}
+
+.contact-buttons {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+}
+
+.contact-btn {
+background: rgba(255, 255, 255, 0.2);
+color: white;
+padding: 1.5rem 2rem;
+border: 2px solid rgba(255, 255, 255, 0.3);
+border-radius: 15px;
+text-decoration: none;
+font-weight: bold;
+font-size: 1.1rem;
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.8rem;
+backdrop-filter: blur(10px);
+}
+
+.contact-btn:hover {
+background: rgba(255, 255, 255, 0.3);
+border-color: rgba(255, 255, 255, 0.5);
+transform: translateY(-3px);
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-icon {
+font-size: 1.5rem;
 }
 
 /* Footer */
@@ -430,27 +470,27 @@ display: flex;
 display: block;
 }
 
-.returns-hero h1 {
+.warranty-hero h1 {
 font-size: 2.5rem;
 }
 
-.returns-hero p {
+.warranty-hero p {
 font-size: 1.1rem;
 }
 
-.policy-section {
+.warranty-section {
 padding: 2rem;
 }
 
-.quick-actions {
-padding: 2rem;
-}
-
-.action-buttons {
+.coverage-grid {
 grid-template-columns: 1fr;
 }
 
-.timeline-step {
+.contact-buttons {
+grid-template-columns: 1fr;
+}
+
+.step-item {
 grid-template-columns: 50px 1fr;
 gap: 1rem;
 }
@@ -461,7 +501,7 @@ height: 50px;
 font-size: 1.2rem;
 }
 
-.timeline-step:not(:last-child)::after {
+.step-item:not(:last-child)::after {
 left: 25px;
 }
 
@@ -475,11 +515,11 @@ padding: 3rem 1rem;
 }
 
 @media (max-width: 480px) {
-.returns-hero h1 {
+.warranty-hero h1 {
 font-size: 2rem;
 }
 
-.policy-section h2 {
+.warranty-section h2 {
 font-size: 1.5rem;
 }
 }
@@ -490,10 +530,9 @@ from { opacity: 0; transform: translateY(20px); }
 to { opacity: 1; transform: translateY(0); }
 }
 
-.policy-section:nth-child(1) { animation-delay: 0.1s; }
-.policy-section:nth-child(2) { animation-delay: 0.2s; }
-.policy-section:nth-child(3) { animation-delay: 0.3s; }
-.policy-section:nth-child(4) { animation-delay: 0.4s; }
+.warranty-section:nth-child(1) { animation-delay: 0.1s; }
+.warranty-section:nth-child(2) { animation-delay: 0.2s; }
+.warranty-section:nth-child(3) { animation-delay: 0.3s; }
 </style>
 </head>
 <body>
@@ -507,7 +546,7 @@ FusionStock
 <li><a href="index.html">Home</a></li>
 <li><a href="shop-all.html">Shop All</a></li>
 <li><a href="contact-us.html">Contact Us</a></li>
-<li><a href="returns-refunds.html" class="active">Returns</a></li>
+<li><a href="returns-refunds.html">Returns</a></li>
 <li><a href="cart.html" class="cart-btn">Cart (<span id="cart-count">0</span>)</a></li>
 </ul>
 <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
@@ -515,103 +554,130 @@ FusionStock
 </header>
 
 <main>
-<div class="returns-container">
+<div class="warranty-container">
 <!-- Hero Section -->
-<div class="returns-hero">
-<div class="hero-icon">📦</div>
-<h1>Returns & Refunds</h1>
-<p>Easy returns and hassle-free refunds for your peace of mind. We're here to make sure you're completely satisfied with your gaming gear.</p>
+<div class="warranty-hero">
+<div class="hero-icon">🛡️</div>
+<h1>Warranty Information</h1>
+<p>Comprehensive warranty protection for your gaming consoles. Game with confidence knowing you're covered.</p>
 </div>
 
-<!-- Policy Content -->
-<div class="policy-content">
-<!-- Return Policy -->
-<div class="policy-section">
-<h2><span class="section-icon">↩️</span>Return Policy</h2>
-<p>We accept returns within <span class="highlight">14 days</span> of delivery. To be eligible for a return:</p>
+<!-- Warranty Content -->
+<div class="warranty-content">
+<!-- Warranty Coverage -->
+<div class="warranty-section">
+<h2><span class="section-icon">✅</span>What's Covered</h2>
+<p>All gaming consoles sold by FusionStock come with comprehensive warranty protection to ensure your gaming experience is uninterrupted.</p>
+
+<h3>Manufacturing Defects</h3>
 <ul>
-<li>Your item must be unused, in the same condition you received it, and in its original packaging.</li>
-<li>You must provide proof of purchase (e.g., order number or receipt).</li>
+<li>Hardware failures not caused by user damage</li>
+<li>Power supply issues</li>
+<li>Controller connectivity problems</li>
+<li>Display or audio output issues</li>
 </ul>
-<p>To start a return, please contact us at <a href="mailto:Fusionstockstore@gmail.com" class="email-link">Fusionstockstore@gmail.com</a>. Items sent back without first requesting a return will not be accepted.</p>
+
+<h3>Warranty Periods</h3>
+<ul>
+<li><span class="highlight">90 days</span> FusionStock warranty on all used consoles</li>
+<li><span class="highlight">1 year</span> manufacturer warranty (where applicable)</li>
+<li>Extended warranty options available at purchase</li>
+</ul>
+
+<div class="coverage-grid">
+<div class="coverage-item">
+<div class="coverage-icon">🔧</div>
+<h3>Repair Service</h3>
+<p>Free repair for covered issues during warranty period</p>
+</div>
+<div class="coverage-item">
+<div class="coverage-icon">🔄</div>
+<h3>Replacement</h3>
+<p>Quick replacement if repair isn't possible</p>
+</div>
+<div class="coverage-item">
+<div class="coverage-icon">💰</div>
+<h3>Refund Option</h3>
+<p>Full refund if neither repair nor replacement is available</p>
+</div>
+</div>
 </div>
 
-<!-- Refunds -->
-<div class="policy-section">
-<h2><span class="section-icon">💳</span>Refunds</h2>
-<p>Once we receive and inspect your return, we'll notify you via email about the status of your refund. If approved, your refund will be processed to your original payment method.</p>
-<p>Please allow <span class="highlight">3–7 business days</span> for the amount to appear in your account, depending on your bank or credit card provider.</p>
+<!-- What's Not Covered -->
+<div class="warranty-section">
+<h2><span class="section-icon">❌</span>What's Not Covered</h2>
+<p>To maintain fair warranty terms, the following are not covered under our warranty protection:</p>
+<ul>
+<li>Physical damage from drops, spills, or accidents</li>
+<li>Damage from power surges or electrical issues</li>
+<li>Normal wear and tear (cosmetic scratches, button wear)</li>
+<li>Damage from unauthorized modifications or repairs</li>
+<li>Software issues that can be resolved with updates</li>
+<li>Lost or stolen consoles</li>
+<li>Damage from liquid exposure</li>
+</ul>
+<p><strong>Note:</strong> Attempting to repair the console yourself or through unauthorized services will void the warranty.</p>
 </div>
 
-<!-- Damaged or Incorrect Items -->
-<div class="policy-section">
-<h2><span class="section-icon">🛠️</span>Damaged or Incorrect Items</h2>
-<p>If you receive a damaged or incorrect item, contact us within <span class="highlight">48 hours</span> of delivery with a photo and your order number. We'll do our best to resolve the issue quickly.</p>
-<p>For damaged items, we'll provide a prepaid return label and expedite your replacement or refund.</p>
-</div>
-
-<!-- Need Help -->
-<div class="policy-section">
-<h2><span class="section-icon">💬</span>Need Help?</h2>
-<p>If you have any questions about returns, refunds, or need assistance with your order, please don't hesitate to reach out:</p>
-<p><strong>Email:</strong> <a href="mailto:Fusionstockstore@gmail.com" class="email-link">Fusionstockstore@gmail.com</a></p>
-<p>Our customer service team typically responds within 24 hours and is here to help make your gaming experience exceptional.</p>
+<!-- Claiming Warranty -->
+<div class="warranty-section">
+<h2><span class="section-icon">📋</span>How to Claim Warranty</h2>
+<p>Making a warranty claim is simple and straightforward. Contact us as soon as you notice any issues with your console.</p>
+<ul>
+<li>Email us at <a href="mailto:Fusionstockstore@gmail.com" class="email-link">Fusionstockstore@gmail.com</a></li>
+<li>Include your order number and purchase date</li>
+<li>Describe the issue you're experiencing</li>
+<li>Provide photos or videos if helpful</li>
+</ul>
+<p>We'll respond within <span class="highlight">24 hours</span> with next steps and arrange for repair, replacement, or refund as appropriate.</p>
 </div>
 </div>
 
-<!-- Return Process Timeline -->
-<div class="timeline">
-<h2>Return Process</h2>
-<div class="timeline-steps">
-<div class="timeline-step">
+<!-- Warranty Process -->
+<div class="process-steps">
+<h2>Warranty Claim Process</h2>
+<div class="steps-grid">
+<div class="step-item">
 <div class="step-number">1</div>
 <div class="step-content">
 <h3>Contact Us</h3>
-<p>Email us at Fusionstockstore@gmail.com with your order number and reason for return within 14 days of delivery.</p>
+<p>Email us with your order details and description of the issue you're experiencing.</p>
 </div>
 </div>
-<div class="timeline-step">
+<div class="step-item">
 <div class="step-number">2</div>
 <div class="step-content">
-<h3>Return Authorization</h3>
-<p>We'll send you return instructions and a prepaid shipping label within 24 hours.</p>
+<h3>Assessment</h3>
+<p>We'll review your case and may request additional information or photos to assess the issue.</p>
 </div>
 </div>
-<div class="timeline-step">
+<div class="step-item">
 <div class="step-number">3</div>
 <div class="step-content">
-<h3>Ship Your Item</h3>
-<p>Package your item securely in its original packaging and send it back using our prepaid label.</p>
+<h3>Resolution</h3>
+<p>We'll arrange for repair, replacement, or refund based on the issue and warranty terms.</p>
 </div>
 </div>
-<div class="timeline-step">
+<div class="step-item">
 <div class="step-number">4</div>
 <div class="step-content">
-<h3>Inspection & Refund</h3>
-<p>Once we receive and inspect your return, we'll process your refund within 3-7 business days.</p>
+<h3>Follow-up</h3>
+<p>We'll ensure you're completely satisfied with the resolution and your console is working perfectly.</p>
 </div>
 </div>
 </div>
 </div>
 
-<!-- Quick Actions -->
-<div class="quick-actions">
-<h2>Quick Actions</h2>
-<p>Get help fast with these common requests</p>
-<div class="action-buttons">
-<a href="mailto:Fusionstockstore@gmail.com?subject=Return Request" class="action-btn">
-<span class="btn-icon">📧</span>
-Start a Return
+<!-- Contact Section -->
+<div class="warranty-contact">
+<h2>Need Warranty Support?</h2>
+<p>Our warranty team is here to help you get back to gaming as quickly as possible.</p>
+<div class="contact-buttons">
+<a href="mailto:Fusionstockstore@gmail.com?subject=Warranty Claim" class="contact-btn">
+<span class="btn-icon">🛠️</span>
+File Warranty Claim
 </a>
-<a href="mailto:Fusionstockstore@gmail.com?subject=Order Status Inquiry" class="action-btn">
-<span class="btn-icon">📋</span>
-Check Order Status
-</a>
-<a href="mailto:Fusionstockstore@gmail.com?subject=Damaged Item Report" class="action-btn">
-<span class="btn-icon">📷</span>
-Report Damage
-</a>
-<a href="contact-us.html" class="action-btn">
+<a href="contact-us.html" class="contact-btn">
 <span class="btn-icon">💬</span>
 Contact Support
 </a>
@@ -626,7 +692,7 @@ Contact Support
 <h3>Quick Links</h3>
 <a href="index.html">Home</a>
 <a href="shop-all.html">Products</a>
-<a href="index.html#about">About Us</a>
+<a href="#about">About Us</a>
 <a href="contact-us.html">Contact</a>
 </div>
 <div class="footer-section">
@@ -634,7 +700,7 @@ Contact Support
 <a href="delivery-pickup.html">Shipping Info</a>
 <a href="returns-refunds.html">Returns & Refunds</a>
 <a href="warranty.html">Warranty</a>
-<a href="support.html">Support</a>
+<a href="#support">Support</a>
 </div>
 <div class="footer-section">
 <h3>Connect</h3>
