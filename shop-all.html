@@ -642,7 +642,7 @@ animation: addToCart 0.3s ease;
 <header>
 <nav>
 <a href="index.html" class="logo">
-<div class="logo-img">F</div>
+<img src="fusionstock-logo.png" alt="FusionStock" class="logo-img">
 FusionStock
 </a>
 <ul class="nav-links">
@@ -785,8 +785,8 @@ ${!product.inStock ? '<div class="stock-overlay">OUT OF STOCK</div>' : ''}
 <h3 class="product-title">${product.name}</h3>
 <div class="product-condition">${product.condition.toUpperCase()}</div>
 <div class="product-pricing">
-<span class="product-price">$${product.price}</span>
-${product.originalPrice > product.price ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
+<span class="product-price">${product.price}</span>
+${product.originalPrice > product.price ? `<span class="original-price">${product.originalPrice}</span>` : ''}
 </div>
 <ul class="product-features">
 ${product.features.map(feature => `<li>${feature}</li>`).join('')}
