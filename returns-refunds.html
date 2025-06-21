@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Returns & Refunds - FusionStock</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+line-height: 1.6;
+color: #1e3a8a;
+background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+overflow-x: hidden;
+}
+
+/* Header */
+header {
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+color: white;
+padding: 1rem 0;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10px);
+}
+
+nav {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 2rem;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+font-size: 2rem;
+font-weight: bold;
+text-decoration: none;
+color: white;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo-img {
+height: 36px;
+width: 36px;
+background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+color: #1e40af;
+font-weight: bold;
+}
+
+.nav-links {
+display: flex;
+list-style: none;
+gap: 2rem;
+}
+
+.nav-links a {
+color: white;
+text-decoration: none;
+transition: all 0.3s ease;
+padding: 0.5rem 1rem;
+border-radius: 25px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+background: rgba(255, 255, 255, 0.2);
+transform: translateY(-2px);
+}
+
+.cart-btn {
+background: #fbbf24;
+color: #1e40af !important;
+padding: 0.7rem 1.5rem !important;
+border-radius: 25px;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+.cart-btn:hover {
+background: #f59e0b;
+transform: scale(1.05);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+display: none;
+background: none;
+border: none;
+color: white;
+font-size: 1.5rem;
+cursor: pointer;
+}
+
+/* Main Content */
+main {
+margin-top: 80px;
+padding: 4rem 2rem;
+min-height: calc(100vh - 160px);
+}
+
+.returns-container {
+max-width: 1000px;
+margin: 0 auto;
+}
+
+/* Hero Section */
+.returns-hero {
+text-align: center;
+margin-bottom: 4rem;
+}
+
+.returns-hero h1 {
+font-size: 3rem;
+color: #1e40af;
+margin-bottom: 1rem;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+animation: slideInUp 1s ease;
+}
+
+.returns-hero p {
+font-size: 1.3rem;
+color: #6b7280;
+max-width: 600px;
+margin: 0 auto;
+animation: slideInUp 1s ease 0.2s both;
+}
+
+.hero-icon {
+font-size: 4rem;
+margin-bottom: 2rem;
+color: #3b82f6;
+animation: slideInUp 1s ease 0.1s both;
+}
+
+@keyframes slideInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* Policy Content */
+.policy-content {
+display: grid;
+gap: 3rem;
+}
+
+.policy-section {
+background: white;
+border-radius: 20px;
+padding: 3rem;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+border: 2px solid transparent;
+transition: all 0.3s ease;
+animation: fadeIn 0.8s ease;
+}
+
+.policy-section:hover {
+border-color: #3b82f6;
+transform: translateY(-5px);
+box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
+.policy-section h2 {
+font-size: 2rem;
+color: #1e40af;
+margin-bottom: 1.5rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.section-icon {
+font-size: 2.5rem;
+color: #3b82f6;
+}
+
+.policy-section h3 {
+font-size: 1.4rem;
+color: #1e40af;
+margin: 2rem 0 1rem 0;
+}
+
+.policy-section p {
+font-size: 1.1rem;
+color: #374151;
+margin-bottom: 1.5rem;
+line-height: 1.8;
+}
+
+.policy-section ul {
+margin: 1rem 0 1.5rem 2rem;
+}
+
+.policy-section li {
+font-size: 1.1rem;
+color: #374151;
+margin-bottom: 0.8rem;
+line-height: 1.6;
+}
+
+.highlight {
+background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+color: #1e40af;
+padding: 0.2rem 0.6rem;
+border-radius: 8px;
+font-weight: bold;
+}
+
+.email-link {
+color: #3b82f6;
+text-decoration: none;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+.email-link:hover {
+color: #1e40af;
+text-decoration: underline;
+}
+
+/* Quick Actions */
+.quick-actions {
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+color: white;
+border-radius: 20px;
+padding: 3rem;
+text-align: center;
+margin-top: 3rem;
+}
+
+.quick-actions h2 {
+font-size: 2rem;
+margin-bottom: 1rem;
+}
+
+.quick-actions p {
+font-size: 1.2rem;
+margin-bottom: 2rem;
+opacity: 0.9;
+}
+
+.action-buttons {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+margin-top: 2rem;
+}
+
+.action-btn {
+background: rgba(255, 255, 255, 0.2);
+color: white;
+padding: 1.5rem 2rem;
+border: 2px solid rgba(255, 255, 255, 0.3);
+border-radius: 15px;
+text-decoration: none;
+font-weight: bold;
+font-size: 1.1rem;
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.8rem;
+backdrop-filter: blur(10px);
+}
+
+.action-btn:hover {
+background: rgba(255, 255, 255, 0.3);
+border-color: rgba(255, 255, 255, 0.5);
+transform: translateY(-3px);
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-icon {
+font-size: 1.5rem;
+}
+
+/* Timeline */
+.timeline {
+background: white;
+border-radius: 20px;
+padding: 3rem;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+margin-top: 3rem;
+}
+
+.timeline h2 {
+font-size: 2rem;
+color: #1e40af;
+margin-bottom: 2rem;
+text-align: center;
+}
+
+.timeline-steps {
+display: grid;
+gap: 2rem;
+position: relative;
+}
+
+.timeline-step {
+display: grid;
+grid-template-columns: 60px 1fr;
+gap: 1.5rem;
+align-items: start;
+position: relative;
+}
+
+.step-number {
+width: 60px;
+height: 60px;
+background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+color: white;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+font-size: 1.5rem;
+box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+position: relative;
+z-index: 2;
+}
+
+.step-content h3 {
+font-size: 1.3rem;
+color: #1e40af;
+margin-bottom: 0.5rem;
+}
+
+.step-content p {
+color: #6b7280;
+font-size: 1rem;
+line-height: 1.6;
+}
+
+.timeline-step:not(:last-child)::after {
+content: '';
+position: absolute;
+left: 30px;
+top: 60px;
+width: 2px;
+height: calc(100% + 2rem);
+background: linear-gradient(to bottom, #3b82f6, #e5e7eb);
+z-index: 1;
+}
+
+/* Footer */
+footer {
+background: #1e3a8a;
+color: white;
+padding: 3rem 2rem 1rem;
+position: relative;
+margin-top: 4rem;
+}
+
+.footer-container {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 2rem;
+}
+
+.footer-section h3 {
+margin-bottom: 1rem;
+color: #60a5fa;
+}
+
+.footer-section a {
+color: #e2e8f0;
+text-decoration: none;
+display: block;
+margin-bottom: 0.5rem;
+transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+color: #60a5fa;
+}
+
+.footer-bottom {
+text-align: center;
+margin-top: 2rem;
+padding-top: 2rem;
+border-top: 1px solid #374151;
+color: #9ca3af;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.nav-links {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+flex-direction: column;
+padding: 1rem 0;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links.active {
+display: flex;
+}
+
+.mobile-menu {
+display: block;
+}
+
+.returns-hero h1 {
+font-size: 2.5rem;
+}
+
+.returns-hero p {
+font-size: 1.1rem;
+}
+
+.policy-section {
+padding: 2rem;
+}
+
+.quick-actions {
+padding: 2rem;
+}
+
+.action-buttons {
+grid-template-columns: 1fr;
+}
+
+.timeline-step {
+grid-template-columns: 50px 1fr;
+gap: 1rem;
+}
+
+.step-number {
+width: 50px;
+height: 50px;
+font-size: 1.2rem;
+}
+
+.timeline-step:not(:last-child)::after {
+left: 25px;
+}
+
+nav {
+padding: 0 1rem;
+}
+
+main {
+padding: 3rem 1rem;
+}
+}
+
+@media (max-width: 480px) {
+.returns-hero h1 {
+font-size: 2rem;
+}
+
+.policy-section h2 {
+font-size: 1.5rem;
+}
+}
+
+/* Animations */
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.policy-section:nth-child(1) { animation-delay: 0.1s; }
+.policy-section:nth-child(2) { animation-delay: 0.2s; }
+.policy-section:nth-child(3) { animation-delay: 0.3s; }
+.policy-section:nth-child(4) { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a href="index.html" class="logo">
+<img src="fusionstock-logo.png" alt="FusionStock Logo" class="logo-img">
+FusionStock
+</a>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="shop-all.html">Shop All</a></li>
+<li><a href="contact-us.html">Contact Us</a></li>
+<li><a href="returns-refunds.html" class="active">Returns</a></li>
+<li><a href="cart.html" class="cart-btn">Cart (<span id="cart-count">0</span>)</a></li>
+</ul>
+<button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+</nav>
+</header>
+
+<main>
+<div class="returns-container">
+<!-- Hero Section -->
+<div class="returns-hero">
+<div class="hero-icon">📦</div>
+<h1>Returns & Refunds</h1>
+<p>Easy returns and hassle-free refunds for your peace of mind. We're here to make sure you're completely satisfied with your gaming gear.</p>
+</div>
+
+<!-- Policy Content -->
+<div class="policy-content">
+<!-- Return Policy -->
+<div class="policy-section">
+<h2><span class="section-icon">↩️</span>Return Policy</h2>
+<p>We accept returns within <span class="highlight">14 days</span> of delivery. To be eligible for a return:</p>
+<ul>
+<li>Your item must be unused, in the same condition you received it, and in its original packaging.</li>
+<li>You must provide proof of purchase (e.g., order number or receipt).</li>
+</ul>
+<p>To start a return, please contact us at <a href="mailto:Fusionstockstore@gmail.com" class="email-link">Fusionstockstore@gmail.com</a>. Items sent back without first requesting a return will not be accepted.</p>
+</div>
+
+<!-- Refunds -->
+<div class="policy-section">
+<h2><span class="section-icon">💳</span>Refunds</h2>
+<p>Once we receive and inspect your return, we'll notify you via email about the status of your refund. If approved, your refund will be processed to your original payment method.</p>
+<p>Please allow <span class="highlight">3–7 business days</span> for the amount to appear in your account, depending on your bank or credit card provider.</p>
+</div>
+
+<!-- Damaged or Incorrect Items -->
+<div class="policy-section">
+<h2><span class="section-icon">🛠️</span>Damaged or Incorrect Items</h2>
+<p>If you receive a damaged or incorrect item, contact us within <span class="highlight">48 hours</span> of delivery with a photo and your order number. We'll do our best to resolve the issue quickly.</p>
+<p>For damaged items, we'll provide a prepaid return label and expedite your replacement or refund.</p>
+</div>
+
+<!-- Need Help -->
+<div class="policy-section">
+<h2><span class="section-icon">💬</span>Need Help?</h2>
+<p>If you have any questions about returns, refunds, or need assistance with your order, please don't hesitate to reach out:</p>
+<p><strong>Email:</strong> <a href="mailto:Fusionstockstore@gmail.com" class="email-link">Fusionstockstore@gmail.com</a></p>
+<p>Our customer service team typically responds within 24 hours and is here to help make your gaming experience exceptional.</p>
+</div>
+</div>
+
+<!-- Return Process Timeline -->
+<div class="timeline">
+<h2>Return Process</h2>
+<div class="timeline-steps">
+<div class="timeline-step">
+<div class="step-number">1</div>
+<div class="step-content">
+<h3>Contact Us</h3>
+<p>Email us at Fusionstockstore@gmail.com with your order number and reason for return within 14 days of delivery.</p>
+</div>
+</div>
+<div class="timeline-step">
+<div class="step-number">2</div>
+<div class="step-content">
+<h3>Return Authorization</h3>
+<p>We'll send you return instructions and a prepaid shipping label within 24 hours.</p>
+</div>
+</div>
+<div class="timeline-step">
+<div class="step-number">3</div>
+<div class="step-content">
+<h3>Ship Your Item</h3>
+<p>Package your item securely in its original packaging and send it back using our prepaid label.</p>
+</div>
+</div>
+<div class="timeline-step">
+<div class="step-number">4</div>
+<div class="step-content">
+<h3>Inspection & Refund</h3>
+<p>Once we receive and inspect your return, we'll process your refund within 3-7 business days.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Quick Actions -->
+<div class="quick-actions">
+<h2>Quick Actions</h2>
+<p>Get help fast with these common requests</p>
+<div class="action-buttons">
+<a href="mailto:Fusionstockstore@gmail.com?subject=Return Request" class="action-btn">
+<span class="btn-icon">📧</span>
+Start a Return
+</a>
+<a href="mailto:Fusionstockstore@gmail.com?subject=Order Status Inquiry" class="action-btn">
+<span class="btn-icon">📋</span>
+Check Order Status
+</a>
+<a href="mailto:Fusionstockstore@gmail.com?subject=Damaged Item Report" class="action-btn">
+<span class="btn-icon">📷</span>
+Report Damage
+</a>
+<a href="contact-us.html" class="action-btn">
+<span class="btn-icon">💬</span>
+Contact Support
+</a>
+</div>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="footer-container">
+<div class="footer-section">
+<h3>Quick Links</h3>
+<a href="index.html">Home</a>
+<a href="shop-all.html">Shop All</a>
+<a href="index.html#about">About Us</a>
+<a href="contact-us.html">Contact</a>
+</div>
+<div class="footer-section">
+<h3>Customer Service</h3>
+<a href="#shipping">Shipping Info</a>
+<a href="returns-refunds.html">Returns & Refunds</a>
+<a href="#warranty">Warranty</a>
+<a href="#support">Support</a>
+</div>
+<div class="footer-section">
+<h3>Connect</h3>
+<a href="#facebook">Facebook</a>
+<a href="#twitter">Twitter</a>
+<a href="#instagram">Instagram</a>
+<a href="#discord">Discord</a>
+</div>
+<div class="footer-section">
+<h3>FusionStock</h3>
+<p>Your go-to source for consoles that keep the game going. Fast shipping, trusted products, responsive support.</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 FusionStock. All rights reserved. | Privacy Policy | Terms of Service</p>
+</div>
+</footer>
+
+<script>
+// Initialize cart count from localStorage
+function updateCartCount() {
+const cart = JSON.parse(localStorage.getItem('fusionstock-cart')) || [];
+const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+document.getElementById('cart-count').textContent = totalItems;
+}
+
+function toggleMobileMenu() {
+const navLinks = document.querySelector('.nav-links');
+navLinks.classList.toggle('active');
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+updateCartCount();
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+</script>
+</body>
+</html>

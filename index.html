@@ -79,7 +79,8 @@ padding: 0.5rem 1rem;
 border-radius: 25px;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
 background: rgba(255, 255, 255, 0.2);
 transform: translateY(-2px);
 }
@@ -674,10 +675,10 @@ animation: addToCart 0.3s ease;
 FusionStock
 </a>
 <ul class="nav-links">
-  <li><a href="index.html">Home</a></li>
+  <li><a href="index.html" class="active">Home</a></li>
   <li><a href="shop-all.html">Shop All</a></li>
   <li><a href="contact-us.html">Contact Us</a></li>
- <li><a href="#about">About</a></li>
+  <li><a href="returns-refunds.html">Returns</a></li>
   <li><a href="cart.html" class="cart-btn">Cart (<span id="cart-count">0</span>)</a></li>
 </ul>
 <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
@@ -833,12 +834,12 @@ FusionStock
 <a href="#home">Home</a>
 <a href="#products">Products</a>
 <a href="#about">About Us</a>
-<a href="#contact">Contact</a>
+<a href="contact-us.html">Contact</a>
 </div>
 <div class="footer-section">
 <h3>Customer Service</h3>
 <a href="#shipping">Shipping Info</a>
-<a href="#returns">Returns</a>
+<a href="returns-refunds.html">Returns & Refunds</a>
 <a href="#warranty">Warranty</a>
 <a href="#support">Support</a>
 </div>
