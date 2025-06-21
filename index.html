@@ -378,6 +378,28 @@ transform: scale(1.05);
 filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.2));
 }
 
+/* Out of Stock Styling */
+.out-of-stock {
+position: relative;
+filter: grayscale(50%) opacity(0.7);
+}
+
+.stock-overlay {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: rgba(239, 68, 68, 0.9);
+color: white;
+padding: 0.5rem 1rem;
+border-radius: 25px;
+font-weight: bold;
+font-size: 0.9rem;
+z-index: 10;
+backdrop-filter: blur(4px);
+border: 2px solid #ef4444;
+}
+
 .product-image.fallback {
 background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
 }
@@ -737,13 +759,14 @@ FusionStock
 </div>
 </div>
 <div class="product-card">
-<div class="product-image">
+<div class="product-image out-of-stock">
 <img src="xbox-series-x.jpg" alt="Xbox Series X" onerror="this.style.display='none'; this.parentElement.innerHTML='🎯'; this.parentElement.classList.add('fallback');">
+<div class="stock-overlay">OUT OF STOCK</div>
 </div>
 <div class="product-info">
 <h3>Xbox Series X</h3>
 <div class="product-price">$399.99</div>
-<button class="product-btn" onclick="addToCart('Xbox Series X', 399.99, this)">Add to Cart</button>
+<button class="product-btn" disabled style="background: #d1d5db; color: #9ca3af; cursor: not-allowed;">Out of Stock</button>
 </div>
 </div>
 <div class="product-card">
@@ -767,23 +790,24 @@ FusionStock
 </div>
 </div>
 <div class="product-card">
-<div class="product-image">
+<div class="product-image out-of-stock">
 <img src="ps4-pro.jpg" alt="PlayStation 4 Pro" onerror="this.style.display='none'; this.parentElement.innerHTML='🎮'; this.parentElement.classList.add('fallback');">
+<div class="stock-overlay">OUT OF STOCK</div>
 </div>
 <div class="product-info">
 <h3>PlayStation 4 Pro</h3>
 <div class="product-price">$299.99</div>
-<button class="product-btn" onclick="addToCart('PlayStation 4 Pro', 299.99, this)">Add to Cart</button>
+<button class="product-btn" disabled style="background: #d1d5db; color: #9ca3af; cursor: not-allowed;">Out of Stock</button>
 </div>
 </div>
 <div class="product-card">
 <div class="product-image">
-<img src="ps4-500gb-bundle.jpg" alt="PS4 500GB Bundle" onerror="this.style.display='none'; this.parentElement.innerHTML='🎲'; this.parentElement.classList.add('fallback');">
+<img src="fc25-ps4-game.jpg" alt="FC25 PS4 Game" onerror="this.style.display='none'; this.parentElement.innerHTML='⚽'; this.parentElement.classList.add('fallback');">
 </div>
 <div class="product-info">
-<h3>PS4 500GB Bundle</h3>
-<div class="product-price">$179.99</div>
-<button class="product-btn" onclick="addToCart('PS4 500GB Bundle', 179.99, this)">Add to Cart</button>
+<h3>FC25 PS4 Game</h3>
+<div class="product-price">$39.99</div>
+<button class="product-btn" onclick="addToCart('FC25 PS4 Game', 39.99, this)">Add to Cart</button>
 </div>
 </div>
 </div>

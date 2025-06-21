@@ -348,6 +348,28 @@ transform: scale(1.05);
 filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.2));
 }
 
+/* Out of Stock Styling */
+.out-of-stock {
+position: relative;
+filter: grayscale(50%) opacity(0.7);
+}
+
+.stock-overlay {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: rgba(239, 68, 68, 0.9);
+color: white;
+padding: 0.5rem 1rem;
+border-radius: 25px;
+font-weight: bold;
+font-size: 0.9rem;
+z-index: 10;
+backdrop-filter: blur(4px);
+border: 2px solid #ef4444;
+}
+
 .product-image.fallback {
 background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
 }
@@ -681,10 +703,10 @@ FusionStock
 <h3>Handheld</h3>
 <p>Portable gaming</p>
 </div>
-<div class="category-card" onclick="filterProducts('retro')">
-<span class="category-icon">🎲</span>
-<h3>Classic</h3>
-<p>Retro consoles</p>
+<div class="category-card" onclick="filterProducts('games')">
+<span class="category-icon">⚽</span>
+<h3>Games</h3>
+<p>PS4 Games</p>
 </div>
 </div>
 </div>
@@ -739,23 +761,24 @@ FusionStock
 // Initialize cart from localStorage or empty array
 let cart = JSON.parse(localStorage.getItem('fusionstock-cart')) || [];
 
-// Product Data with image mappings - only products with actual images
+// Product Data with image mappings - updated with stock status and FC25 game
 const products = [
 // PlayStation
-{ id: 1, name: 'PlayStation 5', brand: 'Sony', category: 'playstation', price: 449.99, originalPrice: 499.99, condition: 'like-new', icon: '🎮', image: 'ps5.jpg', badge: 'SALE', features: ['4K HDR Gaming', '120fps Support', 'Ray Tracing', 'Ultra-Fast SSD'] },
+{ id: 1, name: 'PlayStation 5', brand: 'Sony', category: 'playstation', price: 449.99, originalPrice: 499.99, condition: 'like-new', icon: '🎮', image: 'ps5.jpg', badge: 'SALE', inStock: true, features: ['4K HDR Gaming', '120fps Support', 'Ray Tracing', 'Ultra-Fast SSD'] },
 
-// Xbox
-{ id: 5, name: 'Xbox Series X', brand: 'Microsoft', category: 'xbox', price: 399.99, originalPrice: 499.99, condition: 'like-new', icon: '🎯', image: 'xbox-series-x.jpg', badge: 'SALE', features: ['True 4K Gaming', 'Quick Resume', 'Smart Delivery', 'Backwards Compatible'] },
+// Xbox - OUT OF STOCK
+{ id: 5, name: 'Xbox Series X', brand: 'Microsoft', category: 'xbox', price: 399.99, originalPrice: 499.99, condition: 'like-new', icon: '🎯', image: 'xbox-series-x.jpg', badge: 'SALE', inStock: false, features: ['True 4K Gaming', 'Quick Resume', 'Smart Delivery', 'Backwards Compatible'] },
 
 // Nintendo
-{ id: 10, name: 'Nintendo Switch', brand: 'Nintendo', category: 'nintendo', price: 279.99, originalPrice: 299.99, condition: 'excellent', icon: '🕹️', image: 'nintendo-switch.jpg', badge: 'POPULAR', features: ['Versatile Gaming', 'Joy-Con Controllers', 'Portable Mode', 'Dock Included'] },
+{ id: 10, name: 'Nintendo Switch', brand: 'Nintendo', category: 'nintendo', price: 279.99, originalPrice: 299.99, condition: 'excellent', icon: '🕹️', image: 'nintendo-switch.jpg', badge: 'POPULAR', inStock: true, features: ['Versatile Gaming', 'Joy-Con Controllers', 'Portable Mode', 'Dock Included'] },
 
 // PlayStation Bundles
-{ id: 15, name: 'PS4 Uncharted Edition Bundle', brand: 'Sony', category: 'playstation', price: 199.99, originalPrice: 249.99, condition: 'excellent', icon: '🎲', image: 'ps4-uncharted-bundle.jpg', badge: 'BUNDLE', features: ['Uncharted Game Included', '500GB Storage', 'Complete Bundle', 'Great Value'] },
+{ id: 15, name: 'PS4 Uncharted Edition Bundle', brand: 'Sony', category: 'playstation', price: 199.99, originalPrice: 249.99, condition: 'excellent', icon: '🎲', image: 'ps4-uncharted-bundle.jpg', badge: 'BUNDLE', inStock: true, features: ['Uncharted Game Included', '500GB Storage', 'Complete Bundle', 'Great Value'] },
 
-{ id: 16, name: 'PlayStation 4 Pro', brand: 'Sony', category: 'playstation', price: 299.99, originalPrice: 349.99, condition: 'excellent', icon: '🎮', image: 'ps4-pro.jpg', badge: 'PRO', features: ['4K Gaming', 'Enhanced Performance', 'HDR Support', 'Great Game Library'] },
+{ id: 16, name: 'PlayStation 4 Pro', brand: 'Sony', category: 'playstation', price: 299.99, originalPrice: 349.99, condition: 'excellent', icon: '🎮', image: 'ps4-pro.jpg', badge: 'PRO', inStock: false, features: ['4K Gaming', 'Enhanced Performance', 'HDR Support', 'Great Game Library'] },
 
-{ id: 17, name: 'PS4 500GB Bundle', brand: 'Sony', category: 'playstation', price: 179.99, originalPrice: 199.99, condition: 'excellent', icon: '🎲', image: 'ps4-500gb-bundle.jpg', badge: 'VALUE', features: ['500GB Storage', 'Complete Bundle', 'Games Included', 'Best Value'] }
+// Games
+{ id: 18, name: 'FC25 PS4 Game', brand: 'EA Sports', category: 'games', price: 39.99, originalPrice: 59.99, condition: 'new', icon: '⚽', image: 'fc25-ps4-game.jpg', badge: 'NEW', inStock: true, features: ['Latest Football Game', 'Enhanced Graphics', 'Ultimate Team Mode', 'Career Mode'] }
 ];
 
 let currentFilter = 'all';
