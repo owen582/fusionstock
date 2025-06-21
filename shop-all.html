@@ -348,14 +348,10 @@ transform: scale(1.05);
 filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.2));
 }
 
-/* Out of Stock Styling - Enhanced */
-.product-card .out-of-stock {
+/* Out of Stock Styling - Match index.html */
+.out-of-stock {
 position: relative;
-filter: grayscale(80%) brightness(0.6) opacity(0.8) !important;
-}
-
-.product-card .out-of-stock img {
-filter: grayscale(80%) brightness(0.6) opacity(0.8) !important;
+filter: grayscale(50%) opacity(0.7);
 }
 
 .stock-overlay {
@@ -363,17 +359,15 @@ position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-background: rgba(239, 68, 68, 0.95) !important;
-color: white !important;
-padding: 0.8rem 1.5rem !important;
+background: rgba(239, 68, 68, 0.9);
+color: white;
+padding: 0.5rem 1rem;
 border-radius: 25px;
 font-weight: bold;
-font-size: 1rem !important;
-z-index: 100 !important;
+font-size: 0.9rem;
+z-index: 10;
 backdrop-filter: blur(4px);
-border: 3px solid #dc2626 !important;
-box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4) !important;
-text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
+border: 2px solid #ef4444;
 }
 
 .product-image.fallback {
@@ -515,6 +509,13 @@ transition: all 0.3s ease;
 .product-btn:hover {
 background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
 transform: scale(1.05);
+}
+
+.product-btn:disabled {
+background: #d1d5db !important;
+color: #9ca3af !important;
+cursor: not-allowed !important;
+transform: none !important;
 }
 
 .wishlist-btn {
@@ -804,23 +805,24 @@ function renderProducts(productsToShow = products) {
 const container = document.getElementById('products-container');
 container.innerHTML = productsToShow.map(product => `
 <div class="product-card" data-category="${product.category}">
-<div class="product-image">
+<div class="product-image ${!product.inStock ? 'out-of-stock' : ''}">
 <div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>
-<img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge ${product.badge.toLowerCase()}&quot;>${product.badge}</div>${product.icon}'; this.parentElement.classList.add('fallback');">
+<img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge ${product.badge.toLowerCase()}&quot;>${product.badge}</div>${!product.inStock ? '<div class=&quot;stock-overlay&quot;>OUT OF STOCK</div>' : ''}${product.icon}'; this.parentElement.classList.add('fallback');">
+${!product.inStock ? '<div class="stock-overlay">OUT OF STOCK</div>' : ''}
 </div>
 <div class="product-info">
 <div class="product-brand">${product.brand}</div>
 <h3 class="product-title">${product.name}</h3>
 <div class="product-condition">${product.condition.toUpperCase()}</div>
 <div class="product-pricing">
-<span class="product-price">${product.price}</span>
-${product.originalPrice > product.price ? `<span class="original-price">${product.originalPrice}</span>` : ''}
+<span class="product-price">$${product.price}</span>
+${product.originalPrice > product.price ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
 </div>
 <ul class="product-features">
 ${product.features.map(feature => `<li>${feature}</li>`).join('')}
 </ul>
 <div class="product-actions">
-<button class="product-btn" onclick="addToCart(${product.id}, this)">Add to Cart</button>
+<button class="product-btn" ${!product.inStock ? 'disabled' : ''} onclick="addToCart(${product.id}, this)">${!product.inStock ? 'Out of Stock' : 'Add to Cart'}</button>
 <button class="wishlist-btn" onclick="addToWishlist(${product.id}, this)">♡</button>
 </div>
 </div>
