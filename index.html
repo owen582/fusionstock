@@ -56,14 +56,14 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 .logo-img {
 height: 36px;
 width: 36px;
-background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+background-image: url('fusionstock-logo.png');
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
 border-radius: 8px;
 display: flex;
 align-items: center;
 justify-content: center;
-font-size: 1.2rem;
-color: #1e40af;
-font-weight: bold;
 }
 
 .nav-links {
@@ -159,6 +159,33 @@ opacity: 0.9;
 animation: slideInUp 1s ease 0.2s both;
 }
 
+.hero-badges {
+display: flex;
+justify-content: center;
+gap: 2rem;
+margin-bottom: 2rem;
+flex-wrap: wrap;
+animation: slideInUp 1s ease 0.3s both;
+}
+
+.hero-badge {
+background: rgba(255, 255, 255, 0.2);
+backdrop-filter: blur(10px);
+padding: 0.8rem 1.5rem;
+border-radius: 25px;
+border: 1px solid rgba(255, 255, 255, 0.3);
+font-weight: bold;
+font-size: 0.9rem;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.hero-badge::before {
+content: attr(data-icon);
+font-size: 1.2rem;
+}
+
 .cta-btn {
 background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
 color: #1e40af;
@@ -242,6 +269,181 @@ color: #3b82f6;
 font-size: 1.5rem;
 margin-bottom: 1rem;
 color: #1e40af;
+}
+
+/* Testimonials Section */
+.testimonials {
+padding: 4rem 2rem;
+background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+position: relative;
+overflow: hidden;
+}
+
+.testimonials-container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.testimonials h2 {
+text-align: center;
+font-size: 2.5rem;
+margin-bottom: 3rem;
+color: #1e40af;
+}
+
+.testimonial-carousel {
+position: relative;
+max-width: 800px;
+margin: 0 auto;
+}
+
+.testimonial-slide {
+display: none;
+text-align: center;
+padding: 2rem;
+background: white;
+border-radius: 20px;
+box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+border: 2px solid transparent;
+transition: all 0.3s ease;
+}
+
+.testimonial-slide.active {
+display: block;
+animation: fadeInScale 0.5s ease;
+}
+
+@keyframes fadeInScale {
+from {
+opacity: 0;
+transform: scale(0.95);
+}
+to {
+opacity: 1;
+transform: scale(1);
+}
+}
+
+.testimonial-quote {
+font-size: 1.3rem;
+font-style: italic;
+color: #374151;
+margin-bottom: 1.5rem;
+line-height: 1.6;
+position: relative;
+}
+
+.testimonial-quote::before {
+content: '"';
+font-size: 4rem;
+color: #3b82f6;
+position: absolute;
+top: -1rem;
+left: -1rem;
+opacity: 0.3;
+}
+
+.testimonial-meta {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 1rem;
+}
+
+.testimonial-buyer {
+text-align: left;
+}
+
+.buyer-name {
+font-weight: bold;
+color: #1e40af;
+margin-bottom: 0.25rem;
+}
+
+.buyer-item {
+color: #6b7280;
+font-size: 0.9rem;
+}
+
+.testimonial-amount {
+text-align: right;
+font-size: 1.2rem;
+font-weight: bold;
+color: #059669;
+}
+
+.verified-badge {
+background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+color: white;
+padding: 0.3rem 0.8rem;
+border-radius: 15px;
+font-size: 0.8rem;
+font-weight: bold;
+display: inline-flex;
+align-items: center;
+gap: 0.3rem;
+margin-top: 0.5rem;
+}
+
+.verified-badge::before {
+content: '✓';
+font-size: 0.9rem;
+}
+
+.carousel-controls {
+display: flex;
+justify-content: center;
+gap: 1rem;
+margin-top: 2rem;
+}
+
+.carousel-btn {
+background: #3b82f6;
+color: white;
+border: none;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+cursor: pointer;
+transition: all 0.3s ease;
+font-size: 1.2rem;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.carousel-btn:hover {
+background: #1e40af;
+transform: scale(1.1);
+}
+
+.carousel-btn:disabled {
+background: #d1d5db;
+cursor: not-allowed;
+transform: none;
+}
+
+.carousel-dots {
+display: flex;
+justify-content: center;
+gap: 0.5rem;
+margin-top: 1rem;
+}
+
+.carousel-dot {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+background: #d1d5db;
+cursor: pointer;
+transition: all 0.3s ease;
+border: none;
+}
+
+.carousel-dot.active {
+background: #3b82f6;
+transform: scale(1.2);
 }
 
 /* About Section */
@@ -382,7 +584,6 @@ transform: scale(1.05);
 filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.2));
 }
 
-/* Out of Stock Styling */
 .out-of-stock {
 position: relative;
 filter: grayscale(50%) opacity(0.7);
@@ -516,28 +717,170 @@ background: #f59e0b;
 transform: scale(1.05);
 }
 
-/* Wave Animation */
-.wave {
+/* PREMIUM WAVE SEPARATOR - ENHANCED */
+.premium-wave-separator {
 position: relative;
 background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+height: 200px;
 overflow: hidden;
+margin: 0;
+padding: 0;
+z-index: 1;
 }
 
-.wave::before {
-content: '';
+.wave-container {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+.wave-layer {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+.wave-layer-1 {
+z-index: 3;
+}
+
+.wave-layer-2 {
+z-index: 2;
+}
+
+.wave-layer-3 {
+z-index: 1;
+}
+
+.wave-svg {
 position: absolute;
 bottom: 0;
 left: 0;
-width: 100%;
-height: 100px;
-background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="white"/></svg>') repeat-x;
-background-size: 1200px 120px;
-animation: wave 10s linear infinite;
+width: 110%;
+height: 100%;
+left: -5%;
 }
 
-@keyframes wave {
-0% { transform: translateX(0); }
-100% { transform: translateX(-1200px); }
+.wave-path-1 {
+fill: #ffffff;
+animation: waveAnimation1 4s ease-in-out infinite;
+filter: drop-shadow(0 4px 8px rgba(30, 64, 175, 0.1));
+}
+
+.wave-path-2 {
+fill: rgba(255, 255, 255, 0.8);
+animation: waveAnimation2 6s ease-in-out infinite reverse;
+opacity: 0.9;
+filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.1));
+}
+
+.wave-path-3 {
+fill: rgba(255, 255, 255, 0.6);
+animation: waveAnimation3 7.5s ease-in-out infinite;
+opacity: 0.7;
+filter: drop-shadow(0 1px 2px rgba(96, 165, 250, 0.1));
+}
+
+@keyframes waveAnimation1 {
+0%, 100% {
+transform: translateX(0) scaleY(1);
+}
+50% {
+transform: translateX(-50px) scaleY(1.1);
+}
+}
+
+@keyframes waveAnimation2 {
+0%, 100% {
+transform: translateX(0) scaleY(1);
+}
+50% {
+transform: translateX(30px) scaleY(0.9);
+}
+}
+
+@keyframes waveAnimation3 {
+0%, 100% {
+transform: translateX(0) scaleY(1);
+}
+50% {
+transform: translateX(-20px) scaleY(1.05);
+}
+}
+
+/* Floating particles for premium effect */
+.wave-particles {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 4;
+}
+
+.particle {
+position: absolute;
+width: 4px;
+height: 4px;
+background: linear-gradient(45deg, rgba(255, 255, 255, 0.6), rgba(147, 197, 253, 0.4));
+border-radius: 50%;
+animation: floatParticles 6s linear infinite;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 2.5s; }
+.particle:nth-child(9) { left: 90%; animation-delay: 3.5s; }
+
+@keyframes floatParticles {
+0% {
+transform: translateY(200px) rotate(0deg);
+opacity: 0;
+}
+10% {
+opacity: 1;
+}
+90% {
+opacity: 1;
+}
+100% {
+transform: translateY(-30px) rotate(360deg);
+opacity: 0;
+}
+}
+
+/* Premium glow effect */
+.wave-glow {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+pointer-events: none;
+z-index: 5;
+animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+0%, 100% {
+opacity: 0.5;
+transform: scale(1);
+}
+50% {
+opacity: 0.8;
+transform: scale(1.05);
+}
 }
 
 /* Footer */
@@ -623,6 +966,15 @@ font-size: 2.5rem;
 font-size: 1.1rem;
 }
 
+.hero-badges {
+gap: 1rem;
+}
+
+.hero-badge {
+font-size: 0.8rem;
+padding: 0.6rem 1rem;
+}
+
 .about-content {
 grid-template-columns: 1fr;
 gap: 2rem;
@@ -635,6 +987,20 @@ flex-direction: column;
 .newsletter-input,
 .newsletter-btn {
 width: 100%;
+}
+
+.testimonial-meta {
+flex-direction: column;
+text-align: center;
+}
+
+.testimonial-buyer,
+.testimonial-amount {
+text-align: center;
+}
+
+.premium-wave-separator {
+height: 120px;
 }
 }
 
@@ -650,8 +1016,23 @@ font-size: 2rem;
 .about,
 .features,
 .products,
-.newsletter {
+.newsletter,
+.testimonials {
 padding: 3rem 1rem;
+}
+
+.testimonial-quote {
+font-size: 1.1rem;
+}
+
+.carousel-btn {
+width: 40px;
+height: 40px;
+font-size: 1rem;
+}
+
+.premium-wave-separator {
+height: 100px;
 }
 }
 
@@ -686,7 +1067,7 @@ animation: addToCart 0.3s ease;
 <header>
 <nav>
 <a href="#" class="logo">
-<img src="fusionstock-logo.png" alt="FusionStock" class="logo-img">
+<div class="logo-img"></div>
 FusionStock
 </a>
 <ul class="nav-links">
@@ -705,6 +1086,11 @@ FusionStock
 <div class="hero-content">
 <h1>Quality Used Consoles at Great Prices</h1>
 <p>Level up your gaming experience with top-tier gaming gear at competitive prices. Fast shipping, trusted products, responsive support.</p>
+<div class="hero-badges">
+<div class="hero-badge" data-icon="🚚">Free Shipping Canada Wide</div>
+<div class="hero-badge" data-icon="💰">Lowest Price Guarantee</div>
+<div class="hero-badge" data-icon="⭐">100% Verified Reviews</div>
+</div>
 <a href="shop-all.html" class="cta-btn">Shop All</a>
 </div>
 </section>
@@ -720,14 +1106,90 @@ FusionStock
 </div>
 <div class="feature-card">
 <div class="feature-icon">🚚</div>
-<h3>Fast Shipping</h3>
-<p>Get your gaming gear delivered quickly with our expedited shipping options and secure packaging.</p>
+<h3>Free Canada-Wide Shipping</h3>
+<p>Get your gaming gear delivered anywhere in Canada at no extra cost with our secure packaging and fast delivery.</p>
 </div>
+
 <div class="feature-card">
 <div class="feature-icon">🛡️</div>
 <h3>Warranty Protection</h3>
 <p>All consoles come with comprehensive warranty coverage for your peace of mind and protection.</p>
 </div>
+</div>
+</div>
+</section>
+
+<section class="testimonials">
+<div class="testimonials-container">
+<h2>What Our Customers Say</h2>
+<div class="testimonial-carousel">
+<div class="testimonial-slide active">
+<div class="testimonial-quote">
+Very good and positive experience with the seller. Everything arrived in good working condition. Thank you again Fusionstock.
+</div>
+<div class="testimonial-meta">
+<div class="testimonial-buyer">
+<div class="buyer-name">gat_154</div>
+<div class="buyer-item">Microsoft Xbox 360 Slim S Console Bundle w/ 3 Controllers, 18 Games, Dock, Cords</div>
+<div class="verified-badge">Verified Purchase</div>
+</div>
+<div class="testimonial-amount">C $199.49</div>
+</div>
+</div>
+
+<div class="testimonial-slide">
+<div class="testimonial-quote">
+Fast shipping, and everything arrived in great condition.
+</div>
+<div class="testimonial-meta">
+<div class="testimonial-buyer">
+<div class="buyer-name">andre_luepk</div>
+<div class="buyer-item">PlayStation 2 PS2 Slim SCPH-75003 Console Bundle - Games, Controllers, Tested</div>
+<div class="verified-badge">Verified Purchase</div>
+</div>
+<div class="testimonial-amount">C $114.95</div>
+</div>
+</div>
+
+<div class="testimonial-slide">
+<div class="testimonial-quote">
+Seller was very quick to ship Xbox. Xbox was packed with lots of protection. Xbox arrived in great condition.
+</div>
+<div class="testimonial-meta">
+<div class="testimonial-buyer">
+<div class="buyer-name">low_8758</div>
+<div class="buyer-item">Microsoft Original Xbox Console Black Complete with Controller, Game & Cables</div>
+<div class="verified-badge">Verified Purchase</div>
+</div>
+<div class="testimonial-amount">C $129.95</div>
+</div>
+</div>
+
+<div class="testimonial-slide">
+<div class="testimonial-quote">
+Thank you very much
+</div>
+<div class="testimonial-meta">
+<div class="testimonial-buyer">
+<div class="buyer-name">universal_gaming</div>
+<div class="buyer-item">Xbox 360 Slim Bundle – 3 Controllers, 9 Games (COD, GTA 5 Install) – Tested</div>
+<div class="verified-badge">Verified Purchase</div>
+</div>
+<div class="testimonial-amount">C $124.95</div>
+</div>
+</div>
+</div>
+
+<div class="carousel-controls">
+<button class="carousel-btn" id="prevBtn" onclick="changeSlide(-1)">‹</button>
+<button class="carousel-btn" id="nextBtn" onclick="changeSlide(1)">›</button>
+</div>
+
+<div class="carousel-dots">
+<button class="carousel-dot active" onclick="currentSlide(1)"></button>
+<button class="carousel-dot" onclick="currentSlide(2)"></button>
+<button class="carousel-dot" onclick="currentSlide(3)"></button>
+<button class="carousel-dot" onclick="currentSlide(4)"></button>
 </div>
 </div>
 </section>
@@ -744,7 +1206,7 @@ FusionStock
 </div>
 <div class="about-stats">
 <div class="stat-item">
-<div class="stat-number">10K+</div>
+<div class="stat-number">100+</div>
 <div class="stat-label">Happy Gamers</div>
 </div>
 <div class="stat-item">
@@ -752,8 +1214,8 @@ FusionStock
 <div class="stat-label">Satisfaction Rate</div>
 </div>
 <div class="stat-item">
-<div class="stat-number">24/7</div>
-<div class="stat-label">Support</div>
+<div class="stat-number">3-7</div>
+<div class="stat-label">Day Fast Shipping</div>
 </div>
 </div>
 </div>
@@ -862,7 +1324,7 @@ FusionStock
 </div>
 </section>
 
-<section class="newsletter wave">
+<section class="newsletter">
 <div class="newsletter-container">
 <h2>Stay Updated</h2>
 <p>Get the latest deals and new arrivals delivered to your inbox!</p>
@@ -873,6 +1335,46 @@ FusionStock
 </div>
 </section>
 </main>
+
+<!-- PREMIUM WAVE SEPARATOR -->
+<div class="premium-wave-separator">
+  <div class="wave-container">
+    <!-- Animated particles -->
+    <div class="wave-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+    
+    <!-- Wave layers -->
+    <div class="wave-layer wave-layer-1">
+      <svg class="wave-svg" viewBox="0 0 1200 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path class="wave-path-1" d="M-100,150 L-100,75 C100,25 300,15 600,60 C900,105 1100,65 1300,45 L1300,150 Z" />
+      </svg>
+    </div>
+    
+    <div class="wave-layer wave-layer-2">
+      <svg class="wave-svg" viewBox="0 0 1200 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path class="wave-path-2" d="M-100,150 L-100,90 C50,40 250,25 600,70 C950,115 1150,75 1300,60 L1300,150 Z" />
+      </svg>
+    </div>
+    
+    <div class="wave-layer wave-layer-3">
+      <svg class="wave-svg" viewBox="0 0 1200 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path class="wave-path-3" d="M-100,150 L-100,105 C200,55 500,80 800,50 C1000,35 1150,20 1300,80 L1300,150 Z" />
+      </svg>
+    </div>
+    
+    <!-- Glow effect -->
+    <div class="wave-glow"></div>
+  </div>
+</div>
 
 <footer>
 <div class="footer-container">
@@ -905,6 +1407,54 @@ FusionStock
 </footer>
 
 <script>
+// Testimonial Carousel
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.testimonial-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+
+function showSlide(index) {
+    // Hide all slides
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    // Show current slide
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    
+    // Update navigation buttons
+    document.getElementById('prevBtn').disabled = index === 0;
+    document.getElementById('nextBtn').disabled = index === slides.length - 1;
+}
+
+function changeSlide(direction) {
+    currentSlideIndex += direction;
+    
+    if (currentSlideIndex < 0) {
+        currentSlideIndex = 0;
+    } else if (currentSlideIndex >= slides.length) {
+        currentSlideIndex = slides.length - 1;
+    }
+    
+    showSlide(currentSlideIndex);
+}
+
+function currentSlide(index) {
+    currentSlideIndex = index - 1;
+    showSlide(currentSlideIndex);
+}
+
+// Auto-rotate testimonials
+function autoRotateTestimonials() {
+    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    showSlide(currentSlideIndex);
+}
+
+// Initialize carousel
+showSlide(0);
+
+// Auto-rotate every 5 seconds
+setInterval(autoRotateTestimonials, 5000);
+
 function subscribeNewsletter(event) {
     event.preventDefault();
     const email = event.target.querySelector('.newsletter-input').value;
