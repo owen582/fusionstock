@@ -295,6 +295,11 @@ color: #1e40af;
 position: relative;
 max-width: 800px;
 margin: 0 auto;
+/* FIXED: Set a consistent height to prevent layout shifts */
+min-height: 250px;
+display: flex;
+align-items: center;
+contain: layout style;
 }
 
 .testimonial-slide {
@@ -306,10 +311,17 @@ border-radius: 20px;
 box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 border: 2px solid transparent;
 transition: all 0.3s ease;
+/* FIXED: Ensure slides take full width and maintain consistent layout */
+width: 100%;
+position: absolute;
+top: 0;
+left: 0;
+will-change: transform, opacity;
 }
 
 .testimonial-slide.active {
 display: block;
+position: relative;
 animation: fadeInScale 0.5s ease;
 }
 
@@ -411,9 +423,14 @@ font-size: 1.2rem;
 display: flex;
 align-items: center;
 justify-content: center;
+/* FIXED: Prevent layout shifts by maintaining consistent dimensions */
+min-width: 50px;
+min-height: 50px;
+flex-shrink: 0;
+will-change: transform, opacity;
 }
 
-.carousel-btn:hover {
+.carousel-btn:hover:not(:disabled) {
 background: #1e40af;
 transform: scale(1.1);
 }
@@ -421,7 +438,9 @@ transform: scale(1.1);
 .carousel-btn:disabled {
 background: #d1d5db;
 cursor: not-allowed;
+/* FIXED: Remove transform on disabled state to prevent shifts */
 transform: none;
+opacity: 0.6;
 }
 
 .carousel-dots {
@@ -429,6 +448,9 @@ display: flex;
 justify-content: center;
 gap: 0.5rem;
 margin-top: 1rem;
+/* FIXED: Set consistent height for dots container */
+min-height: 20px;
+align-items: center;
 }
 
 .carousel-dot {
@@ -439,6 +461,11 @@ background: #d1d5db;
 cursor: pointer;
 transition: all 0.3s ease;
 border: none;
+/* FIXED: Maintain consistent dimensions */
+min-width: 12px;
+min-height: 12px;
+flex-shrink: 0;
+will-change: transform, opacity;
 }
 
 .carousel-dot.active {
