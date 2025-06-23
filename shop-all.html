@@ -340,24 +340,6 @@ border: 2px solid #ef4444;
 background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
 }
 
-.product-image::after {
-content: '';
-position: absolute;
-top: -50%;
-left: -50%;
-width: 200%;
-height: 200%;
-background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-transform: rotate(45deg);
-transition: all 0.5s ease;
-opacity: 0;
-}
-
-.product-card:hover .product-image::after {
-opacity: 1;
-transform: rotate(45deg) translateX(100%);
-}
-
 .product-badge {
 position: absolute;
 top: 1rem;
@@ -403,6 +385,11 @@ color: white;
 
 .product-badge.sale {
 background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+color: white;
+}
+
+.product-badge.budget {
+background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
 color: white;
 }
 
@@ -722,6 +709,11 @@ FusionStock
 <h3>Games</h3>
 <p>PS4 Games</p>
 </div>
+<div class="category-card" onclick="filterProducts('accessories')">
+<span class="category-icon">🎧</span>
+<h3>Accessories</h3>
+<p>Controllers & More</p>
+</div>
 </div>
 </div>
 </section>
@@ -732,7 +724,485 @@ FusionStock
 <h2 class="section-title">Gaming Console Collection</h2>
 <p class="section-subtitle">Hand-selected consoles that deliver exceptional gaming experiences</p>
 <div class="products-grid" id="products-container">
-<!-- Products will be rendered here -->
+<!-- PlayStation 5 -->
+<div class="product-card" data-category="playstation">
+    <div class="product-image">
+        <div class="product-badge sale">SALE</div>
+        <img src="ps5.jpg" alt="PlayStation 5" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge sale&quot;>SALE</div>🎮'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Sony</div>
+        <h3 class="product-title">PlayStation 5</h3>
+        <div class="product-condition">LIKE-NEW</div>
+        <div class="product-pricing">
+            <span class="product-price">$499.00</span>
+            <span class="original-price">$549.00</span>
+        </div>
+        <ul class="product-features">
+            <li>4K HDR Gaming</li>
+            <li>120fps Support</li>
+            <li>Ray Tracing</li>
+            <li>Ultra-Fast SSD</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="ps5-console"
+                data-item-price="499.00"
+                data-item-url="/"
+                data-item-description="4K HDR Gaming, 120fps Support, Ray Tracing, Ultra-Fast SSD"
+                data-item-image="ps5.jpg"
+                data-item-name="PlayStation 5">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(1, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- PS4 Uncharted Bundle -->
+<div class="product-card" data-category="playstation">
+    <div class="product-image">
+        <div class="product-badge bundle">BUNDLE</div>
+        <img src="ps4-uncharted-bundle.jpg" alt="PS4 Uncharted Edition Bundle" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge bundle&quot;>BUNDLE</div>🎲'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Sony</div>
+        <h3 class="product-title">PS4 Uncharted Edition Bundle</h3>
+        <div class="product-condition">EXCELLENT</div>
+        <div class="product-pricing">
+            <span class="product-price">$199.00</span>
+            <span class="original-price">$249.00</span>
+        </div>
+        <ul class="product-features">
+            <li>Uncharted Game Included</li>
+            <li>500GB Storage</li>
+            <li>Complete Bundle</li>
+            <li>Great Value</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="ps4-uncharted-bundle"
+                data-item-price="199.00"
+                data-item-url="/"
+                data-item-description="Uncharted Game Included, 500GB Storage, Complete Bundle, Great Value"
+                data-item-image="ps4-uncharted-bundle.jpg"
+                data-item-name="PS4 Uncharted Edition Bundle">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(15, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- PlayStation 4 Pro -->
+<div class="product-card" data-category="playstation">
+    <div class="product-image out-of-stock">
+        <div class="product-badge pro">PRO</div>
+        <img src="ps4-pro.jpg" alt="PlayStation 4 Pro" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge pro&quot;>PRO</div><div class=&quot;stock-overlay&quot;>OUT OF STOCK</div>🎮'; this.parentElement.classList.add('fallback');">
+        <div class="stock-overlay">OUT OF STOCK</div>
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Sony</div>
+        <h3 class="product-title">PlayStation 4 Pro</h3>
+        <div class="product-condition">EXCELLENT</div>
+        <div class="product-pricing">
+            <span class="product-price">$299.99</span>
+            <span class="original-price">$349.99</span>
+        </div>
+        <ul class="product-features">
+            <li>4K Gaming</li>
+            <li>Enhanced Performance</li>
+            <li>HDR Support</li>
+            <li>Great Game Library</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn disabled" disabled>Out of Stock</button>
+            <button class="wishlist-btn" onclick="addToWishlist(16, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- PlayStation 4 Slim Bundle -->
+<div class="product-card" data-category="playstation">
+    <div class="product-image">
+        <div class="product-badge bundle">BUNDLE</div>
+        <img src="ps4-slim-bundle.jpg" alt="PlayStation 4 Slim Bundle" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge bundle&quot;>BUNDLE</div>🎮'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Sony</div>
+        <h3 class="product-title">PlayStation 4 Slim Bundle</h3>
+        <div class="product-condition">EXCELLENT</div>
+        <div class="product-pricing">
+            <span class="product-price">$159.00</span>
+            <span class="original-price">$199.00</span>
+        </div>
+        <ul class="product-features">
+            <li>Slim Design</li>
+            <li>500GB Storage</li>
+            <li>Controller Included</li>
+            <li>Complete Setup</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="ps4-slim-bundle"
+                data-item-price="159.00"
+                data-item-url="/"
+                data-item-description="Slim Design, 500GB Storage, Controller Included, Complete Setup"
+                data-item-image="ps4-slim-bundle.jpg"
+                data-item-name="PlayStation 4 Slim Bundle">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(17, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- Xbox Series X -->
+<div class="product-card" data-category="xbox">
+    <div class="product-image out-of-stock">
+        <div class="product-badge sale">SALE</div>
+        <img src="xbox-series-x.jpg" alt="Xbox Series X" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge sale&quot;>SALE</div><div class=&quot;stock-overlay&quot;>OUT OF STOCK</div>🎯'; this.parentElement.classList.add('fallback');">
+        <div class="stock-overlay">OUT OF STOCK</div>
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Microsoft</div>
+        <h3 class="product-title">Xbox Series X</h3>
+        <div class="product-condition">LIKE-NEW</div>
+        <div class="product-pricing">
+            <span class="product-price">$499.00</span>
+            <span class="original-price">$549.00</span>
+        </div>
+        <ul class="product-features">
+            <li>True 4K Gaming</li>
+            <li>Quick Resume</li>
+            <li>Smart Delivery</li>
+            <li>Backwards Compatible</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn disabled" disabled>Out of Stock</button>
+            <button class="wishlist-btn" onclick="addToWishlist(5, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- Nintendo Switch -->
+<div class="product-card" data-category="nintendo">
+    <div class="product-image out-of-stock">
+        <div class="product-badge popular">POPULAR</div>
+        <img src="nintendo-switch.jpg" alt="Nintendo Switch" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge popular&quot;>POPULAR</div><div class=&quot;stock-overlay&quot;>OUT OF STOCK</div>🕹️'; this.parentElement.classList.add('fallback');">
+        <div class="stock-overlay">OUT OF STOCK</div>
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Nintendo</div>
+        <h3 class="product-title">Nintendo Switch</h3>
+        <div class="product-condition">EXCELLENT</div>
+        <div class="product-pricing">
+            <span class="product-price">$279.99</span>
+            <span class="original-price">$299.99</span>
+        </div>
+        <ul class="product-features">
+            <li>Versatile Gaming</li>
+            <li>Joy-Con Controllers</li>
+            <li>Portable Mode</li>
+            <li>Dock Included</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn disabled" disabled>Out of Stock</button>
+            <button class="wishlist-btn" onclick="addToWishlist(10, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- FC25 PS4 Game -->
+<div class="product-card" data-category="games">
+    <div class="product-image">
+        <div class="product-badge new">NEW</div>
+        <img src="fc25-ps4-game.jpg" alt="FC25 PS4 Game" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge new&quot;>NEW</div>⚽'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">EA Sports</div>
+        <h3 class="product-title">FC25 PS4 Game</h3>
+        <div class="product-condition">NEW</div>
+        <div class="product-pricing">
+            <span class="product-price">$39.00</span>
+            <span class="original-price">$59.00</span>
+        </div>
+        <ul class="product-features">
+            <li>Latest Football Game</li>
+            <li>Enhanced Graphics</li>
+            <li>Ultimate Team Mode</li>
+            <li>Career Mode</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="fc25-ps4-game"
+                data-item-price="39.00"
+                data-item-url="/"
+                data-item-description="Latest Football Game, Enhanced Graphics, Ultimate Team Mode, Career Mode"
+                data-item-image="fc25-ps4-game.jpg"
+                data-item-name="FC25 PS4 Game">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(18, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- Call of Duty: Black Ops PS4 -->
+<div class="product-card" data-category="games">
+    <div class="product-image">
+        <div class="product-badge sale">SALE</div>
+        <img src="cod-black-ops-ps4.jpg" alt="Call of Duty: Black Ops PS4" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge sale&quot;>SALE</div>🎯'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Activision</div>
+        <h3 class="product-title">Call of Duty: Black Ops PS4</h3>
+        <div class="product-condition">EXCELLENT</div>
+        <div class="product-pricing">
+            <span class="product-price">$29.99</span>
+            <span class="original-price">$49.99</span>
+        </div>
+        <ul class="product-features">
+            <li>Intense Campaign</li>
+            <li>Multiplayer Action</li>
+            <li>Zombies Mode</li>
+            <li>Great Storyline</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="cod-black-ops-ps4"
+                data-item-price="29.99"
+                data-item-url="/"
+                data-item-description="Intense Campaign, Multiplayer Action, Zombies Mode, Great Storyline"
+                data-item-image="cod-black-ops-ps4.jpg"
+                data-item-name="Call of Duty: Black Ops PS4">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(19, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- Call of Duty: WWII PS4 -->
+<div class="product-card" data-category="games">
+    <div class="product-image">
+        <div class="product-badge sale">SALE</div>
+        <img src="cod-ww2-ps4.jpg" alt="Call of Duty: WWII PS4" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge sale&quot;>SALE</div>⚔️'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Activision</div>
+        <h3 class="product-title">Call of Duty: WWII PS4</h3>
+        <div class="product-condition">EXCELLENT</div>
+        <div class="product-pricing">
+            <span class="product-price">$24.99</span>
+            <span class="original-price">$39.99</span>
+        </div>
+        <ul class="product-features">
+            <li>Historic Campaign</li>
+            <li>Online Multiplayer</li>
+            <li>War Mode</li>
+            <li>Nazi Zombies</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="cod-ww2-ps4"
+                data-item-price="24.99"
+                data-item-url="/"
+                data-item-description="Historic Campaign, Online Multiplayer, War Mode, Nazi Zombies"
+                data-item-image="cod-ww2-ps4.jpg"
+                data-item-name="Call of Duty: WWII PS4">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(20, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- RGB Controller & Headset Dock -->
+<div class="product-card" data-category="accessories">
+    <div class="product-image">
+        <div class="product-badge new">NEW</div>
+        <img src="rgb-controller-headset-dock.jpg" alt="RGB Controller & Headset Dock" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge new&quot;>NEW</div>🎧'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Gaming Pro</div>
+        <h3 class="product-title">RGB Controller & Headset Dock</h3>
+        <div class="product-condition">NEW</div>
+        <div class="product-pricing">
+            <span class="product-price">$19.99</span>
+            <span class="original-price">$29.99</span>
+        </div>
+        <ul class="product-features">
+            <li>LED Display Stand</li>
+            <li>Dual Controller Charging</li>
+            <li>Headset Storage</li>
+            <li>RGB Lighting</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="rgb-controller-headset-dock"
+                data-item-price="19.99"
+                data-item-url="/"
+                data-item-description="LED Display Stand, Dual Controller Charging, Headset Storage, RGB Lighting"
+                data-item-image="rgb-controller-headset-dock.jpg"
+                data-item-name="RGB Controller & Headset Dock">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(21, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- RGB USB Dual Charging Dock -->
+<div class="product-card" data-category="accessories">
+    <div class="product-image">
+        <div class="product-badge popular">POPULAR</div>
+        <img src="rgb-usb-dual-charging-dock.jpg" alt="RGB USB Dual Charging Dock" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge popular&quot;>POPULAR</div>🔋'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">PowerPlay</div>
+        <h3 class="product-title">RGB USB Dual Charging Dock</h3>
+        <div class="product-condition">NEW</div>
+        <div class="product-pricing">
+            <span class="product-price">$14.00</span>
+            <span class="original-price">$24.00</span>
+        </div>
+        <ul class="product-features">
+            <li>Dual PS4 Controller Charging</li>
+            <li>RGB LED Indicators</li>
+            <li>USB Powered</li>
+            <li>Compact Design</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="rgb-usb-dual-charging-dock"
+                data-item-price="14.00"
+                data-item-url="/"
+                data-item-description="Dual PS4 Controller Charging, RGB LED Indicators, USB Powered, Compact Design"
+                data-item-image="rgb-usb-dual-charging-dock.jpg"
+                data-item-name="RGB USB Dual Charging Dock">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(22, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- PS4 Hinged Back Button Paddle -->
+<div class="product-card" data-category="accessories">
+    <div class="product-image">
+        <div class="product-badge pro">PRO</div>
+        <img src="ps4-hinged-back-button-paddle.jpg" alt="PS4 Hinged Back Button Paddle" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge pro&quot;>PRO</div>🎮'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">ControlTech</div>
+        <h3 class="product-title">PS4 Hinged Back Button Paddle</h3>
+        <div class="product-condition">NEW</div>
+        <div class="product-pricing">
+            <span class="product-price">$14.99</span>
+            <span class="original-price">$24.99</span>
+        </div>
+        <ul class="product-features">
+            <li>DualShock 4 Extension</li>
+            <li>Turbo Function</li>
+            <li>Back-Key Support</li>
+            <li>Easy Installation</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="ps4-hinged-back-button-paddle"
+                data-item-price="14.99"
+                data-item-url="/"
+                data-item-description="DualShock 4 Extension, Turbo Function, Back-Key Support, Easy Installation"
+                data-item-image="ps4-hinged-back-button-paddle.jpg"
+                data-item-name="PS4 Hinged Back Button Paddle">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(23, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- Universal Silicone Thumb Grips -->
+<div class="product-card" data-category="accessories">
+    <div class="product-image">
+        <div class="product-badge sale">SALE</div>
+        <img src="universal-silicone-thumb-grips.jpg" alt="Universal Silicone Thumb Grips" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge sale&quot;>SALE</div>🕹️'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">GripMaster</div>
+        <h3 class="product-title">Universal Silicone Thumb Grips</h3>
+        <div class="product-condition">NEW</div>
+        <div class="product-pricing">
+            <span class="product-price">$8.99</span>
+            <span class="original-price">$14.99</span>
+        </div>
+        <ul class="product-features">
+            <li>PS5, PS4, Xbox Compatible</li>
+            <li>Enhanced Grip</li>
+            <li>Anti-Slip Design</li>
+            <li>8-Pack Included</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="universal-silicone-thumb-grips"
+                data-item-price="8.99"
+                data-item-url="/"
+                data-item-description="PS5, PS4, Xbox Compatible, Enhanced Grip, Anti-Slip Design, 8-Pack Included"
+                data-item-image="universal-silicone-thumb-grips.jpg"
+                data-item-name="Universal Silicone Thumb Grips">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(24, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- Sony DualShock 4 Wireless Controller -->
+<div class="product-card" data-category="accessories">
+    <div class="product-image">
+        <div class="product-badge popular">POPULAR</div>
+        <img src="sony-dualshock4-wireless-controller.jpg" alt="Sony DualShock 4 Wireless Controller" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge popular&quot;>POPULAR</div>🎮'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">Sony</div>
+        <h3 class="product-title">Sony DualShock 4 Wireless Controller</h3>
+        <div class="product-condition">EXCELLENT</div>
+        <div class="product-pricing">
+            <span class="product-price">$34.49</span>
+            <span class="original-price">$49.99</span>
+        </div>
+        <ul class="product-features">
+            <li>Official Sony Controller</li>
+            <li>Wireless Connectivity</li>
+            <li>Built-in Speaker</li>
+            <li>Touchpad Control</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="sony-dualshock4-wireless-controller"
+                data-item-price="34.49"
+                data-item-url="/"
+                data-item-description="Official Sony Controller, Wireless Connectivity, Built-in Speaker, Touchpad Control"
+                data-item-image="sony-dualshock4-wireless-controller.jpg"
+                data-item-name="Sony DualShock 4 Wireless Controller">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(25, this)">♡</button>
+        </div>
+    </div>
+</div>
+
+<!-- Wired PS4-Style Game Controller -->
+<div class="product-card" data-category="accessories">
+    <div class="product-image">
+        <div class="product-badge budget">BUDGET</div>
+        <img src="wired-ps4-style-controller.jpg" alt="Wired PS4-Style Game Controller" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge budget&quot;>BUDGET</div>🎯'; this.parentElement.classList.add('fallback');">
+    </div>
+    <div class="product-info">
+        <div class="product-brand">GamePro</div>
+        <h3 class="product-title">Wired PS4-Style Game Controller</h3>
+        <div class="product-condition">NEW</div>
+        <div class="product-pricing">
+            <span class="product-price">$24.99</span>
+            <span class="original-price">$34.99</span>
+        </div>
+        <ul class="product-features">
+            <li>PS4 & PC Compatible</li>
+            <li>Wired Connection</li>
+            <li>Responsive Buttons</li>
+            <li>Ergonomic Design</li>
+        </ul>
+        <div class="product-actions">
+            <button class="product-btn snipcart-add-item" 
+                data-item-id="wired-ps4-style-controller"
+                data-item-price="24.99"
+                data-item-url="/"
+                data-item-description="PS4 & PC Compatible, Wired Connection, Responsive Buttons, Ergonomic Design"
+                data-item-image="wired-ps4-style-controller.jpg"
+                data-item-name="Wired PS4-Style Game Controller">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist(26, this)">♡</button>
+        </div>
+    </div>
+</div>
 </div>
 </div>
 </section>
@@ -769,74 +1239,284 @@ FusionStock
 </footer>
 
 <script>
-// Product Data with Snipcart integration - Updated with new items
+// Product Data with Updated Pricing
 const products = [
-// PlayStation
-{ id: 1, name: 'PlayStation 5', brand: 'Sony', category: 'playstation', price: 449.99, originalPrice: 499.99, condition: 'like-new', icon: '🎮', image: 'ps5.jpg', badge: 'SALE', inStock: true, features: ['4K HDR Gaming', '120fps Support', 'Ray Tracing', 'Ultra-Fast SSD'], snipcartId: 'ps5-console' },
-
-// Xbox - OUT OF STOCK
-{ id: 5, name: 'Xbox Series X', brand: 'Microsoft', category: 'xbox', price: 399.99, originalPrice: 499.99, condition: 'like-new', icon: '🎯', image: 'xbox-series-x.jpg', badge: 'SALE', inStock: false, features: ['True 4K Gaming', 'Quick Resume', 'Smart Delivery', 'Backwards Compatible'], snipcartId: 'xbox-series-x-console' },
-
-// Nintendo - NOW OUT OF STOCK
-{ id: 10, name: 'Nintendo Switch', brand: 'Nintendo', category: 'nintendo', price: 279.99, originalPrice: 299.99, condition: 'excellent', icon: '🕹️', image: 'nintendo-switch.jpg', badge: 'POPULAR', inStock: false, features: ['Versatile Gaming', 'Joy-Con Controllers', 'Portable Mode', 'Dock Included'], snipcartId: 'nintendo-switch-console' },
-
-// PlayStation Bundles
-{ id: 15, name: 'PS4 Uncharted Edition Bundle', brand: 'Sony', category: 'playstation', price: 199.99, originalPrice: 249.99, condition: 'excellent', icon: '🎲', image: 'ps4-uncharted-bundle.jpg', badge: 'BUNDLE', inStock: true, features: ['Uncharted Game Included', '500GB Storage', 'Complete Bundle', 'Great Value'], snipcartId: 'ps4-uncharted-bundle' },
-
-{ id: 16, name: 'PlayStation 4 Pro', brand: 'Sony', category: 'playstation', price: 299.99, originalPrice: 349.99, condition: 'excellent', icon: '🎮', image: 'ps4-pro.jpg', badge: 'PRO', inStock: false, features: ['4K Gaming', 'Enhanced Performance', 'HDR Support', 'Great Game Library'], snipcartId: 'ps4-pro-console' },
-
-// NEW PS4 Slim Bundle
-{ id: 17, name: 'PlayStation 4 Slim Bundle', brand: 'Sony', category: 'playstation', price: 249.99, originalPrice: 299.99, condition: 'excellent', icon: '🎮', image: 'ps4-slim-bundle.jpg', badge: 'BUNDLE', inStock: true, features: ['Slim Design', '500GB Storage', 'Controller Included', 'Complete Setup'], snipcartId: 'ps4-slim-bundle' },
-
-// Games
-{ id: 18, name: 'FC25 PS4 Game', brand: 'EA Sports', category: 'games', price: 39.99, originalPrice: 59.99, condition: 'new', icon: '⚽', image: 'fc25-ps4-game.jpg', badge: 'NEW', inStock: true, features: ['Latest Football Game', 'Enhanced Graphics', 'Ultimate Team Mode', 'Career Mode'], snipcartId: 'fc25-ps4-game' },
-
-// NEW Call of Duty Games
-{ id: 19, name: 'Call of Duty: Black Ops PS4', brand: 'Activision', category: 'games', price: 29.99, originalPrice: 49.99, condition: 'excellent', icon: '🎯', image: 'cod-black-ops-ps4.jpg', badge: 'SALE', inStock: true, features: ['Intense Campaign', 'Multiplayer Action', 'Zombies Mode', 'Great Storyline'], snipcartId: 'cod-black-ops-ps4' },
-
-{ id: 20, name: 'Call of Duty: WWII PS4', brand: 'Activision', category: 'games', price: 24.99, originalPrice: 39.99, condition: 'excellent', icon: '⚔️', image: 'cod-ww2-ps4.jpg', badge: 'SALE', inStock: true, features: ['Historic Campaign', 'Online Multiplayer', 'War Mode', 'Nazi Zombies'], snipcartId: 'cod-ww2-ps4' }
+    // PlayStation Consoles
+    { 
+        id: 1, 
+        name: 'PlayStation 5', 
+        brand: 'Sony', 
+        category: 'playstation', 
+        price: '$499.00', 
+        originalPrice: '$549.00', 
+        condition: 'like-new', 
+        icon: '🎮', 
+        image: 'ps5.jpg', 
+        badge: 'SALE', 
+        inStock: true, 
+        features: ['4K HDR Gaming', '120fps Support', 'Ray Tracing', 'Ultra-Fast SSD'], 
+        snipcartId: 'ps5-console' 
+    },
+    { 
+        id: 15, 
+        name: 'PS4 Uncharted Edition Bundle', 
+        brand: 'Sony', 
+        category: 'playstation', 
+        price: '$199.00', 
+        originalPrice: '$249.00', 
+        condition: 'excellent', 
+        icon: '🎲', 
+        image: 'ps4-uncharted-bundle.jpg', 
+        badge: 'BUNDLE', 
+        inStock: true, 
+        features: ['Uncharted Game Included', '500GB Storage', 'Complete Bundle', 'Great Value'], 
+        snipcartId: 'ps4-uncharted-bundle' 
+    },
+    { 
+        id: 16, 
+        name: 'PlayStation 4 Pro', 
+        brand: 'Sony', 
+        category: 'playstation', 
+        price: '$299.99', 
+        originalPrice: '$349.99', 
+        condition: 'excellent', 
+        icon: '🎮', 
+        image: 'ps4-pro.jpg', 
+        badge: 'PRO', 
+        inStock: false, 
+        features: ['4K Gaming', 'Enhanced Performance', 'HDR Support', 'Great Game Library'], 
+        snipcartId: 'ps4-pro-console' 
+    },
+    { 
+        id: 17, 
+        name: 'PlayStation 4 Slim Bundle', 
+        brand: 'Sony', 
+        category: 'playstation', 
+        price: '$159.00', 
+        originalPrice: '$199.00', 
+        condition: 'excellent', 
+        icon: '🎮', 
+        image: 'ps4-slim-bundle.jpg', 
+        badge: 'BUNDLE', 
+        inStock: true, 
+        features: ['Slim Design', '500GB Storage', 'Controller Included', 'Complete Setup'], 
+        snipcartId: 'ps4-slim-bundle' 
+    },
+    // Xbox Consoles
+    { 
+        id: 5, 
+        name: 'Xbox Series X', 
+        brand: 'Microsoft', 
+        category: 'xbox', 
+        price: '$499.00', 
+        originalPrice: '$549.00', 
+        condition: 'like-new', 
+        icon: '🎯', 
+        image: 'xbox-series-x.jpg', 
+        badge: 'SALE', 
+        inStock: false, 
+        features: ['True 4K Gaming', 'Quick Resume', 'Smart Delivery', 'Backwards Compatible'], 
+        snipcartId: 'xbox-series-x-console' 
+    },
+    // Nintendo Consoles
+    { 
+        id: 10, 
+        name: 'Nintendo Switch', 
+        brand: 'Nintendo', 
+        category: 'nintendo', 
+        price: '$279.99', 
+        originalPrice: '$299.99', 
+        condition: 'excellent', 
+        icon: '🕹️', 
+        image: 'nintendo-switch.jpg', 
+        badge: 'POPULAR', 
+        inStock: false, 
+        features: ['Versatile Gaming', 'Joy-Con Controllers', 'Portable Mode', 'Dock Included'], 
+        snipcartId: 'nintendo-switch-console' 
+    },
+    // Games
+    { 
+        id: 18, 
+        name: 'FC25 PS4 Game', 
+        brand: 'EA Sports', 
+        category: 'games', 
+        price: '$39.00', 
+        originalPrice: '$59.00', 
+        condition: 'new', 
+        icon: '⚽', 
+        image: 'fc25-ps4-game.jpg', 
+        badge: 'NEW', 
+        inStock: true, 
+        features: ['Latest Football Game', 'Enhanced Graphics', 'Ultimate Team Mode', 'Career Mode'], 
+        snipcartId: 'fc25-ps4-game' 
+    },
+    { 
+        id: 19, 
+        name: 'Call of Duty: Black Ops PS4', 
+        brand: 'Activision', 
+        category: 'games', 
+        price: '$29.99', 
+        originalPrice: '$49.99', 
+        condition: 'excellent', 
+        icon: '🎯', 
+        image: 'cod-black-ops-ps4.jpg', 
+        badge: 'SALE', 
+        inStock: true, 
+        features: ['Intense Campaign', 'Multiplayer Action', 'Zombies Mode', 'Great Storyline'], 
+        snipcartId: 'cod-black-ops-ps4' 
+    },
+    { 
+        id: 20, 
+        name: 'Call of Duty: WWII PS4', 
+        brand: 'Activision', 
+        category: 'games', 
+        price: '$24.99', 
+        originalPrice: '$39.99', 
+        condition: 'excellent', 
+        icon: '⚔️', 
+        image: 'cod-ww2-ps4.jpg', 
+        badge: 'SALE', 
+        inStock: true, 
+        features: ['Historic Campaign', 'Online Multiplayer', 'War Mode', 'Nazi Zombies'], 
+        snipcartId: 'cod-ww2-ps4' 
+    },
+    // Gaming Accessories
+    { 
+        id: 21, 
+        name: 'RGB Controller & Headset Dock', 
+        brand: 'Gaming Pro', 
+        category: 'accessories', 
+        price: '$19.99', 
+        originalPrice: '$29.99', 
+        condition: 'new', 
+        icon: '🎧', 
+        image: 'rgb-controller-headset-dock.jpg', 
+        badge: 'NEW', 
+        inStock: true, 
+        features: ['LED Display Stand', 'Dual Controller Charging', 'Headset Storage', 'RGB Lighting'], 
+        snipcartId: 'rgb-controller-headset-dock' 
+    },
+    { 
+        id: 22, 
+        name: 'RGB USB Dual Charging Dock', 
+        brand: 'PowerPlay', 
+        category: 'accessories', 
+        price: '$14.00', 
+        originalPrice: '$24.00', 
+        condition: 'new', 
+        icon: '🔋', 
+        image: 'rgb-usb-dual-charging-dock.jpg', 
+        badge: 'POPULAR', 
+        inStock: true, 
+        features: ['Dual PS4 Controller Charging', 'RGB LED Indicators', 'USB Powered', 'Compact Design'], 
+        snipcartId: 'rgb-usb-dual-charging-dock' 
+    },
+    { 
+        id: 23, 
+        name: 'PS4 Hinged Back Button Paddle', 
+        brand: 'ControlTech', 
+        category: 'accessories', 
+        price: '$14.99', 
+        originalPrice: '$24.99', 
+        condition: 'new', 
+        icon: '🎮', 
+        image: 'ps4-hinged-back-button-paddle.jpg', 
+        badge: 'PRO', 
+        inStock: true, 
+        features: ['DualShock 4 Extension', 'Turbo Function', 'Back-Key Support', 'Easy Installation'], 
+        snipcartId: 'ps4-hinged-back-button-paddle' 
+    },
+    { 
+        id: 24, 
+        name: 'Universal Silicone Thumb Grips', 
+        brand: 'GripMaster', 
+        category: 'accessories', 
+        price: '$8.99', 
+        originalPrice: '$14.99', 
+        condition: 'new', 
+        icon: '🕹️', 
+        image: 'universal-silicone-thumb-grips.jpg', 
+        badge: 'SALE', 
+        inStock: true, 
+        features: ['PS5, PS4, Xbox Compatible', 'Enhanced Grip', 'Anti-Slip Design', '8-Pack Included'], 
+        snipcartId: 'universal-silicone-thumb-grips' 
+    },
+    { 
+        id: 25, 
+        name: 'Sony DualShock 4 Wireless Controller', 
+        brand: 'Sony', 
+        category: 'accessories', 
+        price: '$34.49', 
+        originalPrice: '$49.99', 
+        condition: 'excellent', 
+        icon: '🎮', 
+        image: 'sony-dualshock4-wireless-controller.jpg', 
+        badge: 'POPULAR', 
+        inStock: true, 
+        features: ['Official Sony Controller', 'Wireless Connectivity', 'Built-in Speaker', 'Touchpad Control'], 
+        snipcartId: 'sony-dualshock4-wireless-controller' 
+    },
+    { 
+        id: 26, 
+        name: 'Wired PS4-Style Game Controller', 
+        brand: 'GamePro', 
+        category: 'accessories', 
+        price: '$24.99', 
+        originalPrice: '$34.99', 
+        condition: 'new', 
+        icon: '🎯', 
+        image: 'wired-ps4-style-controller.jpg', 
+        badge: 'BUDGET', 
+        inStock: true, 
+        features: ['PS4 & PC Compatible', 'Wired Connection', 'Responsive Buttons', 'Ergonomic Design'], 
+        snipcartId: 'wired-ps4-style-controller' 
+    }
 ];
 
 let currentFilter = 'all';
 
 function renderProducts(productsToShow = products) {
-const container = document.getElementById('products-container');
-container.innerHTML = productsToShow.map(product => `
-<div class="product-card" data-category="${product.category}">
-<div class="product-image ${!product.inStock ? 'out-of-stock' : ''}">
-<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>
-<img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge ${product.badge.toLowerCase()}&quot;>${product.badge}</div>${!product.inStock ? '<div class=&quot;stock-overlay&quot;>OUT OF STOCK</div>' : ''}${product.icon}'; this.parentElement.classList.add('fallback');">
-${!product.inStock ? '<div class="stock-overlay">OUT OF STOCK</div>' : ''}
-</div>
-<div class="product-info">
-<div class="product-brand">${product.brand}</div>
-<h3 class="product-title">${product.name}</h3>
-<div class="product-condition">${product.condition.toUpperCase()}</div>
-<div class="product-pricing">
-<span class="product-price">$${product.price}</span>
-${product.originalPrice > product.price ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
-</div>
-<ul class="product-features">
-${product.features.map(feature => `<li>${feature}</li>`).join('')}
-</ul>
-<div class="product-actions">
-<button class="product-btn snipcart-add-item ${!product.inStock ? 'disabled' : ''}" 
-  ${product.inStock ? `
-  data-item-id="${product.snipcartId}"
-  data-item-price="${product.price}"
-  data-item-url="/"
-  data-item-description="${product.features.join(', ')}"
-  data-item-image="${product.image}"
-  data-item-name="${product.name}"` : 'disabled'}>${!product.inStock ? 'Out of Stock' : 'Add to Cart'}</button>
-<button class="wishlist-btn" onclick="addToWishlist(${product.id}, this)">♡</button>
-</div>
-</div>
-</div>
-`).join('');
+    const container = document.getElementById('products-container');
+    if (!container) {
+        console.error('Products container not found!');
+        return;
+    }
+    
+    container.innerHTML = productsToShow.map(product => `
+        <div class="product-card" data-category="${product.category}">
+            <div class="product-image ${!product.inStock ? 'out-of-stock' : ''}">
+                <div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>
+                <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;product-badge ${product.badge.toLowerCase()}&quot;>${product.badge}</div>${!product.inStock ? '<div class=&quot;stock-overlay&quot;>OUT OF STOCK</div>' : ''}${product.icon}'; this.parentElement.classList.add('fallback');">
+                ${!product.inStock ? '<div class="stock-overlay">OUT OF STOCK</div>' : ''}
+            </div>
+            <div class="product-info">
+                <div class="product-brand">${product.brand}</div>
+                <h3 class="product-title">${product.name}</h3>
+                <div class="product-condition">${product.condition.toUpperCase()}</div>
+                <div class="product-pricing">
+                    <span class="product-price">${product.price}</span>
+                    ${product.originalPrice && product.originalPrice !== product.price ? `<span class="original-price">${product.originalPrice}</span>` : ''}
+                </div>
+                <ul class="product-features">
+                    ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+                <div class="product-actions">
+                    <button class="product-btn snipcart-add-item ${!product.inStock ? 'disabled' : ''}" 
+                        ${product.inStock ? `
+                        data-item-id="${product.snipcartId}"
+                        data-item-price="${product.price.replace(', '')}"
+                        data-item-url="/"
+                        data-item-description="${product.features.join(', ')}"
+                        data-item-image="${product.image}"
+                        data-item-name="${product.name}"` : 'disabled'}>${!product.inStock ? 'Out of Stock' : 'Add to Cart'}</button>
+                    <button class="wishlist-btn" onclick="addToWishlist(${product.id}, this)">♡</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
 
-// Add event listeners to Snipcart buttons
-document.querySelectorAll('.snipcart-add-item').forEach(button => {
-    if (!button.disabled) {
+    // Add event listeners to Snipcart buttons
+    document.querySelectorAll('.snipcart-add-item:not(.disabled)').forEach(button => {
         button.addEventListener('click', function() {
             this.classList.add('cart-animation');
             setTimeout(() => {
@@ -844,78 +1524,81 @@ document.querySelectorAll('.snipcart-add-item').forEach(button => {
                 showNotification('Item added to cart!');
             }, 300);
         });
-    }
-});
+    });
 }
 
 function filterProducts(category) {
-currentFilter = category;
+    currentFilter = category;
+    
+    // Update active category
+    document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
+    if (event && event.target) {
+        event.target.closest('.category-card').classList.add('active');
+    }
 
-// Update active category
-document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
-event.target.closest('.category-card').classList.add('active');
-
-const filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
-renderProducts(filteredProducts);
+    const filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
+    renderProducts(filteredProducts);
 }
 
 function addToWishlist(productId, buttonElement) {
-const product = products.find(p => p.id === productId);
-if (product) {
-buttonElement.innerHTML = '❤️';
-buttonElement.style.color = '#ef4444';
-showNotification(`${product.name} added to wishlist!`);
-
-setTimeout(() => {
-buttonElement.innerHTML = '♡';
-buttonElement.style.color = '#3b82f6';
-}, 2000);
-}
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        buttonElement.innerHTML = '❤️';
+        buttonElement.style.color = '#ef4444';
+        showNotification(`${product.name} added to wishlist!`);
+        
+        setTimeout(() => {
+            buttonElement.innerHTML = '♡';
+            buttonElement.style.color = '#3b82f6';
+        }, 2000);
+    }
 }
 
 function showNotification(message, type = 'success') {
-const notification = document.createElement('div');
-const bgColor = type === 'error' ? '#ef4444' : '#059669';
-notification.style.cssText = `
-position: fixed;
-top: 100px;
-right: 20px;
-background: ${bgColor};
-color: white;
-padding: 1rem 2rem;
-border-radius: 25px;
-z-index: 10000;
-transform: translateX(100%);
-transition: transform 0.3s ease;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-font-weight: 600;
-max-width: 300px;
-`;
-notification.textContent = message;
-document.body.appendChild(notification);
+    const notification = document.createElement('div');
+    const bgColor = type === 'error' ? '#ef4444' : '#059669';
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: ${bgColor};
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 25px;
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        font-weight: 600;
+        max-width: 300px;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
 
-setTimeout(() => {
-notification.style.transform = 'translateX(0)';
-}, 100);
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
 
-setTimeout(() => {
-notification.style.transform = 'translateX(100%)';
-setTimeout(() => {
-if (document.body.contains(notification)) {
-document.body.removeChild(notification);
-}
-}, 300);
-}, 3000);
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
 }
 
 function toggleMobileMenu() {
-const navLinks = document.querySelector('.nav-links');
-navLinks.classList.toggle('active');
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
 }
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-renderProducts();
+    console.log('DOM loaded, rendering products...');
+    console.log('Products array length:', products.length);
+    renderProducts();
 });
 </script>
 
@@ -925,11 +1608,11 @@ renderProducts();
         publicApiKey: 'NWVkMDM1YjItMGY3Yy00ZDlmLWFmZWYtMWM1NDliZWFhMzA5NjM4ODYxMjU1MjUzMTI4NDI1',
         loadStrategy: 'on-user-interaction',
         currency: "usd",
-        addProductBehavior: "none", // Cart won't open automatically, staying on page
-        modalStyle: "side" // Side modal style for better UX
+        addProductBehavior: "none",
+        modalStyle: "side"
     };
 
-    (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
+    (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.configTemplatesUrl=window.SnipcartSettings.templatesUrl))}})();
 </script>
 
 </body>
