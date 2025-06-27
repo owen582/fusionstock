@@ -1177,7 +1177,7 @@ background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
 flex-direction: column;
 padding: 1rem 0;
 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-z-index: 999;
+z-index: 11000; /* <-- Make this higher than .search-section */
 }
 
 .nav-links.active {
@@ -2448,6 +2448,7 @@ document.addEventListener('click', function(e) {
   if (!searchSection.contains(e.target)) {
     clearResults();
   }
+ }
 });
 
 // Notification function
