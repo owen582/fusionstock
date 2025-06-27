@@ -1021,8 +1021,6 @@ const products = [
     }
 ];
 
-let currentFilter = 'all';
-
 // Helper function to format price for display
 function formatPrice(price) {
     return `${price.toFixed(2)}`;
@@ -1032,9 +1030,7 @@ function formatPrice(price) {
 function checkForHighlight() {
     const urlParams = new URLSearchParams(window.location.search);
     const highlightId = urlParams.get('highlight');
-    
     if (highlightId) {
-        // Wait for products to be rendered, then highlight the specific product
         setTimeout(() => {
             highlightProduct(highlightId);
         }, 500);
@@ -1045,27 +1041,15 @@ function checkForHighlight() {
 function highlightProduct(productId) {
     const productElement = document.querySelector(`[data-product-id="${productId}"]`);
     if (productElement) {
-        // Scroll to the product
-        productElement.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-        });
-        
-        // Add highlight class
+        productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         productElement.classList.add('highlighted');
-        
-        // Show notification
         const product = products.find(p => p.snipcartId === productId);
         if (product) {
             showNotification(`Found: ${product.name}!`, 'success');
         }
-        
-        // Remove highlight after animation
         setTimeout(() => {
             productElement.classList.remove('highlighted');
         }, 3000);
-        
-        // Clear URL parameter after highlighting
         const url = new URL(window.location);
         url.searchParams.delete('highlight');
         window.history.replaceState({}, document.title, url.pathname);
@@ -1078,8 +1062,14 @@ function renderProducts(productsToShow = products) {
         console.error('Products container not found!');
         return;
     }
-    
-    container.innerHTML = productsToShow.map(product => `
+
+    // Sort: in-stock first, out-of-stock last
+    const sortedProducts = productsToShow.slice().sort(function(a, b) {
+        if (a.inStock === b.inStock) return 0;
+        return a.inStock ? -1 : 1;
+    });
+
+    container.innerHTML = sortedProducts.map(product => `
         <div class="product-card" data-category="${product.category}" data-product-id="${product.snipcartId}">
             <div class="product-image ${!product.inStock ? 'out-of-stock' : ''}">
                 <div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>
@@ -1126,13 +1116,10 @@ function renderProducts(productsToShow = products) {
 
 function filterProducts(category) {
     currentFilter = category;
-    
-    // Update active category
     document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
     if (event && event.target) {
         event.target.closest('.category-card').classList.add('active');
     }
-
     const filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
     renderProducts(filteredProducts);
 }
@@ -1143,7 +1130,6 @@ function addToWishlist(productId, buttonElement) {
         buttonElement.innerHTML = '❤️';
         buttonElement.style.color = '#ef4444';
         showNotification(`${product.name} added to wishlist!`);
-        
         setTimeout(() => {
             buttonElement.innerHTML = '♡';
             buttonElement.style.color = '#3b82f6';
@@ -1193,11 +1179,7 @@ function toggleMobileMenu() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, rendering products...');
-    console.log('Products array length:', products.length);
     renderProducts();
-    
-    // Check for product highlight from search
     checkForHighlight();
 });
 </script>
