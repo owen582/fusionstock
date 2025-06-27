@@ -1521,33 +1521,172 @@ font-size: 1.1rem;
 .footer-section a {
 font-size: 0.9rem;
 }
+
+/* --- MOBILE OPTIMIZATION --- */
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+  }
+  header nav {
+    padding: 0 0.5rem;
+  }
+  .logo {
+    font-size: 1.3rem;
+  }
+  .search-section {
+    padding: 1rem 0.2rem 0.5rem;
+    margin-top: 60px;
+  }
+  .search-input {
+    font-size: 1rem;
+    min-height: 44px;
+  }
+  .search-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+  .search-results {
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+    max-height: 200px;
+    font-size: 0.95rem;
+  }
+  .search-result-item {
+    padding: 0.7rem 0.7rem;
+    font-size: 1rem;
+  }
+  .products-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  .product-card {
+    margin: 0 0.2rem;
+    border-radius: 12px;
+  }
+  .product-image {
+    height: 160px;
+    font-size: 2.2rem;
+    padding: 0.5rem;
+  }
+  .product-info {
+    padding: 1rem;
+  }
+  .product-info h3 {
+    font-size: 1.1rem;
+  }
+  .product-price {
+    font-size: 1.1rem;
+  }
+  .product-btn {
+    min-height: 44px;
+    font-size: 1rem;
+  }
+  .hero {
+    padding: 2.5rem 0.2rem 1.5rem;
+  }
+  .hero h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0.7rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .cta-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    min-height: 44px;
+  }
+  .features, .about, .products, .newsletter, .testimonials {
+    padding: 1.5rem 0.2rem;
+  }
+  .features h2, .about h2, .products h2, .testimonials h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  .feature-card {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  .feature-icon {
+    font-size: 2rem;
+  }
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .stat-item {
+    padding: 0.7rem;
+  }
+  .stat-number {
+    font-size: 1.2rem;
+  }
+  .newsletter-form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .newsletter-input, .newsletter-btn {
+    width: 100%;
+    min-height: 44px;
+    font-size: 1rem;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+  }
+  .footer-section h3 {
+    font-size: 1rem;
+  }
+  .footer-section p, .footer-section a {
+    font-size: 0.9rem;
+  }
+  .footer-bottom {
+    font-size: 0.8rem;
+    padding-bottom: 60px;
+  }
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+  }
+  .testimonial-quote {
+    font-size: 0.95rem;
+  }
+  .mobile-menu {
+    font-size: 2rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .nav-links {
+    font-size: 1.1rem;
+  }
 }
 
-/* Loading Animation */
-.loading {
-display: inline-block;
-width: 20px;
-height: 20px;
-border: 3px solid rgba(255,255,255,.3);
-border-radius: 50%;
-border-top-color: #fff;
-animation: spin 1s ease-in-out infinite;
+/* Make tap targets large enough */
+button, .search-suggestion, .carousel-dot, .product-btn, .cta-btn {
+  min-height: 44px;
+  min-width: 44px;
 }
 
-@keyframes spin {
-to { transform: rotate(360deg); }
+/* Hide heavy box-shadows on mobile for performance */
+@media (max-width: 600px) {
+  .product-card, .feature-card, .testimonial-slide {
+    box-shadow: none !important;
+  }
 }
 
-/* Add to Cart Animation */
-@keyframes addToCart {
-0% { transform: scale(1); }
-50% { transform: scale(0.95); }
-100% { transform: scale(1); }
-}
-
-.cart-animation {
-animation: addToCart 0.3s ease;
-}
+/* ...existing code... */
 </style>
 </head>
 <body>
