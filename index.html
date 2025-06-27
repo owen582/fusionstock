@@ -283,6 +283,14 @@ align-items: center;
 justify-content: center;
 font-size: 1.5rem;
 flex-shrink: 0;
+overflow: hidden;
+}
+
+.search-result-icon img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 10px;
 }
 
 .search-result-content {
@@ -298,6 +306,17 @@ margin-bottom: 0.25rem;
 .search-result-price {
 color: #059669;
 font-weight: 600;
+}
+
+.search-result-badge {
+display: inline-block;
+background: #3b82f6;
+color: white;
+padding: 0.2rem 0.6rem;
+border-radius: 12px;
+font-size: 0.75rem;
+font-weight: 600;
+margin-left: 0.5rem;
 }
 
 .no-results {
@@ -1555,7 +1574,7 @@ FusionStock
 <div class="search-container">
 <div class="search-wrapper">
 <input type="text" class="search-input" placeholder="Search for PlayStation, Xbox, Nintendo..." id="search-input" autocomplete="off">
-<button class="search-btn" onclick="performSearch()">🔍</button>
+<button class="search-btn" type="button" onclick="performSearch()">🔍</button>
 <div class="search-results" id="search-results"></div>
 </div>
 <div class="search-suggestions">
@@ -1909,44 +1928,9 @@ Thank you very much
 </footer>
 
 <script>
-// Updated product catalog for search functionality
-const products = [
-  {
-    id: 'ps5-console',
-    name: 'PlayStation 5',
-    brand: 'Sony',
-    price: 499.99,
-    category: 'Consoles',
-    description: 'Premium PlayStation 5 gaming console in excellent condition',
-    image: 'ps5.jpg'
-  },
-  {
-    id: 'ps4-original-bundle',
-    name: 'PS4 Original Bundle',
-    brand: 'Sony',
-    price: 179.99,
-    category: 'Consoles',
-    description: 'PlayStation 4 Original console bundle with games and accessories',
-    image: 'ps4-original-bundle.jpg'
-  },
-  {
-    id: 'xbox-360-kinect-bundle',
-    name: 'Xbox 360 Kinect Bundle',
-    brand: 'Microsoft',
-    price: 149.99,
-    category: 'Consoles',
-    description: 'Xbox 360 console with Kinect sensor and games bundle',
-    image: 'xbox-360-kinect-bundle.jpg'
-  },
-  {
-    id: 'ps4-uncharted-bundle',
-    name: 'PS4 Uncharted Edition Bundle',
-    brand: 'Sony',
-    price: 199.99,
-    category: 'Consoles',
-    description: 'PlayStation 4 console with Uncharted game bundle',
-    image: 'ps4-uncharted-bundle.jpg'
-  },
+// Comprehensive product database that includes both pages
+const allProducts = [
+  // Products from index.html (Featured)
   {
     id: 'ps4-slim-1tb-bundle',
     name: 'PlayStation 4 Slim 1TB Bundle',
@@ -1954,7 +1938,10 @@ const products = [
     price: 159.00,
     category: 'Consoles',
     description: '1TB Storage, Slim Design, Controller & Cables, Ready to Play',
-    image: 'ps4-slim-1tb-bundle.jpg'
+    image: 'ps4-slim-1tb-bundle.jpg',
+    badge: 'BUNDLE',
+    features: ['1TB Storage', 'Slim Design', 'Controller & Cables', 'Ready to Play'],
+    source: 'featured'
   },
   {
     id: 'xbox-one-x-bundle',
@@ -1963,38 +1950,271 @@ const products = [
     price: 209.99,
     category: 'Consoles',
     description: '4K Gaming, 1TB Storage, Enhanced Performance, Complete Bundle',
-    image: 'xbox-one-x-bundle.jpg'
+    image: 'xbox-one-x-bundle.jpg',
+    badge: 'PREMIUM',
+    features: ['4K Gaming', '1TB Storage', 'Enhanced Performance', 'Complete Bundle'],
+    source: 'featured'
+  },
+  
+  // Products from shop-all.html (Full catalog)
+  {
+    id: 'ps4-pro-console',
+    name: 'PlayStation 4 Pro',
+    brand: 'Sony',
+    price: 299.99,
+    originalPrice: 349.99,
+    category: 'PlayStation',
+    description: '4K Gaming, Enhanced Performance, HDR Support, Great Game Library',
+    image: 'ps4-pro.jpg',
+    badge: 'PRO',
+    features: ['4K Gaming', 'Enhanced Performance', 'HDR Support', 'Great Game Library'],
+    inStock: false,
+    source: 'shop-all'
+  },
+  {
+    id: 'ps4-slim-bundle',
+    name: 'PlayStation 4 Slim Bundle',
+    brand: 'Sony',
+    price: 159.00,
+    originalPrice: 199.00,
+    category: 'PlayStation',
+    description: 'Slim Design, 500GB Storage, Controller Included, Complete Setup',
+    image: 'ps4-slim-bundle.jpg',
+    badge: 'BUNDLE',
+    features: ['Slim Design', '500GB Storage', 'Controller Included', 'Complete Setup'],
+    inStock: true,
+    source: 'shop-all'
+  },
+  {
+    id: 'xbox-series-x-console',
+    name: 'Xbox Series X',
+    brand: 'Microsoft',
+    price: 499.00,
+    originalPrice: 549.00,
+    category: 'Xbox',
+    description: 'True 4K Gaming, Quick Resume, Smart Delivery, Backwards Compatible',
+    image: 'xbox-series-x.jpg',
+    badge: 'SALE',
+    features: ['True 4K Gaming', 'Quick Resume', 'Smart Delivery', 'Backwards Compatible'],
+    inStock: false,
+    source: 'shop-all'
+  },
+  {
+    id: 'nintendo-switch-console',
+    name: 'Nintendo Switch',
+    brand: 'Nintendo',
+    price: 279.99,
+    originalPrice: 299.99,
+    category: 'Nintendo',
+    description: 'Versatile Gaming, Joy-Con Controllers, Portable Mode, Dock Included',
+    image: 'nintendo-switch.jpg',
+    badge: 'POPULAR',
+    features: ['Versatile Gaming', 'Joy-Con Controllers', 'Portable Mode', 'Dock Included'],
+    inStock: false,
+    source: 'shop-all'
+  },
+  {
+    id: 'cod-black-ops-ps4',
+    name: 'Call of Duty: Black Ops PS4',
+    brand: 'Activision',
+    price: 29.99,
+    originalPrice: 49.99,
+    category: 'Games',
+    description: 'Intense Campaign, Multiplayer Action, Zombies Mode, Great Storyline',
+    image: 'cod-black-ops-ps4.jpg',
+    badge: 'SALE',
+    features: ['Intense Campaign', 'Multiplayer Action', 'Zombies Mode', 'Great Storyline'],
+    inStock: true,
+    source: 'shop-all'
+  },
+  {
+    id: 'cod-ww2-ps4',
+    name: 'Call of Duty: WWII PS4',
+    brand: 'Activision',
+    price: 24.99,
+    originalPrice: 39.99,
+    category: 'Games',
+    description: 'Historic Campaign, Online Multiplayer, War Mode, Nazi Zombies',
+    image: 'cod-ww2-ps4.jpg',
+    badge: 'SALE',
+    features: ['Historic Campaign', 'Online Multiplayer', 'War Mode', 'Nazi Zombies'],
+    inStock: true,
+    source: 'shop-all'
+  },
+  {
+    id: 'rgb-controller-headset-dock',
+    name: 'RGB Controller & Headset Dock',
+    brand: 'Gaming Pro',
+    price: 19.99,
+    originalPrice: 29.99,
+    category: 'Accessories',
+    description: 'LED Display Stand, Dual Controller Charging, Headset Storage, RGB Lighting',
+    image: 'rgb-controller-headset-dock.jpg',
+    badge: 'NEW',
+    features: ['LED Display Stand', 'Dual Controller Charging', 'Headset Storage', 'RGB Lighting'],
+    inStock: true,
+    source: 'shop-all'
+  },
+  {
+    id: 'rgb-usb-dual-charging-dock',
+    name: 'RGB USB Dual Charging Dock',
+    brand: 'PowerPlay',
+    price: 14.00,
+    originalPrice: 24.00,
+    category: 'Accessories',
+    description: 'Dual PS4 Controller Charging, RGB LED Indicators, USB Powered, Compact Design',
+    image: 'rgb-usb-dual-charging-dock.jpg',
+    badge: 'POPULAR',
+    features: ['Dual PS4 Controller Charging', 'RGB LED Indicators', 'USB Powered', 'Compact Design'],
+    inStock: true,
+    source: 'shop-all'
+  },
+  {
+    id: 'ps4-hinged-back-button-paddle',
+    name: 'PS4 Hinged Back Button Paddle',
+    brand: 'ControlTech',
+    price: 14.99,
+    originalPrice: 24.99,
+    category: 'Accessories',
+    description: 'DualShock 4 Extension, Turbo Function, Back-Key Support, Easy Installation',
+    image: 'ps4-hinged-back-button-paddle.jpg',
+    badge: 'PRO',
+    features: ['DualShock 4 Extension', 'Turbo Function', 'Back-Key Support', 'Easy Installation'],
+    inStock: true,
+    source: 'shop-all'
+  },
+  {
+    id: 'universal-silicone-thumb-grips',
+    name: 'Universal Silicone Thumb Grips',
+    brand: 'GripMaster',
+    price: 8.99,
+    originalPrice: 14.99,
+    category: 'Accessories',
+    description: 'PS5, PS4, Xbox Compatible, Enhanced Grip, Anti-Slip Design, 8-Pack Included',
+    image: 'universal-silicone-thumb-grips.jpg',
+    badge: 'SALE',
+    features: ['PS5, PS4, Xbox Compatible', 'Enhanced Grip', 'Anti-Slip Design', '8-Pack Included'],
+    inStock: true,
+    source: 'shop-all'
+  },
+  {
+    id: 'sony-dualshock4-wireless-controller',
+    name: 'Sony DualShock 4 Wireless Controller',
+    brand: 'Sony',
+    price: 34.49,
+    originalPrice: 49.99,
+    category: 'Accessories',
+    description: 'Official Sony Controller, Wireless Connectivity, Built-in Speaker, Touchpad Control',
+    image: 'sony-dualshock4-wireless-controller.jpg',
+    badge: 'POPULAR',
+    features: ['Official Sony Controller', 'Wireless Connectivity', 'Built-in Speaker', 'Touchpad Control'],
+    inStock: true,
+    source: 'shop-all'
+  },
+  {
+    id: 'wired-ps4-style-controller',
+    name: 'Wired PS4-Style Game Controller',
+    brand: 'GamePro',
+    price: 24.99,
+    originalPrice: 34.99,
+    category: 'Accessories',
+    description: 'PS4 & PC Compatible, Wired Connection, Responsive Buttons, Ergonomic Design',
+    image: 'wired-ps4-style-controller.jpg',
+    badge: 'BUDGET',
+    features: ['PS4 & PC Compatible', 'Wired Connection', 'Responsive Buttons', 'Ergonomic Design'],
+    inStock: true,
+    source: 'shop-all'
   }
 ];
 
-// Search logic
+// Enhanced search functionality
 function searchProducts(query) {
-  query = query.toLowerCase();
-  return products.filter(product =>
-    product.name.toLowerCase().includes(query) ||
-    product.brand.toLowerCase().includes(query) ||
-    product.description.toLowerCase().includes(query)
-  );
+  if (!query || query.trim().length === 0) return [];
+  
+  query = query.toLowerCase().trim();
+  
+  return allProducts.filter(product => {
+    return (
+      product.name.toLowerCase().includes(query) ||
+      product.brand.toLowerCase().includes(query) ||
+      product.description.toLowerCase().includes(query) ||
+      product.category.toLowerCase().includes(query) ||
+      (product.features && product.features.some(feature => 
+        feature.toLowerCase().includes(query)
+      )) ||
+      (product.badge && product.badge.toLowerCase().includes(query))
+    );
+  }).sort((a, b) => {
+    // Prioritize exact matches in name
+    const aNameExact = a.name.toLowerCase().includes(query);
+    const bNameExact = b.name.toLowerCase().includes(query);
+    if (aNameExact && !bNameExact) return -1;
+    if (!aNameExact && bNameExact) return 1;
+    
+    // Then prioritize in-stock items
+    const aInStock = a.inStock !== false;
+    const bInStock = b.inStock !== false;
+    if (aInStock && !bInStock) return -1;
+    if (!aInStock && bInStock) return 1;
+    
+    return 0;
+  });
 }
 
 function renderResults(results) {
   const container = document.getElementById('search-results');
   if (!container) return;
+  
   if (!results.length) {
-    container.innerHTML = '<div class="no-results"><div class="no-results-icon">😕</div>No products found.</div>';
+    container.innerHTML = `
+      <div class="no-results">
+        <div class="no-results-icon">😕</div>
+        <p>No products found. Try searching for PlayStation, Xbox, Nintendo, or accessories.</p>
+      </div>
+    `;
     container.classList.add('active');
     return;
   }
-  container.innerHTML = results.map(product => `
-    <div class="search-result-item">
-      <div class="search-result-icon"><img src="${product.image}" alt="${product.name}" style="width:40px;height:40px;object-fit:cover;border-radius:10px;"></div>
-      <div class="search-result-content">
-        <div class="search-result-title">${product.name}</div>
-        <div class="search-result-price">$${product.price}</div>
+  
+  container.innerHTML = results.slice(0, 8).map(product => {
+    const stockStatus = product.inStock === false ? ' (Out of Stock)' : '';
+    const badgeHTML = product.badge ? `<span class="search-result-badge">${product.badge}</span>` : '';
+    
+    return `
+      <div class="search-result-item" tabindex="0" onclick="openProduct('${product.id}')" onkeydown="if(event.key==='Enter'){openProduct('${product.id}')}">
+        <div class="search-result-icon">
+          <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='${getProductIcon(product.category)}';">
+        </div>
+        <div class="search-result-content">
+          <div class="search-result-title">${product.name}${stockStatus}${badgeHTML}</div>
+          <div class="search-result-price">${product.price.toFixed(2)}</div>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
+  
+  if (results.length > 8) {
+    container.innerHTML += `
+      <div class="search-result-item" onclick="viewAllResults('${document.getElementById('search-input').value}')" style="background: #f8fafc; font-weight: bold; justify-content: center;">
+        <div class="search-result-content" style="text-align: center;">
+          View all ${results.length} results →
+        </div>
+      </div>
+    `;
+  }
+  
   container.classList.add('active');
+}
+
+function getProductIcon(category) {
+  switch(category?.toLowerCase()) {
+    case 'playstation': return '🎮';
+    case 'xbox': return '🎯';
+    case 'nintendo': return '🕹️';
+    case 'games': return '🎲';
+    case 'accessories': return '🎧';
+    default: return '🎮';
+  }
 }
 
 function clearResults() {
@@ -2005,26 +2225,33 @@ function clearResults() {
   }
 }
 
-// Event listeners
+// Event handlers
 document.getElementById('search-input').addEventListener('input', function(e) {
   const query = e.target.value.trim();
   if (query.length === 0) {
     clearResults();
     return;
   }
+  
   const results = searchProducts(query);
   renderResults(results);
 });
 
-// Optional: quick search suggestions
+document.getElementById('search-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    performSearch();
+  }
+});
+
 function quickSearch(term) {
   const input = document.getElementById('search-input');
   input.value = term;
+  input.focus();
   const results = searchProducts(term);
   renderResults(results);
 }
 
-// Optional: search button
 function performSearch() {
   const input = document.getElementById('search-input');
   const query = input.value.trim();
@@ -2036,6 +2263,46 @@ function performSearch() {
   renderResults(results);
 }
 
+function viewAllResults(query) {
+  // Redirect to shop-all page with search query
+  window.location.href = `shop-all.html?search=${encodeURIComponent(query)}`;
+}
+
+function openProduct(productId) {
+  const product = allProducts.find(p => p.id === productId);
+  if (!product) return;
+  
+  if (product.source === 'featured') {
+    // Product is on current page, scroll to it
+    const productElement = document.querySelector(`[data-item-id="${productId}"]`);
+    if (productElement) {
+      clearResults();
+      productElement.closest('.product-card').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+      
+      // Add highlight effect
+      const card = productElement.closest('.product-card');
+      card.style.border = '3px solid #3b82f6';
+      card.style.transform = 'scale(1.05)';
+      card.style.boxShadow = '0 25px 50px rgba(59, 130, 246, 0.4)';
+      
+      setTimeout(() => {
+        card.style.border = '';
+        card.style.transform = '';
+        card.style.boxShadow = '';
+      }, 3000);
+      
+      showNotification(`Found: ${product.name}!`, 'success');
+    }
+  } else {
+    // Product is on shop-all page
+    clearResults();
+    window.location.href = `shop-all.html?highlight=${encodeURIComponent(productId)}`;
+  }
+}
+
 // Hide results when clicking outside
 document.addEventListener('click', function(e) {
   const searchSection = document.querySelector('.search-section');
@@ -2043,20 +2310,126 @@ document.addEventListener('click', function(e) {
     clearResults();
   }
 });
+
+// Notification function
+function showNotification(message, type = 'success') {
+  const notification = document.createElement('div');
+  const bgColor = type === 'error' ? '#ef4444' : '#059669';
+  notification.style.cssText = `
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: ${bgColor};
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    max-width: 300px;
+  `;
+  notification.textContent = message;
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.style.transform = 'translateX(0)';
+  }, 100);
+
+  setTimeout(() => {
+    notification.style.transform = 'translateX(100%)';
+    setTimeout(() => {
+      if (document.body.contains(notification)) {
+        document.body.removeChild(notification);
+      }
+    }, 300);
+  }, 3000);
+}
+
+// Testimonial carousel functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.testimonial-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+
+function showSlide(n) {
+  slides.forEach(slide => slide.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+  
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function changeSlide(direction) {
+  showSlide(currentSlide + direction);
+}
+
+function currentSlideSet(n) {
+  showSlide(n - 1);
+}
+
+// Auto advance testimonials
+setInterval(() => {
+  changeSlide(1);
+}, 5000);
+
+// Newsletter subscription
+function subscribeNewsletter(event) {
+  event.preventDefault();
+  const email = event.target.querySelector('input[type="email"]').value;
+  showNotification('Thank you for subscribing!');
+  event.target.reset();
+}
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  if (navLinks) {
+    navLinks.classList.toggle('active');
+  }
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Enhanced search initialized with', allProducts.length, 'products');
+  
+  // Add event listeners to Snipcart buttons
+  document.querySelectorAll('.snipcart-add-item').forEach(button => {
+    button.addEventListener('click', function() {
+      this.classList.add('cart-animation');
+      setTimeout(() => {
+        this.classList.remove('cart-animation');
+        showNotification('Item added to cart!');
+      }, 300);
+    });
+  });
+});
 </script>
 
 <!-- Snipcart Integration -->
 <script>
-    window.SnipcartSettings = {
-        publicApiKey: 'NWVkMDM1YjItMGY3Yy00ZDlmLWFmZWYtMWM1NDliZWFhMzA5NjM4ODYxMjU1MjUzMTI4NDI1',
-        loadStrategy: 'on-user-interaction',
-        currency: "usd",
-        addProductBehavior: "none",
-        modalStyle: "side"
-    };
+window.SnipcartSettings = {
+    publicApiKey: 'NWVkMDM1YjItMGY3Yy00ZDlmLWFmZWYtMWM1NDliZWFhMzA5NjM4ODYxMjU1MjUzMTI4NDI1',
+    loadStrategy: 'on-user-interaction',
+    currency: "usd",
+    addProductBehavior: "none",
+    modalStyle: "side"
+};
 
-    (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
+(function(){
+    var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");
+    var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);
+    var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");
+    var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");
+    var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];
+    window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();
+    function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}
+    var a=!1;
+    function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);
+    e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}
+    function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}
+})();
 </script>
-
 </body>
 </html>
