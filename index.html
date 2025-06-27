@@ -1174,14 +1174,13 @@ display: none;
 position: absolute;
 top: 100%;
 left: 0;
-width: 100%;
+width: 100vw;
 background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
 flex-direction: column;
 padding: 1rem 0;
 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-z-index: 11000; /* <-- Make this higher than .search-section */
+z-index: 12001; /* Make sure this is higher than .search-section */
 }
-
 .nav-links.active {
 display: flex !important;
 }
@@ -1523,6 +1522,7 @@ font-size: 1.1rem;
 .footer-section a {
 font-size: 0.9rem;
 }
+} /* <-- Add this closing brace to end the @media (max-width: 480px) block */
 
 /* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 600px) {
@@ -2450,7 +2450,6 @@ document.addEventListener('click', function(e) {
   if (!searchSection.contains(e.target)) {
     clearResults();
   }
- }
 });
 
 // Notification function
@@ -2490,7 +2489,7 @@ function showNotification(message, type = 'success') {
 }
 
 // Testimonial carousel functionality
-let currentSlide = 0;
+let currentSlideIndex = 0;
 const slides = document.querySelectorAll('.testimonial-slide');
 const dots = document.querySelectorAll('.carousel-dot');
 
@@ -2498,16 +2497,16 @@ function showSlide(n) {
   slides.forEach(slide => slide.classList.remove('active'));
   dots.forEach(dot => dot.classList.remove('active'));
   
-  currentSlide = (n + slides.length) % slides.length;
-  slides[currentSlide].classList.add('active');
-  dots[currentSlide].classList.add('active');
+  currentSlideIndex = (n + slides.length) % slides.length;
+  slides[currentSlideIndex].classList.add('active');
+  dots[currentSlideIndex].classList.add('active');
 }
 
 function changeSlide(direction) {
-  showSlide(currentSlide + direction);
+  showSlide(currentSlideIndex + direction);
 }
 
-function currentSlideSet(n) {
+function currentSlide(n) {
   showSlide(n - 1);
 }
 
