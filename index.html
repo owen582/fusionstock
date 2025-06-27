@@ -2510,10 +2510,17 @@ function currentSlide(n) {
   showSlide(n - 1);
 }
 
+// Attach to window so HTML onclick works
+window.changeSlide = changeSlide;
+window.currentSlide = currentSlide;
+
 // Auto advance testimonials
 setInterval(() => {
   changeSlide(1);
 }, 5000);
+
+// Optionally, show the first slide on load
+showSlide(0);
 
 // Newsletter subscription
 function subscribeNewsletter(event) {
