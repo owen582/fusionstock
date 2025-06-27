@@ -1554,9 +1554,9 @@ FusionStock
 <section class="search-section">
 <div class="search-container">
 <div class="search-wrapper">
-<input type="text" class="search-input" placeholder="Search for PlayStation, Xbox, Nintendo..." id="searchInput" autocomplete="off">
+<input type="text" class="search-input" placeholder="Search for PlayStation, Xbox, Nintendo..." id="search-input" autocomplete="off">
 <button class="search-btn" onclick="performSearch()">🔍</button>
-<div class="search-results" id="searchResults"></div>
+<div class="search-results" id="search-results"></div>
 </div>
 <div class="search-suggestions">
 <div class="search-suggestion" onclick="quickSearch('PlayStation')">PlayStation</div>
@@ -1784,20 +1784,40 @@ Thank you very much
 </button>
 </div>
 </div>
+<!-- New: PS4 Slim 1TB Bundle -->
 <div class="product-card">
 <div class="product-image">
-<img src="fc25-ps4-game.jpg" alt="FC25 PS4 Game" onerror="this.style.display='none'; this.parentElement.innerHTML='⚽'; this.parentElement.classList.add('fallback');">
+<img src="ps4-slim-1tb-bundle.jpg" alt="PlayStation 4 Slim 1TB Bundle" onerror="this.style.display='none'; this.parentElement.innerHTML='🎮'; this.parentElement.classList.add('fallback');">
 </div>
 <div class="product-info">
-<h3>FC25 PS4 Game</h3>
-<div class="product-price">$39.00</div>
+<h3>PlayStation 4 Slim 1TB Bundle</h3>
+<div class="product-price">$159.00</div>
 <button class="product-btn snipcart-add-item"
-  data-item-id="fc25-ps4-game"
-  data-item-price="39.00"
+  data-item-id="ps4-slim-1tb-bundle"
+  data-item-price="159.00"
   data-item-url="/"
-  data-item-description="FC25 (FIFA 25) game for PlayStation 4"
-  data-item-image="fc25-ps4-game.jpg"
-  data-item-name="FC25 PS4 Game">
+  data-item-description="1TB Storage, Slim Design, Controller & Cables, Ready to Play"
+  data-item-image="ps4-slim-1tb-bundle.jpg"
+  data-item-name="PlayStation 4 Slim 1TB Bundle">
+  Add to Cart
+</button>
+</div>
+</div>
+<!-- New: Xbox One X Bundle -->
+<div class="product-card">
+<div class="product-image">
+<img src="xbox-one-x-bundle.jpg" alt="Xbox One X Bundle" onerror="this.style.display='none'; this.parentElement.innerHTML='🎯'; this.parentElement.classList.add('fallback');">
+</div>
+<div class="product-info">
+<h3>Xbox One X Bundle</h3>
+<div class="product-price">$209.99</div>
+<button class="product-btn snipcart-add-item"
+  data-item-id="xbox-one-x-bundle"
+  data-item-price="209.99"
+  data-item-url="/"
+  data-item-description="4K Gaming, 1TB Storage, Enhanced Performance, Complete Bundle"
+  data-item-image="xbox-one-x-bundle.jpg"
+  data-item-name="Xbox One X Bundle">
   Add to Cart
 </button>
 </div>
@@ -1889,512 +1909,139 @@ Thank you very much
 </footer>
 
 <script>
-// Complete product catalog from shop-all.html for search functionality
+// Updated product catalog for search functionality
 const products = [
-    // PlayStation Consoles
-    {
-        id: 'ps5-console',
-        name: 'PlayStation 5',
-        brand: 'Sony',
-        price: 499.00,
-        originalPrice: 549.00,
-        category: 'PlayStation',
-        description: '4K HDR Gaming, 120fps Support, Ray Tracing, Ultra-Fast SSD',
-        icon: '🎮',
-        badge: 'SALE',
-        inStock: true,
-        condition: 'like-new'
-    },
-    {
-        id: 'ps4-uncharted-bundle',
-        name: 'PS4 Uncharted Edition Bundle',
-        brand: 'Sony',
-        price: 199.00,
-        originalPrice: 249.00,
-        category: 'PlayStation',
-        description: 'Uncharted Game Included, 500GB Storage, Complete Bundle, Great Value',
-        icon: '🎲',
-        badge: 'BUNDLE',
-        inStock: true,
-        condition: 'excellent'
-    },
-    {
-        id: 'ps4-pro-console',
-        name: 'PlayStation 4 Pro',
-        brand: 'Sony',
-        price: 299.99,
-        originalPrice: 349.99,
-        category: 'PlayStation',
-        description: '4K Gaming, Enhanced Performance, HDR Support, Great Game Library',
-        icon: '🎮',
-        badge: 'PRO',
-        inStock: false,
-        condition: 'excellent'
-    },
-    {
-        id: 'ps4-slim-bundle',
-        name: 'PlayStation 4 Slim Bundle',
-        brand: 'Sony',
-        price: 159.00,
-        originalPrice: 199.00,
-        category: 'PlayStation',
-        description: 'Slim Design, 500GB Storage, Controller Included, Complete Setup',
-        icon: '🎮',
-        badge: 'BUNDLE',
-        inStock: true,
-        condition: 'excellent'
-    },
-    // Xbox Consoles
-    {
-        id: 'xbox-series-x-console',
-        name: 'Xbox Series X',
-        brand: 'Microsoft',
-        price: 499.00,
-        originalPrice: 549.00,
-        category: 'Xbox',
-        description: 'True 4K Gaming, Quick Resume, Smart Delivery, Backwards Compatible',
-        icon: '🎯',
-        badge: 'SALE',
-        inStock: false,
-        condition: 'like-new'
-    },
-    {
-        id: 'xbox-360-kinect-bundle',
-        name: 'Xbox 360 Kinect Bundle',
-        brand: 'Microsoft',
-        price: 149.99,
-        originalPrice: 199.99,
-        category: 'Xbox',
-        description: 'Xbox 360 console with Kinect sensor and games bundle, tested and working',
-        icon: '🎯',
-        badge: 'BUNDLE',
-        inStock: true,
-        condition: 'excellent'
-    },
-    // Nintendo Consoles
-    {
-        id: 'nintendo-switch-console',
-        name: 'Nintendo Switch',
-        brand: 'Nintendo',
-        price: 279.99,
-        originalPrice: 299.99,
-        category: 'Nintendo',
-        description: 'Versatile Gaming, Joy-Con Controllers, Portable Mode, Dock Included',
-        icon: '🕹️',
-        badge: 'POPULAR',
-        inStock: false,
-        condition: 'excellent'
-    },
-    // Games
-    {
-        id: 'fc25-ps4-game',
-        name: 'FC25 PS4 Game',
-        brand: 'EA Sports',
-        price: 39.00,
-        originalPrice: 59.00,
-        category: 'Games',
-        description: 'Latest Football Game, Enhanced Graphics, Ultimate Team Mode, Career Mode',
-        icon: '⚽',
-        badge: 'NEW',
-        inStock: true,
-        condition: 'new'
-    },
-    {
-        id: 'cod-black-ops-ps4',
-        name: 'Call of Duty: Black Ops PS4',
-        brand: 'Activision',
-        price: 29.99,
-        originalPrice: 49.99,
-        category: 'Games',
-        description: 'Intense Campaign, Multiplayer Action, Zombies Mode, Great Storyline',
-        icon: '🎯',
-        badge: 'SALE',
-        inStock: true,
-        condition: 'excellent'
-    },
-    {
-        id: 'cod-ww2-ps4',
-        name: 'Call of Duty: WWII PS4',
-        brand: 'Activision',
-        price: 24.99,
-        originalPrice: 39.99,
-        category: 'Games',
-        description: 'Historic Campaign, Online Multiplayer, War Mode, Nazi Zombies',
-        icon: '⚔️',
-        badge: 'SALE',
-        inStock: true,
-        condition: 'excellent'
-    },
-    // Gaming Accessories
-    {
-        id: 'rgb-controller-headset-dock',
-        name: 'RGB Controller & Headset Dock',
-        brand: 'Gaming Pro',
-        price: 19.99,
-        originalPrice: 29.99,
-        category: 'Accessories',
-        description: 'LED Display Stand, Dual Controller Charging, Headset Storage, RGB Lighting',
-        icon: '🎧',
-        badge: 'NEW',
-        inStock: true,
-        condition: 'new'
-    },
-    {
-        id: 'rgb-usb-dual-charging-dock',
-        name: 'RGB USB Dual Charging Dock',
-        brand: 'PowerPlay',
-        price: 14.00,
-        originalPrice: 24.00,
-        category: 'Accessories',
-        description: 'Dual PS4 Controller Charging, RGB LED Indicators, USB Powered, Compact Design',
-        icon: '🔋',
-        badge: 'POPULAR',
-        inStock: true,
-        condition: 'new'
-    },
-    {
-        id: 'ps4-hinged-back-button-paddle',
-        name: 'PS4 Hinged Back Button Paddle',
-        brand: 'ControlTech',
-        price: 14.99,
-        originalPrice: 24.99,
-        category: 'Accessories',
-        description: 'DualShock 4 Controller Extension, Turbo Function, Back-Key Support, Easy Installation',
-        icon: '🎮',
-        badge: 'PRO',
-        inStock: true,
-        condition: 'new'
-    },
-    {
-        id: 'universal-silicone-thumb-grips',
-        name: 'Universal Silicone Thumb Grips',
-        brand: 'GripMaster',
-        price: 8.99,
-        originalPrice: 14.99,
-        category: 'Accessories',
-        description: 'PS5, PS4, Xbox Controller Compatible, Enhanced Grip, Anti-Slip Design, 8-Pack Included',
-        icon: '🕹️',
-        badge: 'SALE',
-        inStock: true,
-        condition: 'new'
-    },
-    {
-        id: 'sony-dualshock4-wireless-controller',
-        name: 'Sony DualShock 4 Wireless Controller',
-        brand: 'Sony',
-        price: 34.49,
-        originalPrice: 49.99,
-        category: 'Accessories',
-        description: 'Official Sony PS4 Controller, Wireless Connectivity, Built-in Speaker, Touchpad Control',
-        icon: '🎮',
-        badge: 'POPULAR',
-        inStock: true,
-        condition: 'excellent'
-    },
-    {
-        id: 'wired-ps4-style-controller',
-        name: 'Wired PS4-Style Game Controller',
-        brand: 'GamePro',
-        price: 24.99,
-        originalPrice: 34.99,
-        category: 'Accessories',
-        description: 'PS4 & PC Compatible Controller, Wired Connection, Responsive Buttons, Ergonomic Design',
-        icon: '🎯',
-        badge: 'BUDGET',
-        inStock: true,
-        condition: 'new'
-    }
+  {
+    id: 'ps5-console',
+    name: 'PlayStation 5',
+    brand: 'Sony',
+    price: 499.99,
+    category: 'Consoles',
+    description: 'Premium PlayStation 5 gaming console in excellent condition',
+    image: 'ps5.jpg'
+  },
+  {
+    id: 'ps4-original-bundle',
+    name: 'PS4 Original Bundle',
+    brand: 'Sony',
+    price: 179.99,
+    category: 'Consoles',
+    description: 'PlayStation 4 Original console bundle with games and accessories',
+    image: 'ps4-original-bundle.jpg'
+  },
+  {
+    id: 'xbox-360-kinect-bundle',
+    name: 'Xbox 360 Kinect Bundle',
+    brand: 'Microsoft',
+    price: 149.99,
+    category: 'Consoles',
+    description: 'Xbox 360 console with Kinect sensor and games bundle',
+    image: 'xbox-360-kinect-bundle.jpg'
+  },
+  {
+    id: 'ps4-uncharted-bundle',
+    name: 'PS4 Uncharted Edition Bundle',
+    brand: 'Sony',
+    price: 199.99,
+    category: 'Consoles',
+    description: 'PlayStation 4 console with Uncharted game bundle',
+    image: 'ps4-uncharted-bundle.jpg'
+  },
+  {
+    id: 'ps4-slim-1tb-bundle',
+    name: 'PlayStation 4 Slim 1TB Bundle',
+    brand: 'Sony',
+    price: 159.00,
+    category: 'Consoles',
+    description: '1TB Storage, Slim Design, Controller & Cables, Ready to Play',
+    image: 'ps4-slim-1tb-bundle.jpg'
+  },
+  {
+    id: 'xbox-one-x-bundle',
+    name: 'Xbox One X Bundle',
+    brand: 'Microsoft',
+    price: 209.99,
+    category: 'Consoles',
+    description: '4K Gaming, 1TB Storage, Enhanced Performance, Complete Bundle',
+    image: 'xbox-one-x-bundle.jpg'
+  }
 ];
 
-// Search functionality
-const searchInput = document.getElementById('searchInput');
-const searchResults = document.getElementById('searchResults');
-
-let searchTimeout;
-
-// Search input event listener
-searchInput.addEventListener('input', function() {
-    clearTimeout(searchTimeout);
-    const query = this.value.trim();
-    
-    if (query.length === 0) {
-        hideSearchResults();
-        return;
-    }
-    
-    // Debounce search to avoid too many updates
-    searchTimeout = setTimeout(() => {
-        performSearchQuery(query);
-    }, 300);
-});
-
-// Hide search results when clicking outside
-document.addEventListener('click', function(event) {
-    if (!event.target.closest('.search-wrapper')) {
-        hideSearchResults();
-    }
-});
-
-// Prevent hiding when clicking inside search results
-searchResults.addEventListener('click', function(event) {
-    event.stopPropagation();
-});
-
-function performSearch() {
-    const query = searchInput.value.trim();
-    if (query) {
-        performSearchQuery(query);
-    }
-}
-
-function performSearchQuery(query) {
-    const results = searchProducts(query);
-    console.log('Search query:', query);
-    console.log('Search results:', results);
-    console.log('Total products:', products.length);
-    displaySearchResults(results, query);
-}
-
+// Search logic
 function searchProducts(query) {
-    const searchTerm = query.toLowerCase().trim();
-    
-    return products.filter(product => {
-        const name = product.name.toLowerCase();
-        const brand = product.brand.toLowerCase();
-        const category = product.category.toLowerCase();
-        const description = product.description.toLowerCase();
-        
-        // For multi-word searches, check if the entire phrase appears
-        if (searchTerm.includes(' ')) {
-            return name.includes(searchTerm) ||
-                   brand.includes(searchTerm) ||
-                   category.includes(searchTerm) ||
-                   description.includes(searchTerm);
-        }
-        
-        // For single word searches, use exact word matching
-        const nameWords = name.split(/\s+/);
-        const brandWords = brand.split(/\s+/);
-        const categoryWords = category.split(/\s+/);
-        const descriptionWords = description.split(/\s+/);
-        
-        // Check if search term matches any complete word
-        return nameWords.includes(searchTerm) ||
-               brandWords.includes(searchTerm) ||
-               categoryWords.includes(searchTerm) ||
-               descriptionWords.includes(searchTerm) ||
-               // Also allow partial matches for compound words like "ps4", "xbox", etc.
-               (searchTerm.length >= 3 && (
-                   name.includes(searchTerm) ||
-                   brand.includes(searchTerm) ||
-                   category.includes(searchTerm)
-               ));
-    });
+  query = query.toLowerCase();
+  return products.filter(product =>
+    product.name.toLowerCase().includes(query) ||
+    product.brand.toLowerCase().includes(query) ||
+    product.description.toLowerCase().includes(query)
+  );
 }
 
-function displaySearchResults(results, query) {
-    if (results.length === 0) {
-        searchResults.innerHTML = `
-            <div class="no-results">
-                <div class="no-results-icon">🔍</div>
-                <p>No results found for "${query}"</p>
-                <p>Try searching for PlayStation, Xbox, or Nintendo</p>
-            </div>
-        `;
-    } else {
-        searchResults.innerHTML = results.map(product => `
-            <div class="search-result-item" onclick="selectProduct('${product.id}')">
-                <div class="search-result-icon">${product.icon}</div>
-                <div class="search-result-content">
-                    <div class="search-result-title">${product.name}</div>
-                    <div class="search-result-price">${product.price.toFixed(2)}</div>
-                </div>
-            </div>
-        `).join('');
-    }
-    
-    showSearchResults();
+function renderResults(results) {
+  const container = document.getElementById('search-results');
+  if (!container) return;
+  if (!results.length) {
+    container.innerHTML = '<div class="no-results"><div class="no-results-icon">😕</div>No products found.</div>';
+    container.classList.add('active');
+    return;
+  }
+  container.innerHTML = results.map(product => `
+    <div class="search-result-item">
+      <div class="search-result-icon"><img src="${product.image}" alt="${product.name}" style="width:40px;height:40px;object-fit:cover;border-radius:10px;"></div>
+      <div class="search-result-content">
+        <div class="search-result-title">${product.name}</div>
+        <div class="search-result-price">$${product.price}</div>
+      </div>
+    </div>
+  `).join('');
+  container.classList.add('active');
 }
 
-function showSearchResults() {
-    searchResults.classList.add('active');
+function clearResults() {
+  const container = document.getElementById('search-results');
+  if (container) {
+    container.innerHTML = '';
+    container.classList.remove('active');
+  }
 }
 
-function hideSearchResults() {
-    searchResults.classList.remove('active');
-}
-
-function quickSearch(term) {
-    searchInput.value = term;
-    performSearchQuery(term);
-    searchInput.focus();
-}
-
-function selectProduct(productId) {
-    const product = products.find(p => p.id === productId);
-    if (product) {
-        // Check if we're on the home page and the product is in the featured section
-        const productElement = document.querySelector(`[data-item-id="${productId}"]`);
-        if (productElement) {
-            // Product found on current page - scroll to it
-            productElement.closest('.product-card').scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'center' 
-            });
-            
-            // Highlight the product temporarily
-            const productCard = productElement.closest('.product-card');
-            productCard.style.transform = 'scale(1.05)';
-            productCard.style.boxShadow = '0 25px 50px rgba(59, 130, 246, 0.3)';
-            productCard.style.border = '3px solid #3b82f6';
-            
-            setTimeout(() => {
-                productCard.style.transform = '';
-                productCard.style.boxShadow = '';
-                productCard.style.border = '';
-            }, 2000);
-            
-            showNotification(`Found: ${product.name}`);
-        } else {
-            // Product not on home page - redirect to shop-all page with product highlight
-            showNotification(`Taking you to ${product.name}...`);
-            setTimeout(() => {
-                // Redirect with product ID as URL parameter for direct highlighting
-                window.location.href = `shop-all.html?highlight=${productId}`;
-            }, 500);
-        }
-        
-        hideSearchResults();
-        searchInput.blur();
-    }
-}
-
-// Handle Enter key in search input
-searchInput.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        performSearch();
-        
-        // If there are results, select the first one
-        const firstResult = searchResults.querySelector('.search-result-item');
-        if (firstResult) {
-            firstResult.click();
-        }
-    }
+// Event listeners
+document.getElementById('search-input').addEventListener('input', function(e) {
+  const query = e.target.value.trim();
+  if (query.length === 0) {
+    clearResults();
+    return;
+  }
+  const results = searchProducts(query);
+  renderResults(results);
 });
 
-// Testimonial Carousel
-let currentSlideIndex = 0;
-const slides = document.querySelectorAll('.testimonial-slide');
-const dots = document.querySelectorAll('.carousel-dot');
-
-function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-    
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
-    
-    document.getElementById('prevBtn').disabled = index === 0;
-    document.getElementById('nextBtn').disabled = index === slides.length - 1;
+// Optional: quick search suggestions
+function quickSearch(term) {
+  const input = document.getElementById('search-input');
+  input.value = term;
+  const results = searchProducts(term);
+  renderResults(results);
 }
 
-function changeSlide(direction) {
-    currentSlideIndex += direction;
-    
-    if (currentSlideIndex < 0) {
-        currentSlideIndex = 0;
-    } else if (currentSlideIndex >= slides.length) {
-        currentSlideIndex = slides.length - 1;
-    }
-    
-    showSlide(currentSlideIndex);
+// Optional: search button
+function performSearch() {
+  const input = document.getElementById('search-input');
+  const query = input.value.trim();
+  if (query.length === 0) {
+    clearResults();
+    return;
+  }
+  const results = searchProducts(query);
+  renderResults(results);
 }
 
-function currentSlide(index) {
-    currentSlideIndex = index - 1;
-    showSlide(currentSlideIndex);
-}
-
-function autoRotateTestimonials() {
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    showSlide(currentSlideIndex);
-}
-
-showSlide(0);
-setInterval(autoRotateTestimonials, 5000);
-
-function subscribeNewsletter(event) {
-    event.preventDefault();
-    const email = event.target.querySelector('.newsletter-input').value;
-    const btn = event.target.querySelector('.newsletter-btn');
-
-    btn.innerHTML = '<span class="loading"></span>';
-    btn.disabled = true;
-
-    setTimeout(() => {
-        btn.innerHTML = 'Subscribed!';
-        btn.style.background = '#059669';
-        event.target.querySelector('.newsletter-input').value = '';
-        showNotification('Successfully subscribed to FusionStock newsletter!');
-
-        setTimeout(() => {
-            btn.innerHTML = 'Subscribe';
-            btn.style.background = '#fbbf24';
-            btn.disabled = false;
-        }, 3000);
-    }, 1500);
-}
-
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-}
-
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #059669;
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 10px;
-        z-index: 10000;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        transform: translateX(400px);
-        transition: transform 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    setTimeout(() => {
-        notification.style.transform = 'translateX(400px)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// Add cart animation to buttons
-document.addEventListener('DOMContentLoaded', function() {
-    const addToCartButtons = document.querySelectorAll('.snipcart-add-item');
-    
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            this.classList.add('cart-animation');
-            setTimeout(() => {
-                this.classList.remove('cart-animation');
-                showNotification('Item added to cart!');
-            }, 300);
-        });
-    });
+// Hide results when clicking outside
+document.addEventListener('click', function(e) {
+  const searchSection = document.querySelector('.search-section');
+  if (!searchSection.contains(e.target)) {
+    clearResults();
+  }
 });
 </script>
 
