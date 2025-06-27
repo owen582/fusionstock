@@ -1169,18 +1169,16 @@ color: #9ca3af;
 @media (max-width: 768px) {
   .nav-links {
     display: none;
-    position: fixed; /* changed from absolute to fixed */
-    top: 0;
+    position: absolute;
+    top: 100%; /* directly below header */
     left: 0;
     width: 100vw;
-    min-height: 100vh;
     background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
     flex-direction: column;
-    padding: 2.5rem 0 1rem 0;
+    padding: 1.5rem 0 1rem 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    z-index: 2000; /* higher than search-section */
+    z-index: 2001; /* higher than search-section */
     align-items: center;
-    justify-content: flex-start;
   }
   .nav-links.active {
     display: flex !important;
@@ -1197,7 +1195,7 @@ color: #9ca3af;
   }
   .mobile-menu {
     display: block;
-    z-index: 2100; /* ensure menu button is above nav-links */
+    z-index: 2100;
     position: relative;
   }
 }
@@ -2207,6 +2205,8 @@ document.getElementById('search-input').addEventListener('input', function(e) {
   const results = searchProducts(query);
   renderResults(results);
 });
+
+document.getElementById('search-input').addEventListener('keydown', function(e) {
 
 document.getElementById('search-input').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
