@@ -488,14 +488,82 @@ padding: 3rem 1rem;
 }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+header {
+padding: 0.5rem 0;
+}
+.logo {
+font-size: 1.3rem;
+}
+.logo-img {
+height: 28px;
+width: 28px;
+font-size: 1rem;
+}
+.returns-hero {
+margin-bottom: 2rem;
+}
 .returns-hero h1 {
-font-size: 2rem;
+font-size: 1.3rem;
+margin-bottom: 0.5rem;
+}
+.returns-hero p {
+font-size: 1rem;
+padding: 0 0.5rem;
+}
+.policy-section {
+padding: 1rem;
+border-radius: 12px;
+}
+.policy-section h2 {
+font-size: 1.1rem;
+gap: 0.5rem;
+}
+.policy-section p,
+.policy-section li {
+font-size: 0.98rem;
+}
+.quick-actions {
+padding: 1rem;
+border-radius: 12px;
+}
+.action-btn {
+font-size: 1rem;
+padding: 1rem 0.5rem;
+border-radius: 10px;
+}
+.timeline {
+padding: 1rem;
+border-radius: 12px;
+}
+.timeline h2 {
+font-size: 1.2rem;
+}
+.timeline-step {
+grid-template-columns: 35px 1fr;
+gap: 0.5rem;
+}
+.step-number {
+width: 35px;
+height: 35px;
+font-size: 1rem;
+}
+.footer-container {
+grid-template-columns: 1fr;
+gap: 1rem;
+}
+.footer-section {
+margin-bottom: 1rem;
+}
+main {
+padding: 2rem 0.5rem;
+}
 }
 
-.policy-section h2 {
-font-size: 1.5rem;
-}
+/* Prevent horizontal scroll on mobile */
+body, html {
+max-width: 100vw;
+overflow-x: hidden;
 }
 
 /* Animations */
